@@ -1,6 +1,6 @@
 #include "project.h"
 
-static const char* tag = "BME680 Project";
+
 struct bme68x_dev bme;
 struct bme68x_conf bme_conf;
 struct bme68x_data bme_data;
@@ -8,74 +8,8 @@ static uint8_t sensor_addr;
 
 
 
-void bme68x_check_rslt(const char api_name[], int8_t rslt)
-{
-    switch (rslt)
-    {
-        case BME68X_OK:
 
-            /* Do nothing */
-            ESP_LOGI(tag, "API name [%s] Success", api_name);
-            break;
-        case BME68X_E_NULL_PTR:
-            printf("API name [%s]  Error [%d] : Null pointer\r\n", api_name, rslt);
-            break;
-        case BME68X_E_COM_FAIL:
-            printf("API name [%s]  Error [%d] : Communication failure\r\n", api_name, rslt);
-            break;
-        case BME68X_E_INVALID_LENGTH:
-            printf("API name [%s]  Error [%d] : Incorrect length parameter\r\n", api_name, rslt);
-            break;
-        case BME68X_E_DEV_NOT_FOUND:
-            printf("API name [%s]  Error [%d] : Device not found\r\n", api_name, rslt);
-            break;
-        case BME68X_E_SELF_TEST:
-            printf("API name [%s]  Error [%d] : Self test error\r\n", api_name, rslt);
-            break;
-        case BME68X_W_NO_NEW_DATA:
-            printf("API name [%s]  Warning [%d] : No new data found\r\n", api_name, rslt);
-            break;
-        default:
-            printf("API name [%s]  Error [%d] : Unknown error code\r\n", api_name, rslt);
-            break;
-    }
-}
 
-/*!
- * I2C read function map to ESP32 platform
- */
-int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
-{
-    uint8_t dev_addr = *(uint8_t *)intf_ptr;
-    esp_err_t err = i2c_master_transmit_receive(
-        i2c_dev_handle,
-        &reg_addr,
-        1,
-        reg_data,
-        len,
-        pdMS_TO_TICKS(I2C_MASTER_TIMEOUT_MS)
-    );
-    return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;
-
-    
-}
-
-/*!
- * I2C write function map to ESP32 platform
- */
-int8_t bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
-{
-    uint8_t tx_buf[len+1];
-    tx_buf[0] = reg_addr;
-    memcpy(&tx_buf[1], reg_data, len);
-    esp_err_t err = i2c_master_transmit(
-        i2c_dev_handle,
-        tx_buf, 
-        len+1,
-        pdMS_TO_TICKS(I2C_MASTER_TIMEOUT_MS)
-    );
-    return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;
-}
 
 void user_delay_ms(uint32_t period, void *intf_ptr)
 {
