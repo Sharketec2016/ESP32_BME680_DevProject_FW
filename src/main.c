@@ -6,6 +6,11 @@ struct bme68x_conf bme_conf;
 struct bme68x_data bme_data;
 struct bme68x_heatr_conf heatr_conf;
 
+/* Heater temperature in degree Celsius */
+uint16_t temp_prof[10] = { 200, 240, 280, 320, 360, 360, 320, 280, 240, 200 };
+
+/* Heating duration in milliseconds */
+uint16_t dur_prof[10] = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
 
 
 void aliveTask(void *pvParameters)
@@ -13,10 +18,10 @@ void aliveTask(void *pvParameters)
     static uint8_t toggle = 0;
     while(1)
     {
-        ESP_LOGI(tag, "LED State: %s", toggle == 0 ? "OFF" : "ON");
+        // ESP_LOGI(tag, "LED State: %s", toggle == 0 ? "OFF" : "ON");
         gpio_set_level(LED, toggle);
         toggle ^= 1;
-        vTaskDelay(DELAY / portTICK_PERIOD_MS);
+        vTaskDelay(BLINK_DELAY / portTICK_PERIOD_MS);
     }
 }
 
@@ -62,6 +67,16 @@ void setup(void)
 
 }
 
+void configHeater(void)
+{
+    int8_t rslt;
+    heatr_conf.enable = BME68X_ENABLE;
+    heatr_conf.heatr_temp_prof = temp_prof;
+    heatr_conf.heatr_dur_prof = dur_prof;
+    heatr_conf.profile_len = 10;
+    rslt = bme68x_set_heatr_conf(BME68X_SEQUENTIAL_MODE, &heatr_conf, &bme);
+    bme68x_check_rslt("bme68x_set_heatr_conf", rslt);
+}
 
 void configBME(void)
 {
@@ -74,12 +89,59 @@ void configBME(void)
 
     rslt = bme68x_set_conf(&bme_conf, &bme);
     bme68x_check_rslt("bme68x_set_conf", rslt);
+
+    configHeater();
+
+    rslt = bme68x_set_op_mode(BME68X_SEQUENTIAL_MODE, &bme);
+    bme68x_check_rslt("bme68x_set_op_mode", rslt);
+}
+
+void sampleDataTask(void *pvParameters)
+{
+    (void)pvParameters;
+    static int8_t rslt;
+    static uint8_t n_fields;
+    static uint32_t sample_count;
+    static uint8_t hdr_cnt = 0;
+    while(1)
+    {
+        if((hdr_cnt % 10) == 0)
+        {
+            printf("Sample, Temperature(deg C), Pressure(Pa), Humidity(%%), Gas resistance(ohm), Status, Profile index, Measurement index\n");
+            hdr_cnt = ((hdr_cnt + 1) % 10);
+        }
+        rslt = bme68x_get_data(BME68X_SEQUENTIAL_MODE, &bme_data, &n_fields, &bme);
+        bme68x_check_rslt("bme68x_get_data", rslt);
+#ifdef BME68X_USE_FPU
+            printf("%u, %.2f, %.2f, %.2f, %.2f, 0x%x, %d, %d\n",
+                   sample_count,
+                   bme_data.temperature,
+                   bme_data.pressure,
+                   bme_data.humidity,
+                   bme_data.gas_resistance,
+                   bme_data.status,
+                   bme_data.gas_index,
+                   bme_data.meas_index);
+#else
+            printf("%lu, %d, %lu, %lu, %lu, 0x%x, %d, %d\n",
+                   sample_count,
+                   (bme_data.temperature / 100),
+                   (long unsigned int)bme_data.pressure,
+                   (long unsigned int)(bme_data.humidity / 1000),
+                   (long unsigned int)bme_data.gas_resistance,
+                   bme_data.status,
+                   bme_data.gas_index,
+                   bme_data.meas_index);
+#endif
+        vTaskDelay(SAMPLE_DATA_DELAY / portTICK_PERIOD_MS);
+    }
 }
 
 void app_main() 
 {
     setup();
     configBME();
-    xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
 
+    xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
+    xTaskCreate(sampleDataTask, "Data Acquisition Task", 2048, NULL, tskIDLE_PRIORITY, NULL);
 }

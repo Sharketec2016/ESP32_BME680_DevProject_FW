@@ -8,8 +8,8 @@
 #include "esp_bme_errors.h"
 
 #define LED GPIO_NUM_2
-#define DELAY 800
-
+#define BLINK_DELAY 800
+#define SAMPLE_DATA_DELAY 1000
 
 
 gpio_config_t led_config = {

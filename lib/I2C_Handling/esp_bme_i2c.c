@@ -26,7 +26,6 @@ i2c_master_dev_handle_t i2c_dev_handle;
  */
 int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
-    uint8_t dev_addr = *(uint8_t *)intf_ptr;
     esp_err_t err = i2c_master_transmit_receive(
         i2c_dev_handle,
         &reg_addr,
