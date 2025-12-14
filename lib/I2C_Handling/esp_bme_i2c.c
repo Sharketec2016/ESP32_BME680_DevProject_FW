@@ -35,9 +35,7 @@ int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *
         len,
         pdMS_TO_TICKS(I2C_MASTER_TIMEOUT_MS)
     );
-    return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;
-
-    
+    return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;  
 }
 
 /*!
