@@ -15,8 +15,8 @@
 #define I2C_FREQ_HZ         400000     // 400kHz
 #define I2C_PORT            I2C_NUM_0
 
-#define DEVICE_ADDR         0x3C       // example device address
-
+#define DEVICE_ADDR         0x76       // example device address
+#define I2C_MASTER_TIMEOUT_MS 1000
 
 
 gpio_config_t led_config = {
@@ -38,8 +38,8 @@ i2c_master_bus_config_t i2c_bus_config = {
 };
 
 i2c_device_config_t i2c_dev_config = {
-    .dev_addr_length = 1,
-    .device_address = 0x20,
+    .dev_addr_length = I2C_ADDR_BIT_7,
+    .device_address = DEVICE_ADDR,
     .scl_speed_hz = I2C_FREQ_HZ,
     .scl_wait_us = 0,
     .flags.disable_ack_check = false
