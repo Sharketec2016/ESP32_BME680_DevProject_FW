@@ -1,46 +1,75 @@
+ESP32_BME680 - Library Overview
+===============================
 
-This directory is intended for project specific (private) libraries.
-PlatformIO will compile them to static libraries and link into the executable file.
+This folder contains the sensor driver and small support libraries used by the ESP32_BME680 project. It groups the Bosch BME68x sensor API, error helpers, and I2C handling code used by the sample application in `src/`.
 
-The source code of each library should be placed in a separate directory
-("lib/your_library_name/[Code]").
+Contents
+--------
+- `BME68x_SensorAPI/` — Official BME68x C driver source and headers (Bosch Sensortec). Contains the core sensor implementation and example programs showing different operating modes.
+- `Errors/` — Project-specific error string helpers and mapping for ESP/driver error codes.
+- `I2C_Handling/` — ESP32 I2C wrapper code used to communicate with the sensor from this project.
 
-For example, see the structure of the following example libraries `Foo` and `Bar`:
+Folder details
+--------------
 
-|--lib
-|  |
-|  |--Bar
-|  |  |--docs
-|  |  |--examples
-|  |  |--src
-|  |     |- Bar.c
-|  |     |- Bar.h
-|  |  |- library.json (optional. for custom build options, etc) https://docs.platformio.org/page/librarymanager/config.html
-|  |
-|  |--Foo
-|  |  |- Foo.c
-|  |  |- Foo.h
-|  |
-|  |- README --> THIS FILE
-|
-|- platformio.ini
-|--src
-   |- main.c
+**BME68x_SensorAPI/**
+- `bme68x.h`, `bme68x.c`, `bme68x_defs.h` — Main driver files adapted from the Bosch BME68x Sensor API. They implement sensor initialization, configuration, measurements (temperature, pressure, humidity, gas), and helper routines used by the examples.
+- `LICENSE` — Licensing information for the driver (keep with the source when redistributed).
+- `README.md` — Original driver notes and usage examples from the vendor.
+- `examples/` — Small sample programs demonstrating various operating modes provided with the driver:
+	- `forced_mode/` — Example using forced-mode measurements.
+	- `parallel_mode/` — Example using parallel scheduling of sensor operations.
+	- `sequential_mode/` — Example showing sequential read flows.
+	- `self_test/` — Driver self-test example.
+	- `common/` — Common helper code used by the examples.
 
-Example contents of `src/main.c` using Foo and Bar:
-```
-#include <Foo.h>
-#include <Bar.h>
+These example programs illustrate how to call into the driver API; in this project the drivers are integrated with the ESP32 HAL code (see `I2C_Handling/`).
 
-int main (void)
-{
-  ...
-}
+**Errors/**
+- `esp_bme_errors.c` / `esp_bme_errors.h` — Provide mappings from sensor or ESP error codes to human-readable strings and small helper functions for consistent error reporting across the project.
 
-```
+**I2C_Handling/**
+- `esp_bme_i2c.c` / `esp_bme_i2c.h` — ESP32-specific I2C transport layer used by this project to talk to the BME680. This file adapts the driver transport callbacks (read/write/delay) to use ESP-IDF or PlatformIO I2C APIs. If you replace the transport (e.g., use SPI), update these functions or provide equivalent callbacks.
 
-The PlatformIO Library Dependency Finder will find automatically dependent
-libraries by scanning project source files.
+How this project uses the library
+--------------------------------
+1. The application initializes the I2C transport in `I2C_Handling` and registers read/write/delay callbacks with the BME68x driver.
+2. The driver (`BME68x_SensorAPI`) performs sensor configuration (temperature/pressure/humidity/gas), measurement sequencing, and compensation algorithms.
+3. Error strings from `Errors/` are used to make runtime logs easier to read.
 
-More information about PlatformIO Library Dependency Finder
-- https://docs.platformio.org/page/librarymanager/ldf.html
+Integration notes
+-----------------
+- Include paths: make sure your build system includes `lib/BME68x_SensorAPI` and `lib/I2C_Handling` in the compiler include path.
+- Linkage: compile and link `bme68x.c`, `esp_bme_i2c.c`, and `esp_bme_errors.c` with your project. In PlatformIO this typically happens automatically when files live under `lib/`.
+- Configuration: the BME680 has multiple operating modes (forced, parallel, sequential). Choose the example or API calls that match your power/latency needs.
+
+Building & Running
+------------------
+- PlatformIO: this repository is set up to find sources under `lib/` automatically. Run `pio run` or use the PlatformIO build/run commands in your IDE.
+- CMake / ESP-IDF: when using CMake directly, ensure `lib/BME68x_SensorAPI` and `lib/I2C_Handling` sources are added to the component or target.
+
+Example usage (high level)
+---------------------------
+- Initialize the I2C transport (see `I2C_Handling/esp_bme_i2c.c`).
+- Call the driver's initialization routine (e.g., `bme68x_init()` or the example `common` helpers) with the transport callbacks.
+- Configure sensor settings (oversampling, heater profile, measurement mode) through the driver API.
+- Trigger measurements (or let the driver schedule them) and read the compensated data structures returned by the driver.
+
+References & resources
+----------------------
+- Bosch BME68x driver and documentation: see files in `BME68x_SensorAPI/` and the vendor README.
+- BME680 datasheet and application notes (consult Bosch Sensortec website for latest docs).
+
+Notes for maintainers
+---------------------
+- When upgrading the BME driver, preserve the `LICENSE` file from the vendor and revisit the examples to ensure callback and transport compatibility.
+- If moving the project to SPI or another transport, implement the corresponding transport callbacks in `I2C_Handling` or a new module and update initialization code.
+
+License
+-------
+See `BME68x_SensorAPI/LICENSE` for the driver license. Other support files in this folder are covered by the project repository's license.
+
+Contact / Issues
+----------------
+If you encounter issues integrating the driver with the ESP32 environment, check the example code in `lib/BME68x_SensorAPI/examples/common` and verify I2C wiring and sensor power. For project-specific problems, open an issue in the project repository.
+

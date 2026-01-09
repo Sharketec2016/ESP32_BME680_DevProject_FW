@@ -1,11 +1,16 @@
 #ifndef PROJECT_H
 #define PROJECT_H
+#include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
 #include "bme68x.h"
 #include "esp_bme_i2c.h"
 #include "esp_bme_errors.h"
+#include "esp32_home_ap.h"
+
+
+
 
 #define LED GPIO_NUM_2
 #define BLINK_DELAY 100
