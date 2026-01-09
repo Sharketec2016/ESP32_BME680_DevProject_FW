@@ -1,12 +1,14 @@
 #include "esp_bme_errors.h"
-
 const char* tag = "BME680 Project";
 
 
 void spin(void)
 {
     ESP_LOGE(tag, "ERROR: Encountered an error. Sitting  in inf while");
-    while(1);
+    while(1)
+    {
+        asm("nop"); //nop instruction is to make sure compiler doesnt optimize away
+    }
 }
 
 void bme68x_check_rslt(const char api_name[], int8_t rslt)
@@ -14,7 +16,7 @@ void bme68x_check_rslt(const char api_name[], int8_t rslt)
     switch (rslt)
     {
         case BME68X_OK:
-            ESP_LOGI(tag, "API name [%s] Success", api_name);
+            // ESP_LOGI(tag, "API name [%s] Success", api_name);
             break;
         case BME68X_E_NULL_PTR:
             printf("API name [%s]  Error [%d] : Null pointer\r\n", api_name, rslt);

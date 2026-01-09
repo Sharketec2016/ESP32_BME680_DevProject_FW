@@ -8,9 +8,12 @@
 #include "esp_bme_errors.h"
 
 #define LED GPIO_NUM_2
-#define BLINK_DELAY 800
+#define BLINK_DELAY 100
 #define SAMPLE_DATA_DELAY 1000
 
+#define DELAY_FACTOR 5      //units of sec
+
+#define BME_SAMPLE_MODE BME68X_SEQUENTIAL_MODE
 
 gpio_config_t led_config = {
     .intr_type = GPIO_INTR_DISABLE,

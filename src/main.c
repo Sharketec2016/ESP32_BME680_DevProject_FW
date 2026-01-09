@@ -25,10 +25,16 @@ void aliveTask(void *pvParameters)
     }
 }
 
-void user_delay_ms(uint32_t period, void *intf_ptr)
+/** @brief user defined function for a us delay. 
+ * @param period period of time to delay in us
+ * @param int_ptr void pointer to extra information
+ * 
+ * @return void
+*/
+void user_delay_us(uint32_t period, void *intf_ptr)
 {
     (void)intf_ptr;
-    vTaskDelay(pdMS_TO_TICKS(period));
+    vTaskDelay(pdMS_TO_TICKS(period / 1000));
 }
 
 void setupBmeI2C(struct bme68x_dev* bme, uint8_t intf)
@@ -36,7 +42,7 @@ void setupBmeI2C(struct bme68x_dev* bme, uint8_t intf)
     bme->intf = BME68X_I2C_INTF;
     bme->read = bme68x_i2c_read;
     bme->write = bme68x_i2c_write;
-    bme->delay_us = user_delay_ms;
+    bme->delay_us = user_delay_us;
     bme->amb_temp = 25;
 }
 
@@ -74,7 +80,7 @@ void configHeater(void)
     heatr_conf.heatr_temp_prof = temp_prof;
     heatr_conf.heatr_dur_prof = dur_prof;
     heatr_conf.profile_len = 10;
-    rslt = bme68x_set_heatr_conf(BME68X_SEQUENTIAL_MODE, &heatr_conf, &bme);
+    rslt = bme68x_set_heatr_conf(BME_SAMPLE_MODE, &heatr_conf, &bme);
     bme68x_check_rslt("bme68x_set_heatr_conf", rslt);
 }
 
@@ -92,7 +98,7 @@ void configBME(void)
 
     configHeater();
 
-    rslt = bme68x_set_op_mode(BME68X_SEQUENTIAL_MODE, &bme);
+    rslt = bme68x_set_op_mode(BME_SAMPLE_MODE, &bme);
     bme68x_check_rslt("bme68x_set_op_mode", rslt);
 }
 
@@ -100,20 +106,23 @@ void sampleDataTask(void *pvParameters)
 {
     (void)pvParameters;
     static int8_t rslt;
-    static uint8_t n_fields;
+    static uint8_t n_fields = 1;
     static uint32_t sample_count;
     static uint8_t hdr_cnt = 0;
+    static uint32_t del_period;
     while(1)
     {
-        if((hdr_cnt % 10) == 0)
-        {
-            printf("Sample, Temperature(deg C), Pressure(Pa), Humidity(%%), Gas resistance(ohm), Status, Profile index, Measurement index\n");
-            hdr_cnt = ((hdr_cnt + 1) % 10);
-        }
-        rslt = bme68x_get_data(BME68X_SEQUENTIAL_MODE, &bme_data, &n_fields, &bme);
+
+        del_period = bme68x_get_meas_dur(BME_SAMPLE_MODE, &bme_conf, &bme) + (1000 * 1000); //delay period appears to be in units of us. Dividing this down will decrease the delay
+
+        bme.delay_us( (del_period * DELAY_FACTOR) , bme.intf_ptr);
+        
+        rslt = bme68x_get_data(BME_SAMPLE_MODE, &bme_data, &n_fields, &bme);
         bme68x_check_rslt("bme68x_get_data", rslt);
+        if(rslt == BME68X_OK)
+        {
 #ifdef BME68X_USE_FPU
-            printf("%u, %.2f, %.2f, %.2f, %.2f, 0x%x, %d, %d\n",
+            printf("%lu, %.2f, %.2f, %.2f, %.2f, 0x%x, %d, %d\n",
                    sample_count,
                    bme_data.temperature,
                    bme_data.pressure,
@@ -123,17 +132,15 @@ void sampleDataTask(void *pvParameters)
                    bme_data.gas_index,
                    bme_data.meas_index);
 #else
-            printf("%lu, %d, %lu, %lu, %lu, 0x%x, %d, %d\n",
+            printf("Sample: %lu | Temperature (C): %d | Pressure (Pa): %lu | Humidity (%%): %lu\n",
                    sample_count,
                    (bme_data.temperature / 100),
                    (long unsigned int)bme_data.pressure,
-                   (long unsigned int)(bme_data.humidity / 1000),
-                   (long unsigned int)bme_data.gas_resistance,
-                   bme_data.status,
-                   bme_data.gas_index,
-                   bme_data.meas_index);
+                   (long unsigned int)(bme_data.humidity / 1000)
+            );
 #endif
-        vTaskDelay(SAMPLE_DATA_DELAY / portTICK_PERIOD_MS);
+        sample_count++;
+        }
     }
 }
 
