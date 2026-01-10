@@ -20,3 +20,4 @@ extern i2c_master_dev_handle_t i2c_dev_handle;
 
 int8_t bme68x_i2c_read(uint8_t, uint8_t*, uint32_t, void*);
 int8_t bme68x_i2c_write(uint8_t, const uint8_t*, uint32_t, void*);
+void initialize_i2c(void);

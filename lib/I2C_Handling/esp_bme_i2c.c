@@ -69,3 +69,9 @@ int8_t bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len,
     );
     return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;
 }
+
+void initialize_i2c(void)
+{
+    ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_bus_config, &i2c_bus_handle));
+    ESP_ERROR_CHECK(i2c_master_bus_add_device(i2c_bus_handle, &i2c_dev_config, &i2c_dev_handle));
+}
