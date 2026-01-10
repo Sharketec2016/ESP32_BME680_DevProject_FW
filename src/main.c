@@ -46,7 +46,7 @@ void setup(void)
     configureBme680Sensor();
 
     ESP_LOGI(tag, "Setting up WiFi Access Point");
-    // wifi_init_softap();
+    wifi_init_softap();
 
     ESP_LOGI(tag, "Setup complete");
 }
@@ -64,12 +64,10 @@ void sampleDataTask(void *pvParameters)
     {
         if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
         {
-            printf("Sampling new sensor data...\n");
             measureBME680Data(&global_sensor_data);
-            printf("Updated latest sensor data\n");
             xSemaphoreGive(sensor_data_mutex);
         }
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
 
@@ -79,15 +77,11 @@ void sampleDataTask(void *pvParameters)
  */
 void app_main() 
 {
-    // nvs_setup();
+    nvs_setup();
     setup();
 
-    // httpd_handle_t server = start_webserver();
+    httpd_handle_t server = start_webserver();
     xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
     xTaskCreate(sampleDataTask, "Data Acquisition Task", 2048, NULL, tskIDLE_PRIORITY, NULL);
     ESP_LOGI(tag, "Application complete");
-    // while(1)
-    // {
-    //     vTaskDelay(1000 / portTICK_PERIOD_MS);
-    // }
 }

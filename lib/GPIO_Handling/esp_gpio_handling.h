@@ -4,7 +4,7 @@
 #include "driver/gpio.h"
 #include "esp_bme_errors.h"
 /********Debug Macros************/
-#define ALIVE_GPIO_DEBUG
+// #define ALIVE_GPIO_DEBUG
 
 /********************************/
 
