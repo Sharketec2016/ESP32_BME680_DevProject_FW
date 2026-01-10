@@ -29,14 +29,26 @@ void aliveTask(void *pvParameters)
 void setup(void)
 {
     sensor_data_mutex = xSemaphoreCreateMutex();
+    if(sensor_data_mutex == NULL)
+    {
+        ESP_LOGE(tag, "Failed to create sensor data mutex");
+        return;
+    }
+
     ESP_LOGI(tag, "Setting up project");
+    ESP_LOGI(tag, "Initializing GPIO");
     setup_gpio();
+
+    ESP_LOGI(tag, "Initializing I2C");
     initialize_i2c();
+
+    ESP_LOGI(tag, "Configuring BME680 Sensor");
     configureBme680Sensor();
 
-    wifi_init_softap();
+    ESP_LOGI(tag, "Setting up WiFi Access Point");
+    // wifi_init_softap();
 
-    sensor_data_queue = xQueueCreate(10, sizeof(struct bme68x_data));    
+    ESP_LOGI(tag, "Setup complete");
 }
 
 /**
@@ -57,6 +69,7 @@ void sampleDataTask(void *pvParameters)
             printf("Updated latest sensor data\n");
             xSemaphoreGive(sensor_data_mutex);
         }
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -66,15 +79,15 @@ void sampleDataTask(void *pvParameters)
  */
 void app_main() 
 {
-    nvs_setup();
+    // nvs_setup();
     setup();
 
-    httpd_handle_t server = start_webserver();
+    // httpd_handle_t server = start_webserver();
     xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
     xTaskCreate(sampleDataTask, "Data Acquisition Task", 2048, NULL, tskIDLE_PRIORITY, NULL);
-    vTaskStartScheduler();
-    while(1)
-    {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
+    ESP_LOGI(tag, "Application complete");
+    // while(1)
+    // {
+    //     vTaskDelay(1000 / portTICK_PERIOD_MS);
+    // }
 }

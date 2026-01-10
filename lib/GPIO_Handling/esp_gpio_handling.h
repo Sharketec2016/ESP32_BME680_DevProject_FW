@@ -10,7 +10,7 @@
 
 
 #define LED GPIO_NUM_2
-#define BLINK_DELAY 100
+#define BLINK_DELAY 1000  //milliseconds
 
 
 

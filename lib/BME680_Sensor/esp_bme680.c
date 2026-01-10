@@ -34,7 +34,7 @@ void configureBme680Sensor(void)
  * 
  * @return void
 */
-static void user_delay_us(uint32_t period, void *intf_ptr)
+void user_delay_us(uint32_t period, void *intf_ptr)
 {
     (void)intf_ptr;
     vTaskDelay(pdMS_TO_TICKS(period / 1000));
@@ -59,7 +59,7 @@ void setupBmeI2C(struct bme68x_dev* bme, uint8_t intf)
  * @brief Configure the heater settings for the BME680 sensor
  * 
  */
-static void configHeater(void)
+void configHeater(void)
 {
     int8_t rslt;
     heatr_conf.enable = BME68X_ENABLE;
@@ -74,7 +74,7 @@ static void configHeater(void)
  * @brief Configure the BME680 Sensor with desired settings
  * 
  */
-static void configBME(void)
+void configBME(void)
 {
     int8_t rslt;
     bme_conf.os_temp = BME68X_OS_2X;
@@ -96,7 +96,6 @@ void measureBME680Data(struct bme68x_data* bme_data)
 {
     int8_t rslt;
     uint8_t n_fields = 1;
-    struct bme68x_data sensor_data;
 
     uint32_t del_period = bme68x_get_meas_dur(BME_SAMPLE_MODE, &bme_conf, &bme) + (1000 * 1000); //delay period appears to be in units of us. Dividing this down will decrease the delay
 
@@ -111,13 +110,13 @@ void measureBME680Data(struct bme68x_data* bme_data)
     #ifdef BME68X_USE_FPU
     printf("%lu, %.2f, %.2f, %.2f, %.2f, 0x%x, %d, %d\n",
         sample_count,
-        bme_data.temperature,
-        bme_data.pressure,
-        bme_data.humidity,
-        bme_data.gas_resistance,
-        bme_data.status,
-        bme_data.gas_index,
-        bme_data.meas_index);
+        bme_data->temperature,
+        bme_data->pressure,
+        bme_data->humidity,
+        bme_data->gas_resistance,
+        bme_data->status,
+        bme_data->gas_index,
+        bme_data->meas_index);
     #else
     printf("Temperature (C): %d | Pressure (Pa): %lu | Humidity (%%): %lu\n",
         (bme_data->temperature / 100),
