@@ -6,6 +6,22 @@ struct bme68x_conf bme_conf;
 struct bme68x_data bme_data;
 struct bme68x_heatr_conf heatr_conf;
 
+struct bme68x_data global_sensor_data; 
+
+QueueHandle_t sensor_data_queue;
+SemaphoreHandle_t sensor_data_mutex;
+
+
+
+
+gpio_config_t led_config = {
+    .intr_type = GPIO_INTR_DISABLE,
+    .mode = GPIO_MODE_OUTPUT,
+    .pin_bit_mask = (1U << LED),
+    .pull_down_en = GPIO_PULLDOWN_DISABLE,
+    .pull_up_en = GPIO_PULLUP_DISABLE
+};
+
 /* Heater temperature in degree Celsius */
 uint16_t temp_prof[10] = { 200, 240, 280, 320, 360, 360, 320, 280, 240, 200 };
 
@@ -56,6 +72,7 @@ void printDefaultConfig(void)
 
 void setup(void)
 {
+    sensor_data_mutex = xSemaphoreCreateMutex();
     ESP_LOGI(tag, "Setting up project");
     ESP_ERROR_CHECK(gpio_config(&led_config));
     ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_bus_config, &i2c_bus_handle));
@@ -70,7 +87,9 @@ void setup(void)
     rslt = bme68x_get_conf(&bme_conf, &bme);
     bme68x_check_rslt("bme68x_get_conf", rslt);
 
+    wifi_init_softap();
 
+    sensor_data_queue = xQueueCreate(10, sizeof(struct bme68x_data));    
 }
 
 void configHeater(void)
@@ -139,6 +158,14 @@ void sampleDataTask(void *pvParameters)
                    (long unsigned int)(bme_data.humidity / 1000)
             );
 #endif
+        printf("Sending new data to queue\n");
+        if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
+        {
+            memcpy(&global_sensor_data, &bme_data, sizeof(struct bme68x_data));
+            xSemaphoreGive(sensor_data_mutex);
+            printf("Updated latest sensor data\n");
+        }
+
         sample_count++;
         }
     }
@@ -146,9 +173,14 @@ void sampleDataTask(void *pvParameters)
 
 void app_main() 
 {
+    nvs_setup();
     setup();
     configBME();
-
+    httpd_handle_t server = start_webserver();
     xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
     xTaskCreate(sampleDataTask, "Data Acquisition Task", 2048, NULL, tskIDLE_PRIORITY, NULL);
+    while(1)
+    {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
 }

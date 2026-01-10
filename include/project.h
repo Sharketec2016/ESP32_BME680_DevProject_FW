@@ -8,7 +8,7 @@
 #include "esp_bme_i2c.h"
 #include "esp_bme_errors.h"
 #include "esp32_home_ap.h"
-
+#include "freertos/semphr.h"
 
 
 
@@ -16,20 +16,15 @@
 #define BLINK_DELAY 100
 #define SAMPLE_DATA_DELAY 1000
 
-#define DELAY_FACTOR 5      //units of sec
+#define DELAY_FACTOR 0.1     //units of sec
 
 #define BME_SAMPLE_MODE BME68X_SEQUENTIAL_MODE
 
-gpio_config_t led_config = {
-    .intr_type = GPIO_INTR_DISABLE,
-    .mode = GPIO_MODE_OUTPUT,
-    .pin_bit_mask = (1U << LED),
-    .pull_down_en = GPIO_PULLDOWN_DISABLE,
-    .pull_up_en = GPIO_PULLUP_DISABLE
-};
 
 
 
-
+extern QueueHandle_t sensor_data_queue;
+extern struct bme68x_data global_sensor_data; 
+extern SemaphoreHandle_t sensor_data_mutex;
 
 #endif
