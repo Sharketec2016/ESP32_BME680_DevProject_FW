@@ -219,7 +219,7 @@ static esp_err_t index_handler(httpd_req_t *req)
                         "console.error('Error fetching data:', err);"
                     "});"
                 "}"
-                "setInterval(updateData, 500);"
+                "setInterval(updateData, 1000);"
                 "updateData();"
             "</script>"
         "</body>"
