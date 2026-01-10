@@ -1,5 +1,8 @@
 #include "esp_bme_i2c.h"
 
+
+
+
 i2c_master_bus_config_t i2c_bus_config = {
     .clk_source = I2C_CLK_SRC_DEFAULT,
     .scl_io_num = GPIO_NUM_22,
@@ -21,8 +24,15 @@ i2c_device_config_t i2c_dev_config = {
 i2c_master_bus_handle_t i2c_bus_handle;
 i2c_master_dev_handle_t i2c_dev_handle;
 
-/*!
- * I2C read function map to ESP32 platform
+
+/**
+ * @brief I2C read function map to ESP32 platform
+ * 
+ * @param reg_addr 
+ * @param reg_data 
+ * @param len 
+ * @param intf_ptr 
+ * @return int8_t 
  */
 int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
@@ -37,8 +47,14 @@ int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *
     return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;  
 }
 
-/*!
- * I2C write function map to ESP32 platform
+/**
+ * @brief I2C write function map to ESP32 platform
+ * 
+ * @param reg_addr 
+ * @param reg_data 
+ * @param len 
+ * @param intf_ptr 
+ * @return int8_t 
  */
 int8_t bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {

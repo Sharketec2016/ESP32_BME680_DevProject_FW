@@ -28,7 +28,11 @@ uint16_t temp_prof[10] = { 200, 240, 280, 320, 360, 360, 320, 280, 240, 200 };
 /* Heating duration in milliseconds */
 uint16_t dur_prof[10] = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
 
-
+/**
+ * @brief Task to toggle an LED to indicate system activity
+ * 
+ * @param pvParameters 
+ */
 void aliveTask(void *pvParameters)
 {
     static uint8_t toggle = 0;
@@ -53,6 +57,12 @@ void user_delay_us(uint32_t period, void *intf_ptr)
     vTaskDelay(pdMS_TO_TICKS(period / 1000));
 }
 
+/**
+ * @brief Setup I2C communication with the BME680 sensor
+ * 
+ * @param bme 
+ * @param intf 
+ */
 void setupBmeI2C(struct bme68x_dev* bme, uint8_t intf)
 {
     bme->intf = BME68X_I2C_INTF;
@@ -62,6 +72,10 @@ void setupBmeI2C(struct bme68x_dev* bme, uint8_t intf)
     bme->amb_temp = 25;
 }
 
+/**
+ * @brief Print the default configuration of the BME680 sensor
+ * 
+ */
 void printDefaultConfig(void)
 {
     ESP_LOGI(tag, "Default OverSampling Humidity: %d", bme_conf.os_hum);
@@ -70,6 +84,10 @@ void printDefaultConfig(void)
     ESP_LOGI(tag, "Default Filter: %d", bme_conf.filter);
 }
 
+/**
+ * @brief Setup the project components, including mutex, GPIO, I2C bud and master device, and BME680 sensor
+ * 
+ */
 void setup(void)
 {
     sensor_data_mutex = xSemaphoreCreateMutex();
@@ -92,6 +110,10 @@ void setup(void)
     sensor_data_queue = xQueueCreate(10, sizeof(struct bme68x_data));    
 }
 
+/**
+ * @brief Configure the heater settings for the BME680 sensor
+ * 
+ */
 void configHeater(void)
 {
     int8_t rslt;
@@ -102,7 +124,10 @@ void configHeater(void)
     rslt = bme68x_set_heatr_conf(BME_SAMPLE_MODE, &heatr_conf, &bme);
     bme68x_check_rslt("bme68x_set_heatr_conf", rslt);
 }
-
+/**
+ * @brief Configure the BME680 Sensor with desired settings
+ * 
+ */
 void configBME(void)
 {
     int8_t rslt;
@@ -121,6 +146,12 @@ void configBME(void)
     bme68x_check_rslt("bme68x_set_op_mode", rslt);
 }
 
+/**
+ * @brief Task to sample sensor data and update the global sensor data
+ * 
+ * @details This task will continously sample data from the BME sensor, and if available, update the global sensor data struct with the lastest. It uses a mutex to ensure safe access to the global data.
+ * @param pvParameters 
+ */
 void sampleDataTask(void *pvParameters)
 {
     (void)pvParameters;
@@ -171,6 +202,10 @@ void sampleDataTask(void *pvParameters)
     }
 }
 
+/**
+ * @brief Main application entry point
+ * 
+ */
 void app_main() 
 {
     nvs_setup();
@@ -179,6 +214,7 @@ void app_main()
     httpd_handle_t server = start_webserver();
     xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
     xTaskCreate(sampleDataTask, "Data Acquisition Task", 2048, NULL, tskIDLE_PRIORITY, NULL);
+    vTaskStartScheduler();
     while(1)
     {
         vTaskDelay(1000 / portTICK_PERIOD_MS);

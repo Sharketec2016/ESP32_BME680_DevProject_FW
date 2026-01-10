@@ -1,7 +1,10 @@
 #include "esp_bme_errors.h"
 const char* tag = "BME680 Project";
 
-
+/**
+ * @brief Spin in an infinite loop when an error occurs. 
+ * 
+ */
 void spin(void)
 {
     ESP_LOGE(tag, "ERROR: Encountered an error. Sitting  in inf while");
@@ -11,6 +14,13 @@ void spin(void)
     }
 }
 
+/**
+ * @brief BME68X error checking function. 
+ * @details Checks the return code from BME68X API calls and logs appropriate messages. If a critical error is detected, it calls spin() to halt execution.
+ * 
+ * @param api_name 
+ * @param rslt 
+ */
 void bme68x_check_rslt(const char api_name[], int8_t rslt)
 {
     switch (rslt)

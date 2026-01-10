@@ -9,6 +9,10 @@ static esp_err_t index_handler(httpd_req_t *req);
 static esp_err_t sensor_data_handler(httpd_req_t *req);
 
 
+/**
+ * @brief httpd URI structure for the index page
+ * 
+ */
 static const httpd_uri_t index_uri = {
     .uri       = "/",
     .method    = HTTP_GET,
@@ -16,6 +20,10 @@ static const httpd_uri_t index_uri = {
     .user_ctx  = NULL
 };
 
+/**
+ * @brief httpd URI structure for the sensor data endpoint
+ * 
+ */
 static const httpd_uri_t sensor_data_uri = {
     .uri       = "/sensor_data",
     .method    = HTTP_GET,
@@ -23,9 +31,10 @@ static const httpd_uri_t sensor_data_uri = {
     .user_ctx  = NULL
 };
 
-
-
-
+/**
+ * @brief httpd URI structure for the hello world endpoint
+ * 
+ */
 static const httpd_uri_t hello_world_uri = {
     .uri       = "/hello",
     .method    = HTTP_GET,
@@ -33,12 +42,23 @@ static const httpd_uri_t hello_world_uri = {
     .user_ctx  = NULL
 };
 
-
+/**
+ * @brief Wifi event handler for esp32 home AP
+ * 
+ * @param arg 
+ * @param event_base 
+ * @param event_id 
+ * @param event_data 
+ */
 static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
     printf("Event %ld\n", event_id);
 }
 
+/**
+ * @brief Wifi initialization for esp32 home AP
+ * 
+ */
 void wifi_init_softap(void)
 {
     ESP_ERROR_CHECK(esp_netif_init());                  //Initialize the underlying TCP/IP stack
@@ -82,12 +102,25 @@ void wifi_init_softap(void)
 
 }
 
+/**
+ * @brief Error handler for 404 not found
+ * 
+ * @param req 
+ * @param err 
+ * @return esp_err_t 
+ */
 static esp_err_t http_404_error_handler(httpd_req_t *req, httpd_err_code_t err)
 {
     httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Some 404 error message");
     return ESP_OK;
 }
 
+/**
+ * @brief Hello world handler for basic testing
+ * 
+ * @param req 
+ * @return esp_err_t 
+ */
 static esp_err_t hello_get_handler(httpd_req_t *req)
 {
     const char* resp_str = (const char*)"Hello World!";
@@ -95,7 +128,12 @@ static esp_err_t hello_get_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// Handler for the main HTML page
+/**
+ * @brief Index handler for serving the main dashboard page. Resolves to "/"
+ * 
+ * @param req 
+ * @return esp_err_t 
+ */
 static esp_err_t index_handler(httpd_req_t *req)
 {
     const char* html = 
@@ -230,6 +268,12 @@ static esp_err_t index_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
+/**
+ * @brief Sensor data handler to update the index handler, when queried, with the lastest sensor data
+ * 
+ * @param req 
+ * @return esp_err_t 
+ */
 static esp_err_t sensor_data_handler(httpd_req_t *req)
 {
     struct bme68x_data local_bme_data;
@@ -264,7 +308,11 @@ static esp_err_t sensor_data_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-
+/**
+ * @brief Start the webserver for esp32 home AP
+ * 
+ * @return httpd_handle_t 
+ */
 httpd_handle_t start_webserver(void)
 {
     httpd_handle_t server = NULL;
@@ -306,6 +354,12 @@ httpd_handle_t start_webserver(void)
     return NULL;
 }
 
+/**
+ * @brief Stop the webserver for esp32 home AP
+ * 
+ * @param server 
+ * @return httpd_handle_t 
+ */
 httpd_handle_t stop_webserver(httpd_handle_t server)
 {
     ESP_LOGI(server_tag, "Stopping webserver");
@@ -319,7 +373,12 @@ httpd_handle_t stop_webserver(httpd_handle_t server)
 }
 
 
-
+/**
+ * @brief Setup Non-Volatile Storage (NVS) for wifi credentials and other data
+ * @details Initializes NVS and handles potential errors related to no free pages or new version found by erasing and re-initializing.
+ * 
+ * @return esp_err_t 
+ */
 esp_err_t nvs_setup(void)
 {
     esp_err_t ret = nvs_flash_init();
