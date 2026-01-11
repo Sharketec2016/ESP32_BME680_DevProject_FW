@@ -28,6 +28,12 @@ void aliveTask(void *pvParameters)
  */
 void setup(void)
 {
+    ESP_LOGI(tag, "Setting up project");
+
+    ESP_LOGI(tag, "Setting up NVS");
+    nvs_setup();
+
+    ESP_LOGI(tag, "Creating sensor data mutex");
     sensor_data_mutex = xSemaphoreCreateMutex();
     if(sensor_data_mutex == NULL)
     {
@@ -35,7 +41,6 @@ void setup(void)
         return;
     }
 
-    ESP_LOGI(tag, "Setting up project");
     ESP_LOGI(tag, "Initializing GPIO");
     setup_gpio();
 
@@ -77,10 +82,9 @@ void sampleDataTask(void *pvParameters)
  */
 void app_main() 
 {
-    nvs_setup();
     setup();
 
-    httpd_handle_t server = start_webserver();
+    start_webserver();
     xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
     xTaskCreate(sampleDataTask, "Data Acquisition Task", 2048, NULL, tskIDLE_PRIORITY, NULL);
     ESP_LOGI(tag, "Application complete");
