@@ -149,8 +149,9 @@ void measureBME680Data(struct bme68x_data* bme_data)
         (long unsigned int)(bme_data->humidity / 1000)
     );
     #endif
-    #endif
+
     }
+    #endif  
 }
 
 
