@@ -1,0 +1,28 @@
+\doxysection{esp\+\_\+bme\+\_\+i2c.\+h}
+\hypertarget{esp__bme__i2c_8h_source}{}\label{esp__bme__i2c_8h_source}\index{lib/I2C\_Handling/esp\_bme\_i2c.h@{lib/I2C\_Handling/esp\_bme\_i2c.h}}
+\mbox{\hyperlink{esp__bme__i2c_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}string.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}driver/i2c.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bme68x_8h}{bme68x.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ I2C\_FREQ\_HZ\ \ \ \ \ \ \ \ \ 400000\ \ \ \ \ }\textcolor{comment}{//\ 400kHz}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ I2C\_PORT\ \ \ \ \ \ \ \ \ \ \ \ I2C\_NUM\_0}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ DEVICE\_ADDR\ \ \ \ \ \ \ \ \ 0x76\ \ \ \ \ \ \ }\textcolor{comment}{//\ example\ device\ address}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ I2C\_MASTER\_TIMEOUT\_MS\ 1000}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{extern}\ i2c\_master\_bus\_config\_t\ \mbox{\hyperlink{esp__bme__i2c_8h_a1da32b73fb40a385799cdfdeb857f768}{i2c\_bus\_config}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ i2c\_device\_config\_t\ \mbox{\hyperlink{esp__bme__i2c_8h_a9d9f7ab497eb5292604f06e02ff0d362}{i2c\_dev\_config}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{extern}\ i2c\_master\_bus\_handle\_t\ \mbox{\hyperlink{esp__bme__i2c_8h_a9c70a428d7203e9ed1f52f0848163e39}{i2c\_bus\_handle}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{extern}\ i2c\_master\_dev\_handle\_t\ \mbox{\hyperlink{esp__bme__i2c_8h_a4436d8af8f2935bef77dd3e4e309ae53}{i2c\_dev\_handle}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ int8\_t\ \mbox{\hyperlink{esp__bme__i2c_8h_a782f5530b1caf5a5c0470813625fde43}{bme68x\_i2c\_read}}(uint8\_t,\ uint8\_t*,\ uint32\_t,\ \textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{00022\ int8\_t\ \mbox{\hyperlink{esp__bme__i2c_8h_af52b0a71b28b833115c345a18a1f989a}{bme68x\_i2c\_write}}(uint8\_t,\ \textcolor{keyword}{const}\ uint8\_t*,\ uint32\_t,\ \textcolor{keywordtype}{void}*);}
+
+\end{DoxyCode}

@@ -1,0 +1,157 @@
+\doxysection{lib/\+BME68x\+\_\+\+Sensor\+API/bme68x.h File Reference}
+\hypertarget{bme68x_8h}{}\label{bme68x_8h}\index{lib/BME68x\_SensorAPI/bme68x.h@{lib/BME68x\_SensorAPI/bme68x.h}}
+{\ttfamily \#include "{}bme68x\+\_\+defs.\+h"{}}\newline
+Include dependency graph for bme68x.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{bme68x_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bme68x_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a8d8bfaa0f231a64fdf2d978bed12d7b6}{bme68x\+\_\+init}} (struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a029cc309a07221dd959ca4ee106a48b5}{bme68x\+\_\+set\+\_\+regs}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}reg\+\_\+addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}reg\+\_\+data, uint32\+\_\+t len, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_afa3317914980a173d9505ccc248f716d}{bme68x\+\_\+get\+\_\+regs}} (uint8\+\_\+t reg\+\_\+addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}reg\+\_\+data, uint32\+\_\+t len, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a9efeb0edeb1fff4965c0a862b4c8a579}{bme68x\+\_\+soft\+\_\+reset}} (struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a0e946b6284938343a7aa791b70f35aea}{bme68x\+\_\+set\+\_\+op\+\_\+mode}} (const uint8\+\_\+t op\+\_\+mode, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a299b5fea099799e62b0ea92eebb024bc}{bme68x\+\_\+get\+\_\+op\+\_\+mode}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}op\+\_\+mode, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{bme68x_8h_a0e1591841fb6977710770b0a5a0b736d}{bme68x\+\_\+get\+\_\+meas\+\_\+dur}} (const uint8\+\_\+t op\+\_\+mode, struct bme68x\+\_\+conf \texorpdfstring{$\ast$}{*}conf, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_aa4aeca6af4ebd23cd70b8cd854a0fcfb}{bme68x\+\_\+get\+\_\+data}} (uint8\+\_\+t op\+\_\+mode, struct bme68x\+\_\+data \texorpdfstring{$\ast$}{*}data, uint8\+\_\+t \texorpdfstring{$\ast$}{*}n\+\_\+data, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_aed88f78306f93bf378a9b123ba6ee488}{bme68x\+\_\+set\+\_\+conf}} (struct bme68x\+\_\+conf \texorpdfstring{$\ast$}{*}conf, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a9df88e462967dfc21f0e17d31b619da1}{bme68x\+\_\+get\+\_\+conf}} (struct bme68x\+\_\+conf \texorpdfstring{$\ast$}{*}conf, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a07642b1768fd384fa42c1e12bdcd5cc7}{bme68x\+\_\+set\+\_\+heatr\+\_\+conf}} (uint8\+\_\+t op\+\_\+mode, const struct bme68x\+\_\+heatr\+\_\+conf \texorpdfstring{$\ast$}{*}conf, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_a6718fdad5f1d50c555c46ed6b714c4af}{bme68x\+\_\+get\+\_\+heatr\+\_\+conf}} (const struct bme68x\+\_\+heatr\+\_\+conf \texorpdfstring{$\ast$}{*}conf, struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em This API is used to get the gas configuration of the sensor. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{bme68x_8h_ab3a413e5b241d9943586790ad11b3ba8}{bme68x\+\_\+selftest\+\_\+check}} (const struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}dev)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright (c) 2023 Bosch Sensortec GmbH. All rights reserved.
+
+BSD-\/3-\/\+Clause
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\+:
+
+
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}\+AS IS"{} AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+\begin{DoxyDate}{Date}
+2023-\/02-\/07 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+v4.\+4.\+8 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{bme68x_8h_a9df88e462967dfc21f0e17d31b619da1}\label{bme68x_8h_a9df88e462967dfc21f0e17d31b619da1} 
+\index{bme68x.h@{bme68x.h}!bme68x\_get\_conf@{bme68x\_get\_conf}}
+\index{bme68x\_get\_conf@{bme68x\_get\_conf}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_get\_conf()}{bme68x\_get\_conf()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+get\+\_\+conf (\begin{DoxyParamCaption}\item[{struct bme68x\+\_\+conf \texorpdfstring{$\ast$}{*}}]{conf,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_aa4aeca6af4ebd23cd70b8cd854a0fcfb}\label{bme68x_8h_aa4aeca6af4ebd23cd70b8cd854a0fcfb} 
+\index{bme68x.h@{bme68x.h}!bme68x\_get\_data@{bme68x\_get\_data}}
+\index{bme68x\_get\_data@{bme68x\_get\_data}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_get\_data()}{bme68x\_get\_data()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+get\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{op\+\_\+mode,  }\item[{struct bme68x\+\_\+data \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{n\+\_\+data,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_a6718fdad5f1d50c555c46ed6b714c4af}\label{bme68x_8h_a6718fdad5f1d50c555c46ed6b714c4af} 
+\index{bme68x.h@{bme68x.h}!bme68x\_get\_heatr\_conf@{bme68x\_get\_heatr\_conf}}
+\index{bme68x\_get\_heatr\_conf@{bme68x\_get\_heatr\_conf}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_get\_heatr\_conf()}{bme68x\_get\_heatr\_conf()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+get\+\_\+heatr\+\_\+conf (\begin{DoxyParamCaption}\item[{const struct bme68x\+\_\+heatr\+\_\+conf \texorpdfstring{$\ast$}{*}}]{conf,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+
+
+This API is used to get the gas configuration of the sensor. 
+
+\Hypertarget{bme68x_8h_a0e1591841fb6977710770b0a5a0b736d}\label{bme68x_8h_a0e1591841fb6977710770b0a5a0b736d} 
+\index{bme68x.h@{bme68x.h}!bme68x\_get\_meas\_dur@{bme68x\_get\_meas\_dur}}
+\index{bme68x\_get\_meas\_dur@{bme68x\_get\_meas\_dur}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_get\_meas\_dur()}{bme68x\_get\_meas\_dur()}}
+{\footnotesize\ttfamily uint32\+\_\+t bme68x\+\_\+get\+\_\+meas\+\_\+dur (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{op\+\_\+mode,  }\item[{struct bme68x\+\_\+conf \texorpdfstring{$\ast$}{*}}]{conf,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_a299b5fea099799e62b0ea92eebb024bc}\label{bme68x_8h_a299b5fea099799e62b0ea92eebb024bc} 
+\index{bme68x.h@{bme68x.h}!bme68x\_get\_op\_mode@{bme68x\_get\_op\_mode}}
+\index{bme68x\_get\_op\_mode@{bme68x\_get\_op\_mode}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_get\_op\_mode()}{bme68x\_get\_op\_mode()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+get\+\_\+op\+\_\+mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{op\+\_\+mode,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_afa3317914980a173d9505ccc248f716d}\label{bme68x_8h_afa3317914980a173d9505ccc248f716d} 
+\index{bme68x.h@{bme68x.h}!bme68x\_get\_regs@{bme68x\_get\_regs}}
+\index{bme68x\_get\_regs@{bme68x\_get\_regs}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_get\_regs()}{bme68x\_get\_regs()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+get\+\_\+regs (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+\_\+addr,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_a8d8bfaa0f231a64fdf2d978bed12d7b6}\label{bme68x_8h_a8d8bfaa0f231a64fdf2d978bed12d7b6} 
+\index{bme68x.h@{bme68x.h}!bme68x\_init@{bme68x\_init}}
+\index{bme68x\_init@{bme68x\_init}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_init()}{bme68x\_init()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+init (\begin{DoxyParamCaption}\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_ab3a413e5b241d9943586790ad11b3ba8}\label{bme68x_8h_ab3a413e5b241d9943586790ad11b3ba8} 
+\index{bme68x.h@{bme68x.h}!bme68x\_selftest\_check@{bme68x\_selftest\_check}}
+\index{bme68x\_selftest\_check@{bme68x\_selftest\_check}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_selftest\_check()}{bme68x\_selftest\_check()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+selftest\+\_\+check (\begin{DoxyParamCaption}\item[{const struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_aed88f78306f93bf378a9b123ba6ee488}\label{bme68x_8h_aed88f78306f93bf378a9b123ba6ee488} 
+\index{bme68x.h@{bme68x.h}!bme68x\_set\_conf@{bme68x\_set\_conf}}
+\index{bme68x\_set\_conf@{bme68x\_set\_conf}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_set\_conf()}{bme68x\_set\_conf()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+set\+\_\+conf (\begin{DoxyParamCaption}\item[{struct bme68x\+\_\+conf \texorpdfstring{$\ast$}{*}}]{conf,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_a07642b1768fd384fa42c1e12bdcd5cc7}\label{bme68x_8h_a07642b1768fd384fa42c1e12bdcd5cc7} 
+\index{bme68x.h@{bme68x.h}!bme68x\_set\_heatr\_conf@{bme68x\_set\_heatr\_conf}}
+\index{bme68x\_set\_heatr\_conf@{bme68x\_set\_heatr\_conf}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_set\_heatr\_conf()}{bme68x\_set\_heatr\_conf()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+set\+\_\+heatr\+\_\+conf (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{op\+\_\+mode,  }\item[{const struct bme68x\+\_\+heatr\+\_\+conf \texorpdfstring{$\ast$}{*}}]{conf,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_a0e946b6284938343a7aa791b70f35aea}\label{bme68x_8h_a0e946b6284938343a7aa791b70f35aea} 
+\index{bme68x.h@{bme68x.h}!bme68x\_set\_op\_mode@{bme68x\_set\_op\_mode}}
+\index{bme68x\_set\_op\_mode@{bme68x\_set\_op\_mode}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_set\_op\_mode()}{bme68x\_set\_op\_mode()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+set\+\_\+op\+\_\+mode (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{op\+\_\+mode,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_a029cc309a07221dd959ca4ee106a48b5}\label{bme68x_8h_a029cc309a07221dd959ca4ee106a48b5} 
+\index{bme68x.h@{bme68x.h}!bme68x\_set\_regs@{bme68x\_set\_regs}}
+\index{bme68x\_set\_regs@{bme68x\_set\_regs}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_set\_regs()}{bme68x\_set\_regs()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+set\+\_\+regs (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+addr,  }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+\Hypertarget{bme68x_8h_a9efeb0edeb1fff4965c0a862b4c8a579}\label{bme68x_8h_a9efeb0edeb1fff4965c0a862b4c8a579} 
+\index{bme68x.h@{bme68x.h}!bme68x\_soft\_reset@{bme68x\_soft\_reset}}
+\index{bme68x\_soft\_reset@{bme68x\_soft\_reset}!bme68x.h@{bme68x.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_soft\_reset()}{bme68x\_soft\_reset()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+soft\+\_\+reset (\begin{DoxyParamCaption}\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+

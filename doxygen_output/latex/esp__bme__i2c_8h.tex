@@ -1,0 +1,168 @@
+\doxysection{lib/\+I2\+C\+\_\+\+Handling/esp\+\_\+bme\+\_\+i2c.h File Reference}
+\hypertarget{esp__bme__i2c_8h}{}\label{esp__bme__i2c_8h}\index{lib/I2C\_Handling/esp\_bme\_i2c.h@{lib/I2C\_Handling/esp\_bme\_i2c.h}}
+{\ttfamily \#include "{}stdint.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}driver/i2c\+\_\+master.\+h"{}}\newline
+{\ttfamily \#include "{}driver/i2c.\+h"{}}\newline
+{\ttfamily \#include "{}bme68x.\+h"{}}\newline
+Include dependency graph for esp\+\_\+bme\+\_\+i2c.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{esp__bme__i2c_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{esp__bme__i2c_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{esp__bme__i2c_8h_a0d8bea689bb240eefaa35ca71cc1ed9f}{I2\+C\+\_\+\+FREQ\+\_\+\+HZ}}~400000
+\item 
+\#define \mbox{\hyperlink{esp__bme__i2c_8h_ad9ecf80e1eac083d16ec47f9d3aeb39f}{I2\+C\+\_\+\+PORT}}~I2\+C\+\_\+\+NUM\+\_\+0
+\item 
+\#define \mbox{\hyperlink{esp__bme__i2c_8h_aff0f2d52596a7a0b104ef88aa1eccd2b}{DEVICE\+\_\+\+ADDR}}~0x76
+\item 
+\#define \mbox{\hyperlink{esp__bme__i2c_8h_a7ebc0bc57afc33bd33967be8479690db}{I2\+C\+\_\+\+MASTER\+\_\+\+TIMEOUT\+\_\+\+MS}}~1000
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \mbox{\hyperlink{esp__bme__i2c_8h_a782f5530b1caf5a5c0470813625fde43}{bme68x\+\_\+i2c\+\_\+read}} (uint8\+\_\+t, uint8\+\_\+t \texorpdfstring{$\ast$}{*}, uint32\+\_\+t, void \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Function for reading the sensor\textquotesingle{}s registers through I2C bus. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{esp__bme__i2c_8h_af52b0a71b28b833115c345a18a1f989a}{bme68x\+\_\+i2c\+\_\+write}} (uint8\+\_\+t, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}, uint32\+\_\+t, void \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Function for writing the sensor\textquotesingle{}s registers through I2C bus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+i2c\+\_\+master\+\_\+bus\+\_\+config\+\_\+t \mbox{\hyperlink{esp__bme__i2c_8h_a1da32b73fb40a385799cdfdeb857f768}{i2c\+\_\+bus\+\_\+config}}
+\item 
+i2c\+\_\+device\+\_\+config\+\_\+t \mbox{\hyperlink{esp__bme__i2c_8h_a9d9f7ab497eb5292604f06e02ff0d362}{i2c\+\_\+dev\+\_\+config}}
+\item 
+i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t \mbox{\hyperlink{esp__bme__i2c_8h_a9c70a428d7203e9ed1f52f0848163e39}{i2c\+\_\+bus\+\_\+handle}}
+\item 
+i2c\+\_\+master\+\_\+dev\+\_\+handle\+\_\+t \mbox{\hyperlink{esp__bme__i2c_8h_a4436d8af8f2935bef77dd3e4e309ae53}{i2c\+\_\+dev\+\_\+handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{esp__bme__i2c_8h_aff0f2d52596a7a0b104ef88aa1eccd2b}\label{esp__bme__i2c_8h_aff0f2d52596a7a0b104ef88aa1eccd2b} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!DEVICE\_ADDR@{DEVICE\_ADDR}}
+\index{DEVICE\_ADDR@{DEVICE\_ADDR}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_ADDR}{DEVICE\_ADDR}}
+{\footnotesize\ttfamily \#define DEVICE\+\_\+\+ADDR~0x76}
+
+\Hypertarget{esp__bme__i2c_8h_a0d8bea689bb240eefaa35ca71cc1ed9f}\label{esp__bme__i2c_8h_a0d8bea689bb240eefaa35ca71cc1ed9f} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!I2C\_FREQ\_HZ@{I2C\_FREQ\_HZ}}
+\index{I2C\_FREQ\_HZ@{I2C\_FREQ\_HZ}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_FREQ\_HZ}{I2C\_FREQ\_HZ}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+FREQ\+\_\+\+HZ~400000}
+
+\Hypertarget{esp__bme__i2c_8h_a7ebc0bc57afc33bd33967be8479690db}\label{esp__bme__i2c_8h_a7ebc0bc57afc33bd33967be8479690db} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!I2C\_MASTER\_TIMEOUT\_MS@{I2C\_MASTER\_TIMEOUT\_MS}}
+\index{I2C\_MASTER\_TIMEOUT\_MS@{I2C\_MASTER\_TIMEOUT\_MS}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_MASTER\_TIMEOUT\_MS}{I2C\_MASTER\_TIMEOUT\_MS}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+MASTER\+\_\+\+TIMEOUT\+\_\+\+MS~1000}
+
+\Hypertarget{esp__bme__i2c_8h_ad9ecf80e1eac083d16ec47f9d3aeb39f}\label{esp__bme__i2c_8h_ad9ecf80e1eac083d16ec47f9d3aeb39f} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!I2C\_PORT@{I2C\_PORT}}
+\index{I2C\_PORT@{I2C\_PORT}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_PORT}{I2C\_PORT}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+PORT~I2\+C\+\_\+\+NUM\+\_\+0}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{esp__bme__i2c_8h_a782f5530b1caf5a5c0470813625fde43}\label{esp__bme__i2c_8h_a782f5530b1caf5a5c0470813625fde43} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!bme68x\_i2c\_read@{bme68x\_i2c\_read}}
+\index{bme68x\_i2c\_read@{bme68x\_i2c\_read}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_i2c\_read()}{bme68x\_i2c\_read()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+i2c\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+\_\+addr,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Function for reading the sensor\textquotesingle{}s registers through I2C bus. 
+
+User interface functions ~\newline
+
+
+I2C read function map to COINES platform
+
+Function for reading the sensor\textquotesingle{}s registers through I2C bus.
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg\+\_\+addr} & \\
+\hline
+{\em reg\+\_\+data} & \\
+\hline
+{\em len} & \\
+\hline
+{\em intf\+\_\+ptr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp__bme__i2c_8h_af52b0a71b28b833115c345a18a1f989a}\label{esp__bme__i2c_8h_af52b0a71b28b833115c345a18a1f989a} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!bme68x\_i2c\_write@{bme68x\_i2c\_write}}
+\index{bme68x\_i2c\_write@{bme68x\_i2c\_write}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_i2c\_write()}{bme68x\_i2c\_write()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+i2c\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+\_\+addr,  }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Function for writing the sensor\textquotesingle{}s registers through I2C bus. 
+
+I2C write function map to COINES platform
+
+Function for writing the sensor\textquotesingle{}s registers through I2C bus.
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg\+\_\+addr} & \\
+\hline
+{\em reg\+\_\+data} & \\
+\hline
+{\em len} & \\
+\hline
+{\em intf\+\_\+ptr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{esp__bme__i2c_8h_a1da32b73fb40a385799cdfdeb857f768}\label{esp__bme__i2c_8h_a1da32b73fb40a385799cdfdeb857f768} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!i2c\_bus\_config@{i2c\_bus\_config}}
+\index{i2c\_bus\_config@{i2c\_bus\_config}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_bus\_config}{i2c\_bus\_config}}
+{\footnotesize\ttfamily i2c\+\_\+master\+\_\+bus\+\_\+config\+\_\+t i2c\+\_\+bus\+\_\+config\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{esp__bme__i2c_8h_a9c70a428d7203e9ed1f52f0848163e39}\label{esp__bme__i2c_8h_a9c70a428d7203e9ed1f52f0848163e39} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!i2c\_bus\_handle@{i2c\_bus\_handle}}
+\index{i2c\_bus\_handle@{i2c\_bus\_handle}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_bus\_handle}{i2c\_bus\_handle}}
+{\footnotesize\ttfamily i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t i2c\+\_\+bus\+\_\+handle\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{esp__bme__i2c_8h_a9d9f7ab497eb5292604f06e02ff0d362}\label{esp__bme__i2c_8h_a9d9f7ab497eb5292604f06e02ff0d362} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!i2c\_dev\_config@{i2c\_dev\_config}}
+\index{i2c\_dev\_config@{i2c\_dev\_config}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_dev\_config}{i2c\_dev\_config}}
+{\footnotesize\ttfamily i2c\+\_\+device\+\_\+config\+\_\+t i2c\+\_\+dev\+\_\+config\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{esp__bme__i2c_8h_a4436d8af8f2935bef77dd3e4e309ae53}\label{esp__bme__i2c_8h_a4436d8af8f2935bef77dd3e4e309ae53} 
+\index{esp\_bme\_i2c.h@{esp\_bme\_i2c.h}!i2c\_dev\_handle@{i2c\_dev\_handle}}
+\index{i2c\_dev\_handle@{i2c\_dev\_handle}!esp\_bme\_i2c.h@{esp\_bme\_i2c.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_dev\_handle}{i2c\_dev\_handle}}
+{\footnotesize\ttfamily i2c\+\_\+master\+\_\+dev\+\_\+handle\+\_\+t i2c\+\_\+dev\+\_\+handle\hspace{0.3cm}{\ttfamily [extern]}}
+

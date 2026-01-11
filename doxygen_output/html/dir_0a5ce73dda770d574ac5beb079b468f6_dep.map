@@ -1,0 +1,7 @@
+<map id="lib/I2C_Handling" name="lib/I2C_Handling">
+<area shape="rect" id="node1" href="dir_2771b68f92b9139130406bacdfc40716.html" title="BME68x_SensorAPI" alt="" coords="27,125,173,151"/>
+<area shape="rect" id="node2" href="dir_0a5ce73dda770d574ac5beb079b468f6.html" title="I2C_Handling" alt="" coords="46,52,154,77"/>
+<area shape="poly" id="edge1" href="dir_000005_000000.html" alt="" coords="103,78,103,112,97,112,97,78"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000005_000000.html" title="1" alt="" coords="104,100,113,114"/>
+<area shape="rect" id="clust1" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html" title="lib" alt="" coords="16,16,184,161"/>
+</map>

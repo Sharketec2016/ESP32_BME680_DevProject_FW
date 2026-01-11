@@ -1,0 +1,14 @@
+<map id="lib/I2C_Handling/esp_bme_i2c.h" name="lib/I2C_Handling/esp_bme_i2c.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="92,5,247,45"/>
+<area shape="rect" id="Node000002" href="$project_8h.html" title=" " alt="" coords="21,101,152,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,57,100,102,96,98,140,53"/>
+<area shape="rect" id="Node000006" href="$esp__bme__i2c_8c.html" title=" " alt="" coords="176,93,331,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="199,53,237,91,233,95,195,57"/>
+<area shape="rect" id="Node000003" href="$esp32__home__ap_8h.html" title=" " alt="" coords="5,181,168,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="81,140,83,181,77,181,76,140"/>
+<area shape="rect" id="Node000005" href="$main_8c.html" title=" " alt="" coords="193,181,282,207"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="122,130,216,179,214,183,120,135"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="92,168,91,126,96,126,98,167"/>
+<area shape="rect" id="Node000004" href="$esp32__home__ap_8c.html" title=" " alt="" coords="5,255,168,280"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="89,220,89,255,84,255,84,220"/>
+</map>

@@ -1,0 +1,134 @@
+\doxysection{src/esp32\+\_\+home\+\_\+ap.h File Reference}
+\hypertarget{esp32__home__ap_8h}{}\label{esp32__home__ap_8h}\index{src/esp32\_home\_ap.h@{src/esp32\_home\_ap.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}esp\+\_\+http\+\_\+server.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+wifi.\+h"{}}\newline
+{\ttfamily \#include "{}nvs\+\_\+flash.\+h"{}}\newline
+{\ttfamily \#include "{}sdkconfig.\+h"{}}\newline
+{\ttfamily \#include "{}bme68x.\+h"{}}\newline
+{\ttfamily \#include "{}project.\+h"{}}\newline
+Include dependency graph for esp32\+\_\+home\+\_\+ap.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{esp32__home__ap_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{esp32__home__ap_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{esp32__home__ap_8h_ad2883d0cae1d96edaefd3b0a46b5ee46}{ESP\+\_\+\+WIFI\+\_\+\+SSID}}~"{}ESP32\+\_\+\+BME680\+\_\+\+SERVER"{}
+\item 
+\#define \mbox{\hyperlink{esp32__home__ap_8h_ac0354e38c60a7a189ea8653efc4e0cd6}{ESP\+\_\+\+WIFI\+\_\+\+PASS}}~"{}bme680sensor"{}
+\item 
+\#define \mbox{\hyperlink{esp32__home__ap_8h_a626a11e08b253d9570ba359f1fde64cc}{ESP\+\_\+\+WIFI\+\_\+\+CHANNEL}}~1
+\item 
+\#define \mbox{\hyperlink{esp32__home__ap_8h_a428d6fc23e06208d09595c62b0a98aa9}{MAX\+\_\+\+STA\+\_\+\+CONN}}~2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{esp32__home__ap_8h_a4a2bc421f17a5713e35165034943cea3}{wifi\+\_\+init\+\_\+softap}} (void)
+\begin{DoxyCompactList}\small\item\em Wifi initialization for esp32 home AP. \end{DoxyCompactList}\item 
+httpd\+\_\+handle\+\_\+t \mbox{\hyperlink{esp32__home__ap_8h_aa405dbf500a1f511f559e1e87efff9da}{start\+\_\+webserver}} (void)
+\begin{DoxyCompactList}\small\item\em Start the webserver for esp32 home AP. \end{DoxyCompactList}\item 
+httpd\+\_\+handle\+\_\+t \mbox{\hyperlink{esp32__home__ap_8h_a2841eb0998d69cf1a0c103ca3fde8895}{stop\+\_\+webserver}} (httpd\+\_\+handle\+\_\+t server)
+\begin{DoxyCompactList}\small\item\em Stop the webserver for esp32 home AP. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{esp32__home__ap_8h_a29f9b0129da64d3d88d8a7c10f9e4dc0}{nvs\+\_\+setup}} (void)
+\begin{DoxyCompactList}\small\item\em Setup Non-\/\+Volatile Storage (NVS) for wifi credentials and other data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{esp32__home__ap_8h_a626a11e08b253d9570ba359f1fde64cc}\label{esp32__home__ap_8h_a626a11e08b253d9570ba359f1fde64cc} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!ESP\_WIFI\_CHANNEL@{ESP\_WIFI\_CHANNEL}}
+\index{ESP\_WIFI\_CHANNEL@{ESP\_WIFI\_CHANNEL}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{ESP\_WIFI\_CHANNEL}{ESP\_WIFI\_CHANNEL}}
+{\footnotesize\ttfamily \#define ESP\+\_\+\+WIFI\+\_\+\+CHANNEL~1}
+
+\Hypertarget{esp32__home__ap_8h_ac0354e38c60a7a189ea8653efc4e0cd6}\label{esp32__home__ap_8h_ac0354e38c60a7a189ea8653efc4e0cd6} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!ESP\_WIFI\_PASS@{ESP\_WIFI\_PASS}}
+\index{ESP\_WIFI\_PASS@{ESP\_WIFI\_PASS}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{ESP\_WIFI\_PASS}{ESP\_WIFI\_PASS}}
+{\footnotesize\ttfamily \#define ESP\+\_\+\+WIFI\+\_\+\+PASS~"{}bme680sensor"{}}
+
+\Hypertarget{esp32__home__ap_8h_ad2883d0cae1d96edaefd3b0a46b5ee46}\label{esp32__home__ap_8h_ad2883d0cae1d96edaefd3b0a46b5ee46} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!ESP\_WIFI\_SSID@{ESP\_WIFI\_SSID}}
+\index{ESP\_WIFI\_SSID@{ESP\_WIFI\_SSID}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{ESP\_WIFI\_SSID}{ESP\_WIFI\_SSID}}
+{\footnotesize\ttfamily \#define ESP\+\_\+\+WIFI\+\_\+\+SSID~"{}ESP32\+\_\+\+BME680\+\_\+\+SERVER"{}}
+
+\Hypertarget{esp32__home__ap_8h_a428d6fc23e06208d09595c62b0a98aa9}\label{esp32__home__ap_8h_a428d6fc23e06208d09595c62b0a98aa9} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!MAX\_STA\_CONN@{MAX\_STA\_CONN}}
+\index{MAX\_STA\_CONN@{MAX\_STA\_CONN}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_STA\_CONN}{MAX\_STA\_CONN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+STA\+\_\+\+CONN~2}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{esp32__home__ap_8h_a29f9b0129da64d3d88d8a7c10f9e4dc0}\label{esp32__home__ap_8h_a29f9b0129da64d3d88d8a7c10f9e4dc0} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!nvs\_setup@{nvs\_setup}}
+\index{nvs\_setup@{nvs\_setup}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{nvs\_setup()}{nvs\_setup()}}
+{\footnotesize\ttfamily esp\+\_\+err\+\_\+t nvs\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setup Non-\/\+Volatile Storage (NVS) for wifi credentials and other data. 
+
+Initializes NVS and handles potential errors related to no free pages or new version found by erasing and re-\/initializing.
+
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8h_aa405dbf500a1f511f559e1e87efff9da}\label{esp32__home__ap_8h_aa405dbf500a1f511f559e1e87efff9da} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!start\_webserver@{start\_webserver}}
+\index{start\_webserver@{start\_webserver}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{start\_webserver()}{start\_webserver()}}
+{\footnotesize\ttfamily httpd\+\_\+handle\+\_\+t start\+\_\+webserver (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Start the webserver for esp32 home AP. 
+
+\begin{DoxyReturn}{Returns}
+httpd\+\_\+handle\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8h_a2841eb0998d69cf1a0c103ca3fde8895}\label{esp32__home__ap_8h_a2841eb0998d69cf1a0c103ca3fde8895} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!stop\_webserver@{stop\_webserver}}
+\index{stop\_webserver@{stop\_webserver}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{stop\_webserver()}{stop\_webserver()}}
+{\footnotesize\ttfamily httpd\+\_\+handle\+\_\+t stop\+\_\+webserver (\begin{DoxyParamCaption}\item[{httpd\+\_\+handle\+\_\+t}]{server }\end{DoxyParamCaption})}
+
+
+
+Stop the webserver for esp32 home AP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+httpd\+\_\+handle\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8h_a4a2bc421f17a5713e35165034943cea3}\label{esp32__home__ap_8h_a4a2bc421f17a5713e35165034943cea3} 
+\index{esp32\_home\_ap.h@{esp32\_home\_ap.h}!wifi\_init\_softap@{wifi\_init\_softap}}
+\index{wifi\_init\_softap@{wifi\_init\_softap}!esp32\_home\_ap.h@{esp32\_home\_ap.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_init\_softap()}{wifi\_init\_softap()}}
+{\footnotesize\ttfamily void wifi\+\_\+init\+\_\+softap (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Wifi initialization for esp32 home AP. 
+

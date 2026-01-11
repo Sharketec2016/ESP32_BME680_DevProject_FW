@@ -1,0 +1,30 @@
+### Flow of AP webpage sensor data displaying 
+
+1. USER OPENS BROWSER
+2. Browser requests: http://192.168.4.1/
+3. ESP32 calls index_handler()
+4. index_handler() sends STATIC HTML with embedded JavaScript
+   (This HTML has placeholders like `<div id='temp'>--</div>`)
+5. Browser receives and displays the HTML page
+   AT THIS POINT, THE ESP32 IS DONE WITH index_handler() 
+6. Browser's JavaScript STARTS RUNNING (on the user's device, NOT the ESP32!)
+
+7. JavaScript says: "Every 300ms, make a NEW HTTP request to /sensor_data"
+   
+8. Browser requests: http://192.168.4.1/sensor_data
+   
+9. ESP32 calls sensor_data_handler()
+   
+10. sensor_data_handler() reads current sensor values from queue/mutex
+    
+11. sensor_data_handler() creates JSON string like:
+    {"temperature": 23.5, "pressure": 1013.2, ...}
+    
+12. ESP32 sends JSON back to browser
+    
+13. JavaScript receives JSON and updates the HTML elements:
+    document.getElementById('temp').innerHTML = "23.5 °C"
+    
+14. User sees updated numbers (WITHOUT page reload!)
+    
+15. Wait 300ms, go back to step 7 and repeat forever

@@ -1,0 +1,103 @@
+\doxysection{include/project.h File Reference}
+\hypertarget{project_8h}{}\label{project_8h}\index{include/project.h@{include/project.h}}
+{\ttfamily \#include "{}sdkconfig.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/task.\+h"{}}\newline
+{\ttfamily \#include "{}driver/gpio.\+h"{}}\newline
+{\ttfamily \#include "{}bme68x.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+bme\+\_\+i2c.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+bme\+\_\+errors.\+h"{}}\newline
+{\ttfamily \#include "{}esp32\+\_\+home\+\_\+ap.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/semphr.\+h"{}}\newline
+Include dependency graph for project.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{project_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{project_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{project_8h_aeb7a7ba1ab7e0406f1b5ab36d579f585}{LED}}~GPIO\+\_\+\+NUM\+\_\+2
+\item 
+\#define \mbox{\hyperlink{project_8h_aaba0e0716dbab5e4fc7bd5afedb70d34}{BLINK\+\_\+\+DELAY}}~100
+\item 
+\#define \mbox{\hyperlink{project_8h_a2529947dff3d19c2ddb6ee6c552736ed}{SAMPLE\+\_\+\+DATA\+\_\+\+DELAY}}~1000
+\item 
+\#define \mbox{\hyperlink{project_8h_a83b7e10b27021ebc59e7a53be582cf17}{DELAY\+\_\+\+FACTOR}}~0.\+1
+\item 
+\#define \mbox{\hyperlink{project_8h_a50d54dd374b3dfcbfd4e129e291f9709}{BME\+\_\+\+SAMPLE\+\_\+\+MODE}}~BME68\+X\+\_\+\+SEQUENTIAL\+\_\+\+MODE
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{project_8h_a78ca70774cdf6d256fa2c5d81be1751c}{sensor\+\_\+data\+\_\+queue}}
+\item 
+struct bme68x\+\_\+data \mbox{\hyperlink{project_8h_a6346a9811292c724a1b7abfc43b591ea}{global\+\_\+sensor\+\_\+data}}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{project_8h_a866a0d9d37fd0c9f40c72dd938aea77c}{sensor\+\_\+data\+\_\+mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{project_8h_aaba0e0716dbab5e4fc7bd5afedb70d34}\label{project_8h_aaba0e0716dbab5e4fc7bd5afedb70d34} 
+\index{project.h@{project.h}!BLINK\_DELAY@{BLINK\_DELAY}}
+\index{BLINK\_DELAY@{BLINK\_DELAY}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{BLINK\_DELAY}{BLINK\_DELAY}}
+{\footnotesize\ttfamily \#define BLINK\+\_\+\+DELAY~100}
+
+\Hypertarget{project_8h_a50d54dd374b3dfcbfd4e129e291f9709}\label{project_8h_a50d54dd374b3dfcbfd4e129e291f9709} 
+\index{project.h@{project.h}!BME\_SAMPLE\_MODE@{BME\_SAMPLE\_MODE}}
+\index{BME\_SAMPLE\_MODE@{BME\_SAMPLE\_MODE}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{BME\_SAMPLE\_MODE}{BME\_SAMPLE\_MODE}}
+{\footnotesize\ttfamily \#define BME\+\_\+\+SAMPLE\+\_\+\+MODE~BME68\+X\+\_\+\+SEQUENTIAL\+\_\+\+MODE}
+
+\Hypertarget{project_8h_a83b7e10b27021ebc59e7a53be582cf17}\label{project_8h_a83b7e10b27021ebc59e7a53be582cf17} 
+\index{project.h@{project.h}!DELAY\_FACTOR@{DELAY\_FACTOR}}
+\index{DELAY\_FACTOR@{DELAY\_FACTOR}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{DELAY\_FACTOR}{DELAY\_FACTOR}}
+{\footnotesize\ttfamily \#define DELAY\+\_\+\+FACTOR~0.\+1}
+
+\Hypertarget{project_8h_aeb7a7ba1ab7e0406f1b5ab36d579f585}\label{project_8h_aeb7a7ba1ab7e0406f1b5ab36d579f585} 
+\index{project.h@{project.h}!LED@{LED}}
+\index{LED@{LED}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{LED}{LED}}
+{\footnotesize\ttfamily \#define LED~GPIO\+\_\+\+NUM\+\_\+2}
+
+\Hypertarget{project_8h_a2529947dff3d19c2ddb6ee6c552736ed}\label{project_8h_a2529947dff3d19c2ddb6ee6c552736ed} 
+\index{project.h@{project.h}!SAMPLE\_DATA\_DELAY@{SAMPLE\_DATA\_DELAY}}
+\index{SAMPLE\_DATA\_DELAY@{SAMPLE\_DATA\_DELAY}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{SAMPLE\_DATA\_DELAY}{SAMPLE\_DATA\_DELAY}}
+{\footnotesize\ttfamily \#define SAMPLE\+\_\+\+DATA\+\_\+\+DELAY~1000}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{project_8h_a6346a9811292c724a1b7abfc43b591ea}\label{project_8h_a6346a9811292c724a1b7abfc43b591ea} 
+\index{project.h@{project.h}!global\_sensor\_data@{global\_sensor\_data}}
+\index{global\_sensor\_data@{global\_sensor\_data}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{global\_sensor\_data}{global\_sensor\_data}}
+{\footnotesize\ttfamily struct bme68x\+\_\+data global\+\_\+sensor\+\_\+data\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{project_8h_a866a0d9d37fd0c9f40c72dd938aea77c}\label{project_8h_a866a0d9d37fd0c9f40c72dd938aea77c} 
+\index{project.h@{project.h}!sensor\_data\_mutex@{sensor\_data\_mutex}}
+\index{sensor\_data\_mutex@{sensor\_data\_mutex}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_mutex}{sensor\_data\_mutex}}
+{\footnotesize\ttfamily Semaphore\+Handle\+\_\+t sensor\+\_\+data\+\_\+mutex\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{project_8h_a78ca70774cdf6d256fa2c5d81be1751c}\label{project_8h_a78ca70774cdf6d256fa2c5d81be1751c} 
+\index{project.h@{project.h}!sensor\_data\_queue@{sensor\_data\_queue}}
+\index{sensor\_data\_queue@{sensor\_data\_queue}!project.h@{project.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_queue}{sensor\_data\_queue}}
+{\footnotesize\ttfamily Queue\+Handle\+\_\+t sensor\+\_\+data\+\_\+queue\hspace{0.3cm}{\ttfamily [extern]}}
+

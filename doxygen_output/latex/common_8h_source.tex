@@ -1,0 +1,32 @@
+\doxysection{common.\+h}
+\hypertarget{common_8h_source}{}\label{common_8h_source}\index{lib/BME68x\_SensorAPI/examples/common/common.h@{lib/BME68x\_SensorAPI/examples/common/common.h}}
+\mbox{\hyperlink{common_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\_\_cplusplus\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bme68x_8h}{bme68x.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00023\ int8\_t\ \mbox{\hyperlink{common_8h_a277f3406ea8ecaf8bd58c51950c84c3a}{bme68x\_interface\_init}}(\textcolor{keyword}{struct}\ bme68x\_dev\ *\mbox{\hyperlink{main_8c_af0536e8bac760f12e6d61a9bb2d38878}{bme}},\ uint8\_t\ intf);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00038\ BME68X\_INTF\_RET\_TYPE\ \mbox{\hyperlink{common_8h_aff39d4447b878646149f0b7689858872}{bme68x\_i2c\_read}}(uint8\_t\ reg\_addr,\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00053\ BME68X\_INTF\_RET\_TYPE\ \mbox{\hyperlink{common_8h_a44539482ff6680abf4a3643a1a5625a8}{bme68x\_i2c\_write}}(uint8\_t\ reg\_addr,\ \textcolor{keyword}{const}\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00068\ BME68X\_INTF\_RET\_TYPE\ \mbox{\hyperlink{common_8h_aaed1f73d14f65dbff94d1be0001088d9}{bme68x\_spi\_read}}(uint8\_t\ reg\_addr,\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00083\ BME68X\_INTF\_RET\_TYPE\ \mbox{\hyperlink{common_8h_afb1ccbf06ecb66035b0dd76765696990}{bme68x\_spi\_write}}(uint8\_t\ reg\_addr,\ \textcolor{keyword}{const}\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{common_8h_af9798445cafbcbe91dcfb7f196dec4b4}{bme68x\_delay\_us}}(uint32\_t\ period,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00105\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{common_8h_aa6672c8252c0e8be479ca811159507ec}{bme68x\_check\_rslt}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ api\_name[],\ int8\_t\ rslt);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{common_8h_afb0e6536c486b094d9157ddf371d52dc}{bme68x\_coines\_deinit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\_\_cplusplus\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

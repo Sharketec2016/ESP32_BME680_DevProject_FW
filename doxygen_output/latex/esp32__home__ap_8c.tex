@@ -1,0 +1,266 @@
+\doxysection{src/esp32\+\_\+home\+\_\+ap.c File Reference}
+\hypertarget{esp32__home__ap_8c}{}\label{esp32__home__ap_8c}\index{src/esp32\_home\_ap.c@{src/esp32\_home\_ap.c}}
+{\ttfamily \#include "{}esp32\+\_\+home\+\_\+ap.\+h"{}}\newline
+Include dependency graph for esp32\+\_\+home\+\_\+ap.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{esp32__home__ap_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static esp\+\_\+err\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_a7b0e14d6e0c8c34328b202aeacb531aa}{hello\+\_\+get\+\_\+handler}} (httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}req)
+\begin{DoxyCompactList}\small\item\em Hello world handler for basic testing. \end{DoxyCompactList}\item 
+static esp\+\_\+err\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_a82f64817ec48ae4e523f6a5d553499b7}{http\+\_\+404\+\_\+error\+\_\+handler}} (httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}req, httpd\+\_\+err\+\_\+code\+\_\+t err)
+\begin{DoxyCompactList}\small\item\em Error handler for 404 not found. \end{DoxyCompactList}\item 
+static esp\+\_\+err\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_a0625a7478ec87c47865da603bf52fefe}{index\+\_\+handler}} (httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}req)
+\begin{DoxyCompactList}\small\item\em Index handler for serving the main dashboard page. Resolves to "{}/"{}. \end{DoxyCompactList}\item 
+static esp\+\_\+err\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_aa036483a0cabdfc6875e19ec75b583b1}{sensor\+\_\+data\+\_\+handler}} (httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}req)
+\begin{DoxyCompactList}\small\item\em Sensor data handler to update the index handler, when queried, with the lastest sensor data. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{esp32__home__ap_8c_ac31e38637f7a5e5c8ce4d033b0955fec}{wifi\+\_\+event\+\_\+handler}} (void \texorpdfstring{$\ast$}{*}arg, esp\+\_\+event\+\_\+base\+\_\+t event\+\_\+base, int32\+\_\+t event\+\_\+id, void \texorpdfstring{$\ast$}{*}event\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Wifi event handler for esp32 home AP. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{esp32__home__ap_8c_a4a2bc421f17a5713e35165034943cea3}{wifi\+\_\+init\+\_\+softap}} (void)
+\begin{DoxyCompactList}\small\item\em Wifi initialization for esp32 home AP. \end{DoxyCompactList}\item 
+httpd\+\_\+handle\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_aa405dbf500a1f511f559e1e87efff9da}{start\+\_\+webserver}} (void)
+\begin{DoxyCompactList}\small\item\em Start the webserver for esp32 home AP. \end{DoxyCompactList}\item 
+httpd\+\_\+handle\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_a2841eb0998d69cf1a0c103ca3fde8895}{stop\+\_\+webserver}} (httpd\+\_\+handle\+\_\+t server)
+\begin{DoxyCompactList}\small\item\em Stop the webserver for esp32 home AP. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_a29f9b0129da64d3d88d8a7c10f9e4dc0}{nvs\+\_\+setup}} (void)
+\begin{DoxyCompactList}\small\item\em Setup Non-\/\+Volatile Storage (NVS) for wifi credentials and other data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{esp32__home__ap_8c_a6bebee164b5b98e35b22f7c6cd563ac9}{server\+\_\+tag}} = "{}ESP32 Home Server"{}
+\item 
+static const httpd\+\_\+uri\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_a11300e2e5dac9fb4fbda2167cbefaf54}{index\+\_\+uri}}
+\begin{DoxyCompactList}\small\item\em httpd URI structure for the index page \end{DoxyCompactList}\item 
+static const httpd\+\_\+uri\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_a5c4ad8866aaf3504aad84ea36e5b3e31}{sensor\+\_\+data\+\_\+uri}}
+\begin{DoxyCompactList}\small\item\em httpd URI structure for the sensor data endpoint \end{DoxyCompactList}\item 
+static const httpd\+\_\+uri\+\_\+t \mbox{\hyperlink{esp32__home__ap_8c_aa1e749ccac2fcc4dccf1117f1f4382fd}{hello\+\_\+world\+\_\+uri}}
+\begin{DoxyCompactList}\small\item\em httpd URI structure for the hello world endpoint \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{esp32__home__ap_8c_a7b0e14d6e0c8c34328b202aeacb531aa}\label{esp32__home__ap_8c_a7b0e14d6e0c8c34328b202aeacb531aa} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!hello\_get\_handler@{hello\_get\_handler}}
+\index{hello\_get\_handler@{hello\_get\_handler}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{hello\_get\_handler()}{hello\_get\_handler()}}
+{\footnotesize\ttfamily static esp\+\_\+err\+\_\+t hello\+\_\+get\+\_\+handler (\begin{DoxyParamCaption}\item[{httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}}]{req }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Hello world handler for basic testing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8c_a82f64817ec48ae4e523f6a5d553499b7}\label{esp32__home__ap_8c_a82f64817ec48ae4e523f6a5d553499b7} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!http\_404\_error\_handler@{http\_404\_error\_handler}}
+\index{http\_404\_error\_handler@{http\_404\_error\_handler}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{http\_404\_error\_handler()}{http\_404\_error\_handler()}}
+{\footnotesize\ttfamily static esp\+\_\+err\+\_\+t http\+\_\+404\+\_\+error\+\_\+handler (\begin{DoxyParamCaption}\item[{httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}}]{req,  }\item[{httpd\+\_\+err\+\_\+code\+\_\+t}]{err }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Error handler for 404 not found. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & \\
+\hline
+{\em err} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8c_a0625a7478ec87c47865da603bf52fefe}\label{esp32__home__ap_8c_a0625a7478ec87c47865da603bf52fefe} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!index\_handler@{index\_handler}}
+\index{index\_handler@{index\_handler}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{index\_handler()}{index\_handler()}}
+{\footnotesize\ttfamily static esp\+\_\+err\+\_\+t index\+\_\+handler (\begin{DoxyParamCaption}\item[{httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}}]{req }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Index handler for serving the main dashboard page. Resolves to "{}/"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8c_a29f9b0129da64d3d88d8a7c10f9e4dc0}\label{esp32__home__ap_8c_a29f9b0129da64d3d88d8a7c10f9e4dc0} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!nvs\_setup@{nvs\_setup}}
+\index{nvs\_setup@{nvs\_setup}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{nvs\_setup()}{nvs\_setup()}}
+{\footnotesize\ttfamily esp\+\_\+err\+\_\+t nvs\+\_\+setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setup Non-\/\+Volatile Storage (NVS) for wifi credentials and other data. 
+
+Initializes NVS and handles potential errors related to no free pages or new version found by erasing and re-\/initializing.
+
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8c_aa036483a0cabdfc6875e19ec75b583b1}\label{esp32__home__ap_8c_aa036483a0cabdfc6875e19ec75b583b1} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!sensor\_data\_handler@{sensor\_data\_handler}}
+\index{sensor\_data\_handler@{sensor\_data\_handler}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_handler()}{sensor\_data\_handler()}}
+{\footnotesize\ttfamily static esp\+\_\+err\+\_\+t sensor\+\_\+data\+\_\+handler (\begin{DoxyParamCaption}\item[{httpd\+\_\+req\+\_\+t \texorpdfstring{$\ast$}{*}}]{req }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sensor data handler to update the index handler, when queried, with the lastest sensor data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8c_aa405dbf500a1f511f559e1e87efff9da}\label{esp32__home__ap_8c_aa405dbf500a1f511f559e1e87efff9da} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!start\_webserver@{start\_webserver}}
+\index{start\_webserver@{start\_webserver}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{start\_webserver()}{start\_webserver()}}
+{\footnotesize\ttfamily httpd\+\_\+handle\+\_\+t start\+\_\+webserver (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Start the webserver for esp32 home AP. 
+
+\begin{DoxyReturn}{Returns}
+httpd\+\_\+handle\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8c_a2841eb0998d69cf1a0c103ca3fde8895}\label{esp32__home__ap_8c_a2841eb0998d69cf1a0c103ca3fde8895} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!stop\_webserver@{stop\_webserver}}
+\index{stop\_webserver@{stop\_webserver}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{stop\_webserver()}{stop\_webserver()}}
+{\footnotesize\ttfamily httpd\+\_\+handle\+\_\+t stop\+\_\+webserver (\begin{DoxyParamCaption}\item[{httpd\+\_\+handle\+\_\+t}]{server }\end{DoxyParamCaption})}
+
+
+
+Stop the webserver for esp32 home AP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+httpd\+\_\+handle\+\_\+t 
+\end{DoxyReturn}
+\Hypertarget{esp32__home__ap_8c_ac31e38637f7a5e5c8ce4d033b0955fec}\label{esp32__home__ap_8c_ac31e38637f7a5e5c8ce4d033b0955fec} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!wifi\_event\_handler@{wifi\_event\_handler}}
+\index{wifi\_event\_handler@{wifi\_event\_handler}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{wifi\_event\_handler()}{wifi\_event\_handler()}}
+{\footnotesize\ttfamily static void wifi\+\_\+event\+\_\+handler (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg,  }\item[{esp\+\_\+event\+\_\+base\+\_\+t}]{event\+\_\+base,  }\item[{int32\+\_\+t}]{event\+\_\+id,  }\item[{void \texorpdfstring{$\ast$}{*}}]{event\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Wifi event handler for esp32 home AP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & \\
+\hline
+{\em event\+\_\+base} & \\
+\hline
+{\em event\+\_\+id} & \\
+\hline
+{\em event\+\_\+data} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{esp32__home__ap_8c_a4a2bc421f17a5713e35165034943cea3}\label{esp32__home__ap_8c_a4a2bc421f17a5713e35165034943cea3} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!wifi\_init\_softap@{wifi\_init\_softap}}
+\index{wifi\_init\_softap@{wifi\_init\_softap}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{wifi\_init\_softap()}{wifi\_init\_softap()}}
+{\footnotesize\ttfamily void wifi\+\_\+init\+\_\+softap (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Wifi initialization for esp32 home AP. 
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{esp32__home__ap_8c_aa1e749ccac2fcc4dccf1117f1f4382fd}\label{esp32__home__ap_8c_aa1e749ccac2fcc4dccf1117f1f4382fd} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!hello\_world\_uri@{hello\_world\_uri}}
+\index{hello\_world\_uri@{hello\_world\_uri}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{hello\_world\_uri}{hello\_world\_uri}}
+{\footnotesize\ttfamily const httpd\+\_\+uri\+\_\+t hello\+\_\+world\+\_\+uri\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .uri\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}/hello"{}},}
+\DoxyCodeLine{\ \ \ \ .method\ \ \ \ =\ HTTP\_GET,}
+\DoxyCodeLine{\ \ \ \ .handler\ \ \ =\ \mbox{\hyperlink{esp32__home__ap_8c_a7b0e14d6e0c8c34328b202aeacb531aa}{hello\_get\_handler}},}
+\DoxyCodeLine{\ \ \ \ .user\_ctx\ \ =\ NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+httpd URI structure for the hello world endpoint 
+
+\Hypertarget{esp32__home__ap_8c_a11300e2e5dac9fb4fbda2167cbefaf54}\label{esp32__home__ap_8c_a11300e2e5dac9fb4fbda2167cbefaf54} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!index\_uri@{index\_uri}}
+\index{index\_uri@{index\_uri}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{index\_uri}{index\_uri}}
+{\footnotesize\ttfamily const httpd\+\_\+uri\+\_\+t index\+\_\+uri\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .uri\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}/"{}},}
+\DoxyCodeLine{\ \ \ \ .method\ \ \ \ =\ HTTP\_GET,}
+\DoxyCodeLine{\ \ \ \ .handler\ \ \ =\ \mbox{\hyperlink{esp32__home__ap_8c_a0625a7478ec87c47865da603bf52fefe}{index\_handler}},}
+\DoxyCodeLine{\ \ \ \ .user\_ctx\ \ =\ NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+httpd URI structure for the index page 
+
+\Hypertarget{esp32__home__ap_8c_a5c4ad8866aaf3504aad84ea36e5b3e31}\label{esp32__home__ap_8c_a5c4ad8866aaf3504aad84ea36e5b3e31} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!sensor\_data\_uri@{sensor\_data\_uri}}
+\index{sensor\_data\_uri@{sensor\_data\_uri}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_uri}{sensor\_data\_uri}}
+{\footnotesize\ttfamily const httpd\+\_\+uri\+\_\+t sensor\+\_\+data\+\_\+uri\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .uri\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}/sensor\_data"{}},}
+\DoxyCodeLine{\ \ \ \ .method\ \ \ \ =\ HTTP\_GET,}
+\DoxyCodeLine{\ \ \ \ .handler\ \ \ =\ \mbox{\hyperlink{esp32__home__ap_8c_aa036483a0cabdfc6875e19ec75b583b1}{sensor\_data\_handler}},}
+\DoxyCodeLine{\ \ \ \ .user\_ctx\ \ =\ NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+httpd URI structure for the sensor data endpoint 
+
+\Hypertarget{esp32__home__ap_8c_a6bebee164b5b98e35b22f7c6cd563ac9}\label{esp32__home__ap_8c_a6bebee164b5b98e35b22f7c6cd563ac9} 
+\index{esp32\_home\_ap.c@{esp32\_home\_ap.c}!server\_tag@{server\_tag}}
+\index{server\_tag@{server\_tag}!esp32\_home\_ap.c@{esp32\_home\_ap.c}}
+\doxysubsubsection{\texorpdfstring{server\_tag}{server\_tag}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} server\+\_\+tag = "{}ESP32 Home Server"{}}
+

@@ -1,0 +1,192 @@
+\doxysection{lib/\+BME68x\+\_\+\+Sensor\+API/examples/common/common.c File Reference}
+\hypertarget{common_8c}{}\label{common_8c}\index{lib/BME68x\_SensorAPI/examples/common/common.c@{lib/BME68x\_SensorAPI/examples/common/common.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}bme68x.\+h"{}}\newline
+{\ttfamily \#include "{}coines.\+h"{}}\newline
+{\ttfamily \#include "{}common.\+h"{}}\newline
+Include dependency graph for common.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{common_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{common_8c_a2161d76d31a609546bedd48e8e6ba01f}{BME68\+X\+\_\+\+SHUTTLE\+\_\+\+ID}}~0x93
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE \mbox{\hyperlink{common_8c_aff39d4447b878646149f0b7689858872}{bme68x\+\_\+i2c\+\_\+read}} (uint8\+\_\+t reg\+\_\+addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}reg\+\_\+data, uint32\+\_\+t len, void \texorpdfstring{$\ast$}{*}intf\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Function for reading the sensor\textquotesingle{}s registers through I2C bus. \end{DoxyCompactList}\item 
+BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE \mbox{\hyperlink{common_8c_a44539482ff6680abf4a3643a1a5625a8}{bme68x\+\_\+i2c\+\_\+write}} (uint8\+\_\+t reg\+\_\+addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}reg\+\_\+data, uint32\+\_\+t len, void \texorpdfstring{$\ast$}{*}intf\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Function for writing the sensor\textquotesingle{}s registers through I2C bus. \end{DoxyCompactList}\item 
+BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE \mbox{\hyperlink{common_8c_aaed1f73d14f65dbff94d1be0001088d9}{bme68x\+\_\+spi\+\_\+read}} (uint8\+\_\+t reg\+\_\+addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}reg\+\_\+data, uint32\+\_\+t len, void \texorpdfstring{$\ast$}{*}intf\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Function for reading the sensor\textquotesingle{}s registers through SPI bus. \end{DoxyCompactList}\item 
+BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE \mbox{\hyperlink{common_8c_afb1ccbf06ecb66035b0dd76765696990}{bme68x\+\_\+spi\+\_\+write}} (uint8\+\_\+t reg\+\_\+addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}reg\+\_\+data, uint32\+\_\+t len, void \texorpdfstring{$\ast$}{*}intf\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Function for writing the sensor\textquotesingle{}s registers through SPI bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{common_8c_af9798445cafbcbe91dcfb7f196dec4b4}{bme68x\+\_\+delay\+\_\+us}} (uint32\+\_\+t period, void \texorpdfstring{$\ast$}{*}intf\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em This function provides the delay for required time (Microsecond) as per the input provided in some of the APIs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{common_8c_aa6672c8252c0e8be479ca811159507ec}{bme68x\+\_\+check\+\_\+rslt}} (const char api\+\_\+name\mbox{[}$\,$\mbox{]}, int8\+\_\+t rslt)
+\begin{DoxyCompactList}\small\item\em Prints the execution status of the APIs. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{common_8c_a277f3406ea8ecaf8bd58c51950c84c3a}{bme68x\+\_\+interface\+\_\+init}} (struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{main_8c_af0536e8bac760f12e6d61a9bb2d38878}{bme}}, uint8\+\_\+t intf)
+\begin{DoxyCompactList}\small\item\em Function to select the interface between SPI and I2C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{common_8c_afb0e6536c486b094d9157ddf371d52dc}{bme68x\+\_\+coines\+\_\+deinit}} (void)
+\begin{DoxyCompactList}\small\item\em Deinitializes coines platform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{common_8c_a1997a5306d6d04a9ce867303d1a6d9e1}{dev\+\_\+addr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{common_8c_a2161d76d31a609546bedd48e8e6ba01f}\label{common_8c_a2161d76d31a609546bedd48e8e6ba01f} 
+\index{common.c@{common.c}!BME68X\_SHUTTLE\_ID@{BME68X\_SHUTTLE\_ID}}
+\index{BME68X\_SHUTTLE\_ID@{BME68X\_SHUTTLE\_ID}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{BME68X\_SHUTTLE\_ID}{BME68X\_SHUTTLE\_ID}}
+{\footnotesize\ttfamily \#define BME68\+X\+\_\+\+SHUTTLE\+\_\+\+ID~0x93}
+
+Copyright (C) 2023 Bosch Sensortec GmbH. All rights reserved.
+
+SPDX-\/\+License-\/\+Identifier\+: BSD-\/3-\/\+Clause
+
+Macro definitions ~\newline
+
+
+BME68X shuttle board ID 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{common_8c_aa6672c8252c0e8be479ca811159507ec}\label{common_8c_aa6672c8252c0e8be479ca811159507ec} 
+\index{common.c@{common.c}!bme68x\_check\_rslt@{bme68x\_check\_rslt}}
+\index{bme68x\_check\_rslt@{bme68x\_check\_rslt}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_check\_rslt()}{bme68x\_check\_rslt()}}
+{\footnotesize\ttfamily void bme68x\+\_\+check\+\_\+rslt (\begin{DoxyParamCaption}\item[{const char}]{api\+\_\+name\mbox{[}$\,$\mbox{]},  }\item[{int8\+\_\+t}]{rslt }\end{DoxyParamCaption})}
+
+
+
+Prints the execution status of the APIs. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em api\+\_\+name} & \+: Name of the API whose execution status has to be printed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em rslt} & \+: Error code returned by the API whose execution status has to be printed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\Hypertarget{common_8c_afb0e6536c486b094d9157ddf371d52dc}\label{common_8c_afb0e6536c486b094d9157ddf371d52dc} 
+\index{common.c@{common.c}!bme68x\_coines\_deinit@{bme68x\_coines\_deinit}}
+\index{bme68x\_coines\_deinit@{bme68x\_coines\_deinit}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_coines\_deinit()}{bme68x\_coines\_deinit()}}
+{\footnotesize\ttfamily void bme68x\+\_\+coines\+\_\+deinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Deinitializes coines platform. 
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\Hypertarget{common_8c_af9798445cafbcbe91dcfb7f196dec4b4}\label{common_8c_af9798445cafbcbe91dcfb7f196dec4b4} 
+\index{common.c@{common.c}!bme68x\_delay\_us@{bme68x\_delay\_us}}
+\index{bme68x\_delay\_us@{bme68x\_delay\_us}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_delay\_us()}{bme68x\_delay\_us()}}
+{\footnotesize\ttfamily void bme68x\+\_\+delay\+\_\+us (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{period,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+This function provides the delay for required time (Microsecond) as per the input provided in some of the APIs. 
+
+Delay function map to COINES platform \Hypertarget{common_8c_aff39d4447b878646149f0b7689858872}\label{common_8c_aff39d4447b878646149f0b7689858872} 
+\index{common.c@{common.c}!bme68x\_i2c\_read@{bme68x\_i2c\_read}}
+\index{bme68x\_i2c\_read@{bme68x\_i2c\_read}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_i2c\_read()}{bme68x\_i2c\_read()}}
+{\footnotesize\ttfamily BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE bme68x\+\_\+i2c\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+\_\+addr,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Function for reading the sensor\textquotesingle{}s registers through I2C bus. 
+
+User interface functions ~\newline
+
+
+I2C read function map to COINES platform \Hypertarget{common_8c_a44539482ff6680abf4a3643a1a5625a8}\label{common_8c_a44539482ff6680abf4a3643a1a5625a8} 
+\index{common.c@{common.c}!bme68x\_i2c\_write@{bme68x\_i2c\_write}}
+\index{bme68x\_i2c\_write@{bme68x\_i2c\_write}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_i2c\_write()}{bme68x\_i2c\_write()}}
+{\footnotesize\ttfamily BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE bme68x\+\_\+i2c\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+\_\+addr,  }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Function for writing the sensor\textquotesingle{}s registers through I2C bus. 
+
+I2C write function map to COINES platform \Hypertarget{common_8c_a277f3406ea8ecaf8bd58c51950c84c3a}\label{common_8c_a277f3406ea8ecaf8bd58c51950c84c3a} 
+\index{common.c@{common.c}!bme68x\_interface\_init@{bme68x\_interface\_init}}
+\index{bme68x\_interface\_init@{bme68x\_interface\_init}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_interface\_init()}{bme68x\_interface\_init()}}
+{\footnotesize\ttfamily int8\+\_\+t bme68x\+\_\+interface\+\_\+init (\begin{DoxyParamCaption}\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{bme,  }\item[{uint8\+\_\+t}]{intf }\end{DoxyParamCaption})}
+
+
+
+Function to select the interface between SPI and I2C. 
+
+Copyright (C) 2023 Bosch Sensortec GmbH. All rights reserved.
+
+SPDX-\/\+License-\/\+Identifier\+: BSD-\/3-\/\+Clause
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bme} & \+: Structure instance of bme68x\+\_\+dev \\
+\hline
+\mbox{\texttt{ in}}  & {\em intf} & \+: Interface selection parameter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status of execution 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & -\/\texorpdfstring{$>$}{>} Success \\
+\hline
+{\em $<$} & 0 -\/\texorpdfstring{$>$}{>} Failure Info \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{common_8c_aaed1f73d14f65dbff94d1be0001088d9}\label{common_8c_aaed1f73d14f65dbff94d1be0001088d9} 
+\index{common.c@{common.c}!bme68x\_spi\_read@{bme68x\_spi\_read}}
+\index{bme68x\_spi\_read@{bme68x\_spi\_read}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_spi\_read()}{bme68x\_spi\_read()}}
+{\footnotesize\ttfamily BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE bme68x\+\_\+spi\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+\_\+addr,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Function for reading the sensor\textquotesingle{}s registers through SPI bus. 
+
+SPI read function map to COINES platform \Hypertarget{common_8c_afb1ccbf06ecb66035b0dd76765696990}\label{common_8c_afb1ccbf06ecb66035b0dd76765696990} 
+\index{common.c@{common.c}!bme68x\_spi\_write@{bme68x\_spi\_write}}
+\index{bme68x\_spi\_write@{bme68x\_spi\_write}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{bme68x\_spi\_write()}{bme68x\_spi\_write()}}
+{\footnotesize\ttfamily BME68\+X\+\_\+\+INTF\+\_\+\+RET\+\_\+\+TYPE bme68x\+\_\+spi\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg\+\_\+addr,  }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{reg\+\_\+data,  }\item[{uint32\+\_\+t}]{len,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Function for writing the sensor\textquotesingle{}s registers through SPI bus. 
+
+SPI write function map to COINES platform 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{common_8c_a1997a5306d6d04a9ce867303d1a6d9e1}\label{common_8c_a1997a5306d6d04a9ce867303d1a6d9e1} 
+\index{common.c@{common.c}!dev\_addr@{dev\_addr}}
+\index{dev\_addr@{dev\_addr}!common.c@{common.c}}
+\doxysubsubsection{\texorpdfstring{dev\_addr}{dev\_addr}}
+{\footnotesize\ttfamily uint8\+\_\+t dev\+\_\+addr\hspace{0.3cm}{\ttfamily [static]}}
+
+Static variable definition ~\newline
+ 

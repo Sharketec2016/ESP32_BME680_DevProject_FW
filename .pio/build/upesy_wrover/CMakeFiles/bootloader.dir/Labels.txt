@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/CMakeFiles/bootloader
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/CMakeFiles/bootloader.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/CMakeFiles/bootloader-complete.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

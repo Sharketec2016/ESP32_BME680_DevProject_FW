@@ -1,0 +1,805 @@
+\doxysection{bme68x\+\_\+defs.\+h}
+\hypertarget{bme68x__defs_8h_source}{}\label{bme68x__defs_8h_source}\index{lib/BME68x\_SensorAPI/bme68x\_defs.h@{lib/BME68x\_SensorAPI/bme68x\_defs.h}}
+\mbox{\hyperlink{bme68x__defs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifndef\ BME68X\_DEFS\_H\_}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ BME68X\_DEFS\_H\_}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/*********************************************************\ */}}
+\DoxyCodeLine{00046\ \textcolor{comment}{/*********************************************************\ */}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ \_\_KERNEL\_\_}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <linux/types.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <linux/kernel.h>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{/*********************************************************\ */}}
+\DoxyCodeLine{00057\ \textcolor{comment}{/*********************************************************\ */}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifdef\ \_\_KERNEL\_\_}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#if\ !defined(UINT8\_C)\ \&\&\ !defined(INT8\_C)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ INT8\_C(x)\ \ \ \ S8\_C(x)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ UINT8\_C(x)\ \ \ U8\_C(x)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#if\ !defined(UINT16\_C)\ \&\&\ !defined(INT16\_C)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ INT16\_C(x)\ \ \ S16\_C(x)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ UINT16\_C(x)\ \ U16\_C(x)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#if\ !defined(INT32\_C)\ \&\&\ !defined(UINT32\_C)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ INT32\_C(x)\ \ \ S32\_C(x)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ UINT32\_C(x)\ \ U32\_C(x)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#if\ !defined(INT64\_C)\ \&\&\ !defined(UINT64\_C)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ INT64\_C(x)\ \ \ S64\_C(x)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ UINT64\_C(x)\ \ U64\_C(x)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#ifndef\ NULL}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ NULL\ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ NULL\ \ \ \ \ \ \ \ \ ((void\ *)\ 0)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#ifndef\ BME68X\_DO\_NOT\_USE\_FPU}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{/*\ Comment\ or\ un-\/comment\ the\ macro\ to\ provide\ floating\ point\ data\ output\ */}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ BME68X\_USE\_FPU}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{/*\ Period\ between\ two\ polls\ (value\ can\ be\ given\ by\ user)\ */}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#ifndef\ BME68X\_PERIOD\_POLL}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ BME68X\_PERIOD\_POLL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(10000)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{/*\ BME68X\ unique\ chip\ identifier\ */}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ BME68X\_CHIP\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x61)}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{comment}{/*\ Period\ for\ a\ soft\ reset\ */}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ BME68X\_PERIOD\_RESET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(10000)}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{/*\ BME68X\ lower\ I2C\ address\ */}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ BME68X\_I2C\_ADDR\_LOW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x76)}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{/*\ BME68X\ higher\ I2C\ address\ */}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ BME68X\_I2C\_ADDR\_HIGH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x77)}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{comment}{/*\ Soft\ reset\ command\ */}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ BME68X\_SOFT\_RESET\_CMD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xb6)}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{/*\ Return\ code\ definitions\ */}}
+\DoxyCodeLine{00116\ \textcolor{comment}{/*\ Success\ */}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ BME68X\_OK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(0)}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{/*\ Errors\ */}}
+\DoxyCodeLine{00120\ \textcolor{comment}{/*\ Null\ pointer\ passed\ */}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ BME68X\_E\_NULL\_PTR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(-\/1)}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{comment}{/*\ Communication\ failure\ */}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ BME68X\_E\_COM\_FAIL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(-\/2)}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{/*\ Sensor\ not\ found\ */}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ BME68X\_E\_DEV\_NOT\_FOUND\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(-\/3)}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{comment}{/*\ Incorrect\ length\ parameter\ */}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ BME68X\_E\_INVALID\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(-\/4)}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{/*\ Self\ test\ fail\ error\ */}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ BME68X\_E\_SELF\_TEST\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(-\/5)}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{/*\ Warnings\ */}}
+\DoxyCodeLine{00136\ \textcolor{comment}{/*\ Define\ a\ valid\ operation\ mode\ */}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ BME68X\_W\_DEFINE\_OP\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(1)}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{/*\ No\ new\ data\ was\ found\ */}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ BME68X\_W\_NO\_NEW\_DATA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(2)}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{/*\ Define\ the\ shared\ heating\ duration\ */}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ BME68X\_W\_DEFINE\_SHD\_HEATR\_DUR\ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(3)}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{/*\ Information\ -\/\ only\ available\ via\ bme68x\_dev.info\_msg\ */}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ BME68X\_I\_PARAM\_CORR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(1)}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{/*\ Register\ map\ addresses\ in\ I2C\ */}}
+\DoxyCodeLine{00149\ \textcolor{comment}{/*\ Register\ for\ 3rd\ group\ of\ coefficients\ */}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_COEFF3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x00)}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{comment}{/*\ 0th\ Field\ address*/}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_FIELD0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x1d)}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{/*\ 0th\ Current\ DAC\ address*/}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_IDAC\_HEAT0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x50)}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{comment}{/*\ 0th\ Res\ heat\ address\ */}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_RES\_HEAT0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x5a)}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{/*\ 0th\ Gas\ wait\ address\ */}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_GAS\_WAIT0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x64)}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{/*\ Shared\ heating\ duration\ address\ */}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_SHD\_HEATR\_DUR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x6E)}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{/*\ CTRL\_GAS\_0\ address\ */}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_CTRL\_GAS\_0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x70)}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{comment}{/*\ CTRL\_GAS\_1\ address\ */}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_CTRL\_GAS\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x71)}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{comment}{/*\ CTRL\_HUM\ address\ */}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_CTRL\_HUM\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x72)}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{comment}{/*\ CTRL\_MEAS\ address\ */}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_CTRL\_MEAS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x74)}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{/*\ CONFIG\ address\ */}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_CONFIG\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x75)}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{/*\ MEM\_PAGE\ address\ */}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_MEM\_PAGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xf3)}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{/*\ Unique\ ID\ address\ */}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_UNIQUE\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x83)}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{/*\ Register\ for\ 1st\ group\ of\ coefficients\ */}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_COEFF1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x8a)}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{comment}{/*\ Chip\ ID\ address\ */}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_CHIP\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xd0)}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{comment}{/*\ Soft\ reset\ address\ */}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_SOFT\_RESET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xe0)}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{comment}{/*\ Register\ for\ 2nd\ group\ of\ coefficients\ */}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_COEFF2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xe1)}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{comment}{/*\ Variant\ ID\ Register\ */}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#define\ BME68X\_REG\_VARIANT\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xF0)}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{comment}{/*\ Enable/Disable\ macros\ */}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{comment}{/*\ Enable\ */}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ BME68X\_ENABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x01)}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{comment}{/*\ Disable\ */}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#define\ BME68X\_DISABLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x00)}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{comment}{/*\ Variant\ ID\ macros\ */}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{comment}{/*\ Low\ Gas\ variant\ */}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#define\ BME68X\_VARIANT\_GAS\_LOW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x00)}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{comment}{/*\ High\ Gas\ variant\ */}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ BME68X\_VARIANT\_GAS\_HIGH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x01)}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{comment}{/*\ Oversampling\ setting\ macros\ */}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{comment}{/*\ Switch\ off\ measurement\ */}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ BME68X\_OS\_NONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0)}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{comment}{/*\ Perform\ 1\ measurement\ */}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ BME68X\_OS\_1X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(1)}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{comment}{/*\ Perform\ 2\ measurements\ */}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#define\ BME68X\_OS\_2X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(2)}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{comment}{/*\ Perform\ 4\ measurements\ */}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ BME68X\_OS\_4X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(3)}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{comment}{/*\ Perform\ 8\ measurements\ */}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#define\ BME68X\_OS\_8X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(4)}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{comment}{/*\ Perform\ 16\ measurements\ */}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ BME68X\_OS\_16X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(5)}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{comment}{/*\ IIR\ Filter\ settings\ */}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{comment}{/*\ Switch\ off\ the\ filter\ */}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_OFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0)}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{comment}{/*\ Filter\ coefficient\ of\ 2\ */}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_SIZE\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(1)}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{/*\ Filter\ coefficient\ of\ 4\ */}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_SIZE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(2)}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{comment}{/*\ Filter\ coefficient\ of\ 8\ */}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_SIZE\_7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(3)}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{comment}{/*\ Filter\ coefficient\ of\ 16\ */}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_SIZE\_15\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(4)}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{comment}{/*\ Filter\ coefficient\ of\ 32\ */}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_SIZE\_31\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(5)}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{comment}{/*\ Filter\ coefficient\ of\ 64\ */}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_SIZE\_63\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(6)}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{comment}{/*\ Filter\ coefficient\ of\ 128\ */}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_SIZE\_127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(7)}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{comment}{/*\ ODR/Standby\ time\ macros\ */}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{comment}{/*\ Standby\ time\ of\ 0.59ms\ */}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_0\_59\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0)}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{comment}{/*\ Standby\ time\ of\ 62.5ms\ */}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_62\_5\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(1)}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \textcolor{comment}{/*\ Standby\ time\ of\ 125ms\ */}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_125\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(2)}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{comment}{/*\ Standby\ time\ of\ 250ms\ */}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_250\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(3)}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{comment}{/*\ Standby\ time\ of\ 500ms\ */}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_500\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(4)}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{comment}{/*\ Standby\ time\ of\ 1s\ */}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_1000\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(5)}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{comment}{/*\ Standby\ time\ of\ 10ms\ */}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_10\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(6)}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{comment}{/*\ Standby\ time\ of\ 20ms\ */}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_20\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(7)}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{comment}{/*\ No\ standby\ time\ */}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ BME68X\_ODR\_NONE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(8)}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{comment}{/*\ Operating\ mode\ macros\ */}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{comment}{/*\ Sleep\ operation\ mode\ */}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#define\ BME68X\_SLEEP\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0)}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{comment}{/*\ Forced\ operation\ mode\ */}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ BME68X\_FORCED\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(1)}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{comment}{/*\ Parallel\ operation\ mode\ */}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#define\ BME68X\_PARALLEL\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(2)}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{comment}{/*\ Sequential\ operation\ mode\ */}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ BME68X\_SEQUENTIAL\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(3)}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{comment}{/*\ SPI\ page\ macros\ */}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{comment}{/*\ SPI\ memory\ page\ 0\ */}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ BME68X\_MEM\_PAGE0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x10)}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \textcolor{comment}{/*\ SPI\ memory\ page\ 1\ */}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#define\ BME68X\_MEM\_PAGE1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x00)}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \textcolor{comment}{/*\ Coefficient\ index\ macros\ */}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{comment}{/*\ Length\ for\ all\ coefficients\ */}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_COEFF\_ALL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(42)}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{comment}{/*\ Length\ for\ 1st\ group\ of\ coefficients\ */}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_COEFF1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(23)}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{comment}{/*\ Length\ for\ 2nd\ group\ of\ coefficients\ */}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_COEFF2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(14)}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \textcolor{comment}{/*\ Length\ for\ 3rd\ group\ of\ coefficients\ */}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_COEFF3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(5)}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{comment}{/*\ Length\ of\ the\ field\ */}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_FIELD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(17)}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{comment}{/*\ Length\ between\ two\ fields\ */}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_FIELD\_OFFSET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(17)}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \textcolor{comment}{/*\ Length\ of\ the\ configuration\ register\ */}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_CONFIG\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(5)}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \textcolor{comment}{/*\ Length\ of\ the\ interleaved\ buffer\ */}}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#define\ BME68X\_LEN\_INTERLEAVE\_BUFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(20)}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{comment}{/*\ Coefficient\ index\ macros\ */}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \textcolor{comment}{/*\ Coefficient\ T2\ LSB\ position\ */}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_T2\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \textcolor{comment}{/*\ Coefficient\ T2\ MSB\ position\ */}}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_T2\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \textcolor{comment}{/*\ Coefficient\ T3\ position\ */}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_T3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (2)}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \textcolor{comment}{/*\ Coefficient\ P1\ LSB\ position\ */}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P1\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (4)}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \textcolor{comment}{/*\ Coefficient\ P1\ MSB\ position\ */}}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P1\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (5)}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \textcolor{comment}{/*\ Coefficient\ P2\ LSB\ position\ */}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P2\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (6)}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{comment}{/*\ Coefficient\ P2\ MSB\ position\ */}}
+\DoxyCodeLine{00363\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P2\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (7)}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \textcolor{comment}{/*\ Coefficient\ P3\ position\ */}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (8)}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \textcolor{comment}{/*\ Coefficient\ P4\ LSB\ position\ */}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P4\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (10)}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{comment}{/*\ Coefficient\ P4\ MSB\ position\ */}}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P4\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (11)}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{comment}{/*\ Coefficient\ P5\ LSB\ position\ */}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P5\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (12)}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \textcolor{comment}{/*\ Coefficient\ P5\ MSB\ position\ */}}
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P5\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (13)}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \textcolor{comment}{/*\ Coefficient\ P7\ position\ */}}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (14)}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{comment}{/*\ Coefficient\ P6\ position\ */}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (15)}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \textcolor{comment}{/*\ Coefficient\ P8\ LSB\ position\ */}}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P8\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (18)}}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \textcolor{comment}{/*\ Coefficient\ P8\ MSB\ position\ */}}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P8\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (19)}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{comment}{/*\ Coefficient\ P9\ LSB\ position\ */}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P9\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (20)}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{comment}{/*\ Coefficient\ P9\ MSB\ position\ */}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P9\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (21)}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \textcolor{comment}{/*\ Coefficient\ P10\ position\ */}}
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_P10\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (22)}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \textcolor{comment}{/*\ Coefficient\ H2\ MSB\ position\ */}}
+\DoxyCodeLine{00402\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H2\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (23)}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \textcolor{comment}{/*\ Coefficient\ H2\ LSB\ position\ */}}
+\DoxyCodeLine{00405\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H2\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (24)}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \textcolor{comment}{/*\ Coefficient\ H1\ LSB\ position\ */}}
+\DoxyCodeLine{00408\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H1\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (24)}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{comment}{/*\ Coefficient\ H1\ MSB\ position\ */}}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H1\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (25)}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \textcolor{comment}{/*\ Coefficient\ H3\ position\ */}}
+\DoxyCodeLine{00414\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (26)}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \textcolor{comment}{/*\ Coefficient\ H4\ position\ */}}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (27)}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \textcolor{comment}{/*\ Coefficient\ H5\ position\ */}}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (28)}}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \textcolor{comment}{/*\ Coefficient\ H6\ position\ */}}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (29)}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{comment}{/*\ Coefficient\ H7\ position\ */}}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_H7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (30)}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \textcolor{comment}{/*\ Coefficient\ T1\ LSB\ position\ */}}
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_T1\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (31)}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \textcolor{comment}{/*\ Coefficient\ T1\ MSB\ position\ */}}
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_T1\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (32)}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \textcolor{comment}{/*\ Coefficient\ GH2\ LSB\ position\ */}}
+\DoxyCodeLine{00435\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_GH2\_LSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (33)}}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \textcolor{comment}{/*\ Coefficient\ GH2\ MSB\ position\ */}}
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_GH2\_MSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (34)}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \textcolor{comment}{/*\ Coefficient\ GH1\ position\ */}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_GH1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (35)}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{comment}{/*\ Coefficient\ GH3\ position\ */}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_GH3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (36)}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \textcolor{comment}{/*\ Coefficient\ res\ heat\ value\ position\ */}}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_RES\_HEAT\_VAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (37)}}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \textcolor{comment}{/*\ Coefficient\ res\ heat\ range\ position\ */}}
+\DoxyCodeLine{00450\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_RES\_HEAT\_RANGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (39)}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{comment}{/*\ Coefficient\ range\ switching\ error\ position\ */}}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\#define\ BME68X\_IDX\_RANGE\_SW\_ERR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (41)}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \textcolor{comment}{/*\ Gas\ measurement\ macros\ */}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \textcolor{comment}{/*\ Disable\ gas\ measurement\ */}}
+\DoxyCodeLine{00458\ \textcolor{preprocessor}{\#define\ BME68X\_DISABLE\_GAS\_MEAS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x00)}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \textcolor{comment}{/*\ Enable\ gas\ measurement\ low\ */}}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#define\ BME68X\_ENABLE\_GAS\_MEAS\_L\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x01)}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \textcolor{comment}{/*\ Enable\ gas\ measurement\ high\ */}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#define\ BME68X\_ENABLE\_GAS\_MEAS\_H\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x02)}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \textcolor{comment}{/*\ Heater\ control\ macros\ */}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \textcolor{comment}{/*\ Enable\ heater\ */}}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#define\ BME68X\_ENABLE\_HEATER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x00)}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \textcolor{comment}{/*\ Disable\ heater\ */}}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#define\ BME68X\_DISABLE\_HEATER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x01)}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#ifdef\ BME68X\_USE\_FPU}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \textcolor{comment}{/*\ 0\ degree\ Celsius\ */}}
+\DoxyCodeLine{00477\ \textcolor{preprocessor}{\#define\ BME68X\_MIN\_TEMPERATURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT16\_C(0)}}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \textcolor{comment}{/*\ 60\ degree\ Celsius\ */}}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#define\ BME68X\_MAX\_TEMPERATURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT16\_C(60)}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \textcolor{comment}{/*\ 900\ hecto\ Pascals\ */}}
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\#define\ BME68X\_MIN\_PRESSURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(90000)}}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \textcolor{comment}{/*\ 1100\ hecto\ Pascals\ */}}
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\#define\ BME68X\_MAX\_PRESSURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(110000)}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \textcolor{comment}{/*\ 20\%\ relative\ humidity\ */}}
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#define\ BME68X\_MIN\_HUMIDITY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(20)}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \textcolor{comment}{/*\ 80\%\ relative\ humidity*/}}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#define\ BME68X\_MAX\_HUMIDITY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(80)}}
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \textcolor{comment}{/*\ 0\ degree\ Celsius\ */}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\#define\ BME68X\_MIN\_TEMPERATURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT16\_C(0)}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \textcolor{comment}{/*\ 60\ degree\ Celsius\ */}}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#define\ BME68X\_MAX\_TEMPERATURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT16\_C(6000)}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \textcolor{comment}{/*\ 900\ hecto\ Pascals\ */}}
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#define\ BME68X\_MIN\_PRESSURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(90000)}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \textcolor{comment}{/*\ 1100\ hecto\ Pascals\ */}}
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{\#define\ BME68X\_MAX\_PRESSURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(110000)}}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \textcolor{comment}{/*\ 20\%\ relative\ humidity\ */}}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\#define\ BME68X\_MIN\_HUMIDITY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(20000)}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \textcolor{comment}{/*\ 80\%\ relative\ humidity*/}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\#define\ BME68X\_MAX\_HUMIDITY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(80000)}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ \textcolor{preprocessor}{\#define\ BME68X\_HEATR\_DUR1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT16\_C(1000)}}
+\DoxyCodeLine{00516\ \textcolor{preprocessor}{\#define\ BME68X\_HEATR\_DUR2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT16\_C(2000)}}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\#define\ BME68X\_HEATR\_DUR1\_DELAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(1000000)}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\#define\ BME68X\_HEATR\_DUR2\_DELAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT32\_C(2000000)}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\#define\ BME68X\_N\_MEAS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(6)}}
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\#define\ BME68X\_LOW\_TEMP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(150)}}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\#define\ BME68X\_HIGH\_TEMP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT16\_C(350)}}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \textcolor{comment}{/*\ Mask\ macros\ */}}
+\DoxyCodeLine{00524\ \textcolor{comment}{/*\ Mask\ for\ number\ of\ conversions\ */}}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#define\ BME68X\_NBCONV\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0X0f)}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \textcolor{comment}{/*\ Mask\ for\ IIR\ filter\ */}}
+\DoxyCodeLine{00528\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0X1c)}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \textcolor{comment}{/*\ Mask\ for\ ODR[3]\ */}}
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\#define\ BME68X\_ODR3\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x80)}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \textcolor{comment}{/*\ Mask\ for\ ODR[2:0]\ */}}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\#define\ BME68X\_ODR20\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xe0)}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \textcolor{comment}{/*\ Mask\ for\ temperature\ oversampling\ */}}
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\#define\ BME68X\_OST\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0Xe0)}}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \textcolor{comment}{/*\ Mask\ for\ pressure\ oversampling\ */}}
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#define\ BME68X\_OSP\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0X1c)}}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \textcolor{comment}{/*\ Mask\ for\ humidity\ oversampling\ */}}
+\DoxyCodeLine{00543\ \textcolor{preprocessor}{\#define\ BME68X\_OSH\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0X07)}}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \textcolor{comment}{/*\ Mask\ for\ heater\ control\ */}}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#define\ BME68X\_HCTRL\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x08)}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \textcolor{comment}{/*\ Mask\ for\ run\ gas\ */}}
+\DoxyCodeLine{00549\ \textcolor{preprocessor}{\#define\ BME68X\_RUN\_GAS\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x30)}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \textcolor{comment}{/*\ Mask\ for\ operation\ mode\ */}}
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\#define\ BME68X\_MODE\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x03)}}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \textcolor{comment}{/*\ Mask\ for\ res\ heat\ range\ */}}
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\#define\ BME68X\_RHRANGE\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x30)}}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \textcolor{comment}{/*\ Mask\ for\ range\ switching\ error\ */}}
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\#define\ BME68X\_RSERROR\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0xf0)}}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \textcolor{comment}{/*\ Mask\ for\ new\ data\ */}}
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\#define\ BME68X\_NEW\_DATA\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x80)}}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \textcolor{comment}{/*\ Mask\ for\ gas\ index\ */}}
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{\#define\ BME68X\_GAS\_INDEX\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x0f)}}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \textcolor{comment}{/*\ Mask\ for\ gas\ range\ */}}
+\DoxyCodeLine{00567\ \textcolor{preprocessor}{\#define\ BME68X\_GAS\_RANGE\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x0f)}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \textcolor{comment}{/*\ Mask\ for\ gas\ measurement\ valid\ */}}
+\DoxyCodeLine{00570\ \textcolor{preprocessor}{\#define\ BME68X\_GASM\_VALID\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x20)}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \textcolor{comment}{/*\ Mask\ for\ heater\ stability\ */}}
+\DoxyCodeLine{00573\ \textcolor{preprocessor}{\#define\ BME68X\_HEAT\_STAB\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x10)}}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \textcolor{comment}{/*\ Mask\ for\ SPI\ memory\ page\ */}}
+\DoxyCodeLine{00576\ \textcolor{preprocessor}{\#define\ BME68X\_MEM\_PAGE\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x10)}}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00578\ \textcolor{comment}{/*\ Mask\ for\ reading\ a\ register\ in\ SPI\ */}}
+\DoxyCodeLine{00579\ \textcolor{preprocessor}{\#define\ BME68X\_SPI\_RD\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x80)}}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \textcolor{comment}{/*\ Mask\ for\ writing\ a\ register\ in\ SPI\ */}}
+\DoxyCodeLine{00582\ \textcolor{preprocessor}{\#define\ BME68X\_SPI\_WR\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x7f)}}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \textcolor{comment}{/*\ Mask\ for\ the\ H1\ calibration\ coefficient\ */}}
+\DoxyCodeLine{00585\ \textcolor{preprocessor}{\#define\ BME68X\_BIT\_H1\_DATA\_MSK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(0x0f)}}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \textcolor{comment}{/*\ Position\ macros\ */}}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00589\ \textcolor{comment}{/*\ Filter\ bit\ position\ */}}
+\DoxyCodeLine{00590\ \textcolor{preprocessor}{\#define\ BME68X\_FILTER\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(2)}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \textcolor{comment}{/*\ Temperature\ oversampling\ bit\ position\ */}}
+\DoxyCodeLine{00593\ \textcolor{preprocessor}{\#define\ BME68X\_OST\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(5)}}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \textcolor{comment}{/*\ Pressure\ oversampling\ bit\ position\ */}}
+\DoxyCodeLine{00596\ \textcolor{preprocessor}{\#define\ BME68X\_OSP\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(2)}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \textcolor{comment}{/*\ ODR[3]\ bit\ position\ */}}
+\DoxyCodeLine{00599\ \textcolor{preprocessor}{\#define\ BME68X\_ODR3\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(7)}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \textcolor{comment}{/*\ ODR[2:0]\ bit\ position\ */}}
+\DoxyCodeLine{00602\ \textcolor{preprocessor}{\#define\ BME68X\_ODR20\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(5)}}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \textcolor{comment}{/*\ Run\ gas\ bit\ position\ */}}
+\DoxyCodeLine{00605\ \textcolor{preprocessor}{\#define\ BME68X\_RUN\_GAS\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(4)}}
+\DoxyCodeLine{00606\ }
+\DoxyCodeLine{00607\ \textcolor{comment}{/*\ Heater\ control\ bit\ position\ */}}
+\DoxyCodeLine{00608\ \textcolor{preprocessor}{\#define\ BME68X\_HCTRL\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT8\_C(3)}}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \textcolor{comment}{/*\ Macro\ to\ combine\ two\ 8\ bit\ data's\ to\ form\ a\ 16\ bit\ data\ */}}
+\DoxyCodeLine{00611\ \textcolor{preprocessor}{\#define\ BME68X\_CONCAT\_BYTES(msb,\ lsb)\ \ \ \ \ \ \ \ \ \ \ \ \ (((uint16\_t)msb\ <<\ 8)\ |\ (uint16\_t)lsb)}}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \textcolor{comment}{/*\ Macro\ to\ set\ bits\ */}}
+\DoxyCodeLine{00614\ \textcolor{preprocessor}{\#define\ BME68X\_SET\_BITS(reg\_data,\ bitname,\ data)\ \(\backslash\)}}
+\DoxyCodeLine{00615\ \textcolor{preprocessor}{\ \ \ \ ((reg\_data\ \&\ \string~(bitname\#\#\_MSK))\ |\ \(\backslash\)}}
+\DoxyCodeLine{00616\ \textcolor{preprocessor}{\ \ \ \ \ ((data\ <<\ bitname\#\#\_POS)\ \&\ bitname\#\#\_MSK))}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \textcolor{comment}{/*\ Macro\ to\ get\ bits\ */}}
+\DoxyCodeLine{00619\ \textcolor{preprocessor}{\#define\ BME68X\_GET\_BITS(reg\_data,\ bitname)\ \ \ \ \ \ \ \ ((reg\_data\ \&\ (bitname\#\#\_MSK))\ >>\ \(\backslash\)}}
+\DoxyCodeLine{00620\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (bitname\#\#\_POS))}}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \textcolor{comment}{/*\ Macro\ to\ set\ bits\ starting\ from\ position\ 0\ */}}
+\DoxyCodeLine{00623\ \textcolor{preprocessor}{\#define\ BME68X\_SET\_BITS\_POS\_0(reg\_data,\ bitname,\ data)\ \(\backslash\)}}
+\DoxyCodeLine{00624\ \textcolor{preprocessor}{\ \ \ \ ((reg\_data\ \&\ \string~(bitname\#\#\_MSK))\ |\ \(\backslash\)}}
+\DoxyCodeLine{00625\ \textcolor{preprocessor}{\ \ \ \ \ (data\ \&\ bitname\#\#\_MSK))}}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \textcolor{comment}{/*\ Macro\ to\ get\ bits\ starting\ from\ position\ 0\ */}}
+\DoxyCodeLine{00628\ \textcolor{preprocessor}{\#define\ BME68X\_GET\_BITS\_POS\_0(reg\_data,\ bitname)\ \ (reg\_data\ \&\ (bitname\#\#\_MSK))}}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00634\ \textcolor{preprocessor}{\#ifndef\ BME68X\_INTF\_RET\_TYPE}}
+\DoxyCodeLine{00635\ \textcolor{preprocessor}{\#define\ BME68X\_INTF\_RET\_TYPE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int8\_t}}
+\DoxyCodeLine{00636\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00643\ \textcolor{preprocessor}{\#ifndef\ BME68X\_INTF\_RET\_SUCCESS}}
+\DoxyCodeLine{00644\ \textcolor{preprocessor}{\#define\ BME68X\_INTF\_RET\_SUCCESS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INT8\_C(0)}}
+\DoxyCodeLine{00645\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \textcolor{comment}{/*********************************************************\ */}}
+\DoxyCodeLine{00649\ \textcolor{comment}{/*********************************************************\ */}}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00663\ \textcolor{keyword}{typedef}\ BME68X\_INTF\_RET\_TYPE\ (*bme68x\_read\_fptr\_t)(uint8\_t\ reg\_addr,\ uint8\_t\ *reg\_data,\ uint32\_t\ length,}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00679\ \textcolor{keyword}{typedef}\ BME68X\_INTF\_RET\_TYPE\ (*bme68x\_write\_fptr\_t)(uint8\_t\ reg\_addr,\ \textcolor{keyword}{const}\ uint8\_t\ *reg\_data,\ uint32\_t\ length,}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00690\ \textcolor{keyword}{typedef}\ void\ (*bme68x\_delay\_us\_fptr\_t)(uint32\_t\ period,\ \textcolor{keywordtype}{void}\ *intf\_ptr);}
+\DoxyCodeLine{00691\ }
+\DoxyCodeLine{00692\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00693\ \textcolor{comment}{\ *\ @brief\ Generic\ communication\ function\ pointer}}
+\DoxyCodeLine{00694\ \textcolor{comment}{\ *\ @param[in]\ dev\_id:\ Place\ holder\ to\ store\ the\ id\ of\ the\ device\ structure}}
+\DoxyCodeLine{00695\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Can\ be\ used\ to\ store\ the\ index\ of\ the\ Chip\ select\ or}}
+\DoxyCodeLine{00696\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I2C\ address\ of\ the\ device.}}
+\DoxyCodeLine{00697\ \textcolor{comment}{\ *\ @param[in]\ reg\_addr:\ Used\ to\ select\ the\ register\ the\ where\ data\ needs\ to}}
+\DoxyCodeLine{00698\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ be\ read\ from\ or\ written\ to.}}
+\DoxyCodeLine{00699\ \textcolor{comment}{\ *\ @param[in,out]\ reg\_data:\ Data\ array\ to\ read/write}}
+\DoxyCodeLine{00700\ \textcolor{comment}{\ *\ @param[in]\ len:\ Length\ of\ the\ data\ array}}
+\DoxyCodeLine{00701\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00704\ \textcolor{comment}{\ *\ @brief\ Interface\ selection\ Enumerations}}
+\DoxyCodeLine{00705\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00706\ \textcolor{keyword}{enum}\ bme68x\_intf\ \{}
+\DoxyCodeLine{00708\ \ \ \ \ BME68X\_SPI\_INTF,}
+\DoxyCodeLine{00710\ \ \ \ \ BME68X\_I2C\_INTF}
+\DoxyCodeLine{00711\ \};}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \textcolor{comment}{/*\ Structure\ definitions\ */}}
+\DoxyCodeLine{00714\ }
+\DoxyCodeLine{00715\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00716\ \textcolor{comment}{\ *\ @brief\ Sensor\ field\ data\ structure}}
+\DoxyCodeLine{00717\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00718\ \textcolor{keyword}{struct\ }bme68x\_data}
+\DoxyCodeLine{00719\ \{}
+\DoxyCodeLine{00721\ \ \ \ \ uint8\_t\ status;}
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00724\ \ \ \ \ uint8\_t\ gas\_index;}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00727\ \ \ \ \ uint8\_t\ meas\_index;}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00730\ \ \ \ \ uint8\_t\ res\_heat;}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00733\ \ \ \ \ uint8\_t\ idac;}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00736\ \ \ \ \ uint8\_t\ gas\_wait;}
+\DoxyCodeLine{00737\ \textcolor{preprocessor}{\#ifndef\ BME68X\_USE\_FPU}}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00740\ \ \ \ \ int16\_t\ temperature;}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00743\ \ \ \ \ uint32\_t\ pressure;}
+\DoxyCodeLine{00744\ }
+\DoxyCodeLine{00746\ \ \ \ \ uint32\_t\ humidity;}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00749\ \ \ \ \ uint32\_t\ gas\_resistance;}
+\DoxyCodeLine{00750\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00751\ }
+\DoxyCodeLine{00753\ \ \ \ \ \textcolor{keywordtype}{float}\ temperature;}
+\DoxyCodeLine{00754\ }
+\DoxyCodeLine{00756\ \ \ \ \ \textcolor{keywordtype}{float}\ pressure;}
+\DoxyCodeLine{00757\ }
+\DoxyCodeLine{00759\ \ \ \ \ \textcolor{keywordtype}{float}\ humidity;}
+\DoxyCodeLine{00760\ }
+\DoxyCodeLine{00762\ \ \ \ \ \textcolor{keywordtype}{float}\ gas\_resistance;}
+\DoxyCodeLine{00763\ }
+\DoxyCodeLine{00764\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \};}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00768\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00769\ \textcolor{comment}{\ *\ @brief\ Structure\ to\ hold\ the\ calibration\ coefficients}}
+\DoxyCodeLine{00770\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00771\ \textcolor{keyword}{struct\ }bme68x\_calib\_data}
+\DoxyCodeLine{00772\ \{}
+\DoxyCodeLine{00774\ \ \ \ \ uint16\_t\ par\_h1;}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00777\ \ \ \ \ uint16\_t\ par\_h2;}
+\DoxyCodeLine{00778\ }
+\DoxyCodeLine{00780\ \ \ \ \ int8\_t\ par\_h3;}
+\DoxyCodeLine{00781\ }
+\DoxyCodeLine{00783\ \ \ \ \ int8\_t\ par\_h4;}
+\DoxyCodeLine{00784\ }
+\DoxyCodeLine{00786\ \ \ \ \ int8\_t\ par\_h5;}
+\DoxyCodeLine{00787\ }
+\DoxyCodeLine{00789\ \ \ \ \ uint8\_t\ par\_h6;}
+\DoxyCodeLine{00790\ }
+\DoxyCodeLine{00792\ \ \ \ \ int8\_t\ par\_h7;}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00795\ \ \ \ \ int8\_t\ par\_gh1;}
+\DoxyCodeLine{00796\ }
+\DoxyCodeLine{00798\ \ \ \ \ int16\_t\ par\_gh2;}
+\DoxyCodeLine{00799\ }
+\DoxyCodeLine{00801\ \ \ \ \ int8\_t\ par\_gh3;}
+\DoxyCodeLine{00802\ }
+\DoxyCodeLine{00804\ \ \ \ \ uint16\_t\ par\_t1;}
+\DoxyCodeLine{00805\ }
+\DoxyCodeLine{00807\ \ \ \ \ int16\_t\ par\_t2;}
+\DoxyCodeLine{00808\ }
+\DoxyCodeLine{00810\ \ \ \ \ int8\_t\ par\_t3;}
+\DoxyCodeLine{00811\ }
+\DoxyCodeLine{00813\ \ \ \ \ uint16\_t\ par\_p1;}
+\DoxyCodeLine{00814\ }
+\DoxyCodeLine{00816\ \ \ \ \ int16\_t\ par\_p2;}
+\DoxyCodeLine{00817\ }
+\DoxyCodeLine{00819\ \ \ \ \ int8\_t\ par\_p3;}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00822\ \ \ \ \ int16\_t\ par\_p4;}
+\DoxyCodeLine{00823\ }
+\DoxyCodeLine{00825\ \ \ \ \ int16\_t\ par\_p5;}
+\DoxyCodeLine{00826\ }
+\DoxyCodeLine{00828\ \ \ \ \ int8\_t\ par\_p6;}
+\DoxyCodeLine{00829\ }
+\DoxyCodeLine{00831\ \ \ \ \ int8\_t\ par\_p7;}
+\DoxyCodeLine{00832\ }
+\DoxyCodeLine{00834\ \ \ \ \ int16\_t\ par\_p8;}
+\DoxyCodeLine{00835\ }
+\DoxyCodeLine{00837\ \ \ \ \ int16\_t\ par\_p9;}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00840\ \ \ \ \ uint8\_t\ par\_p10;}
+\DoxyCodeLine{00841\ \textcolor{preprocessor}{\#ifndef\ BME68X\_USE\_FPU}}
+\DoxyCodeLine{00842\ }
+\DoxyCodeLine{00844\ \ \ \ \ int32\_t\ t\_fine;}
+\DoxyCodeLine{00845\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00846\ }
+\DoxyCodeLine{00848\ \ \ \ \ \textcolor{keywordtype}{float}\ t\_fine;}
+\DoxyCodeLine{00849\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00850\ }
+\DoxyCodeLine{00852\ \ \ \ \ uint8\_t\ res\_heat\_range;}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00855\ \ \ \ \ int8\_t\ res\_heat\_val;}
+\DoxyCodeLine{00856\ }
+\DoxyCodeLine{00858\ \ \ \ \ int8\_t\ range\_sw\_err;}
+\DoxyCodeLine{00859\ \};}
+\DoxyCodeLine{00860\ }
+\DoxyCodeLine{00861\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00862\ \textcolor{comment}{\ *\ @brief\ BME68X\ sensor\ settings\ structure\ which\ comprises\ of\ ODR,}}
+\DoxyCodeLine{00863\ \textcolor{comment}{\ *\ over-\/sampling\ and\ filter\ settings.}}
+\DoxyCodeLine{00864\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00865\ \textcolor{keyword}{struct\ }bme68x\_conf}
+\DoxyCodeLine{00866\ \{}
+\DoxyCodeLine{00868\ \ \ \ \ uint8\_t\ os\_hum;}
+\DoxyCodeLine{00869\ }
+\DoxyCodeLine{00871\ \ \ \ \ uint8\_t\ os\_temp;}
+\DoxyCodeLine{00872\ }
+\DoxyCodeLine{00874\ \ \ \ \ uint8\_t\ os\_pres;}
+\DoxyCodeLine{00875\ }
+\DoxyCodeLine{00877\ \ \ \ \ uint8\_t\ filter;}
+\DoxyCodeLine{00878\ }
+\DoxyCodeLine{00883\ \ \ \ \ uint8\_t\ odr;}
+\DoxyCodeLine{00884\ \};}
+\DoxyCodeLine{00885\ }
+\DoxyCodeLine{00886\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00887\ \textcolor{comment}{\ *\ @brief\ BME68X\ gas\ heater\ configuration}}
+\DoxyCodeLine{00888\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00889\ \textcolor{keyword}{struct\ }bme68x\_heatr\_conf}
+\DoxyCodeLine{00890\ \{}
+\DoxyCodeLine{00892\ \ \ \ \ uint8\_t\ enable;}
+\DoxyCodeLine{00893\ }
+\DoxyCodeLine{00895\ \ \ \ \ uint16\_t\ heatr\_temp;}
+\DoxyCodeLine{00896\ }
+\DoxyCodeLine{00898\ \ \ \ \ uint16\_t\ heatr\_dur;}
+\DoxyCodeLine{00899\ }
+\DoxyCodeLine{00901\ \ \ \ \ uint16\_t\ *heatr\_temp\_prof;}
+\DoxyCodeLine{00902\ }
+\DoxyCodeLine{00904\ \ \ \ \ uint16\_t\ *heatr\_dur\_prof;}
+\DoxyCodeLine{00905\ }
+\DoxyCodeLine{00907\ \ \ \ \ uint8\_t\ profile\_len;}
+\DoxyCodeLine{00908\ }
+\DoxyCodeLine{00913\ \ \ \ \ uint16\_t\ shared\_heatr\_dur;}
+\DoxyCodeLine{00914\ \};}
+\DoxyCodeLine{00915\ }
+\DoxyCodeLine{00916\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00917\ \textcolor{comment}{\ *\ @brief\ BME68X\ device\ structure}}
+\DoxyCodeLine{00918\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00919\ \textcolor{keyword}{struct\ }bme68x\_dev}
+\DoxyCodeLine{00920\ \{}
+\DoxyCodeLine{00922\ \ \ \ \ uint8\_t\ chip\_id;}
+\DoxyCodeLine{00923\ }
+\DoxyCodeLine{00930\ \ \ \ \ \textcolor{keywordtype}{void}\ *intf\_ptr;}
+\DoxyCodeLine{00931\ }
+\DoxyCodeLine{00941\ \ \ \ \ uint32\_t\ variant\_id;}
+\DoxyCodeLine{00942\ }
+\DoxyCodeLine{00944\ \ \ \ \ \textcolor{keyword}{enum}\ bme68x\_intf\ intf;}
+\DoxyCodeLine{00945\ }
+\DoxyCodeLine{00947\ \ \ \ \ uint8\_t\ mem\_page;}
+\DoxyCodeLine{00948\ }
+\DoxyCodeLine{00950\ \ \ \ \ int8\_t\ amb\_temp;}
+\DoxyCodeLine{00951\ }
+\DoxyCodeLine{00953\ \ \ \ \ \textcolor{keyword}{struct\ }bme68x\_calib\_data\ calib;}
+\DoxyCodeLine{00954\ }
+\DoxyCodeLine{00956\ \ \ \ \ bme68x\_read\_fptr\_t\ read;}
+\DoxyCodeLine{00957\ }
+\DoxyCodeLine{00959\ \ \ \ \ bme68x\_write\_fptr\_t\ write;}
+\DoxyCodeLine{00960\ }
+\DoxyCodeLine{00962\ \ \ \ \ bme68x\_delay\_us\_fptr\_t\ delay\_us;}
+\DoxyCodeLine{00963\ }
+\DoxyCodeLine{00965\ \ \ \ \ BME68X\_INTF\_RET\_TYPE\ intf\_rslt;}
+\DoxyCodeLine{00966\ }
+\DoxyCodeLine{00968\ \ \ \ \ uint8\_t\ info\_msg;}
+\DoxyCodeLine{00969\ \};}
+\DoxyCodeLine{00970\ }
+\DoxyCodeLine{00971\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ BME68X\_DEFS\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

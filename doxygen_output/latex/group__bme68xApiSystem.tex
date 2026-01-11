@@ -1,0 +1,67 @@
+\doxysubsection{System}
+\hypertarget{group__bme68xApiSystem}{}\label{group__bme68xApiSystem}\index{System@{System}}
+
+
+API that performs system-\/level operations.  
+
+
+Collaboration diagram for System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{group__bme68xApiSystem}
+\end{center}
+\end{figure}
+API that performs system-\/level operations. 
+
+\hypertarget{bme68x_api_bme68x_soft_reset}{}\doxysubsubsection{bme68x\+\_\+soft\+\_\+reset}\label{bme68x_api_bme68x_soft_reset}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{int8\_t\ \mbox{\hyperlink{bme68x_8c_a9efeb0edeb1fff4965c0a862b4c8a579}{bme68x\_soft\_reset}}(\textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+
+\end{DoxyCode}
+
+
+This API soft-\/resets the sensor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em dev} & \+: Structure instance of bme68x\+\_\+dev.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of API execution status 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & -\/\texorpdfstring{$>$}{>} Success \\
+\hline
+{\em $<$} & 0 -\/\texorpdfstring{$>$}{>} Fail \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{bme68x_api_bme68x_selftest_check}{}\doxysubsubsection{bme68x\+\_\+selftest\+\_\+check}\label{bme68x_api_bme68x_selftest_check}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{int8\_t\ \mbox{\hyperlink{bme68x_8c_ab3a413e5b241d9943586790ad11b3ba8}{bme68x\_selftest\_check}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+
+\end{DoxyCode}
+
+
+This API performs Self-\/test of low gas variant of BME68X
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em dev} & \+: Structure instance of bme68x\+\_\+dev\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of API execution status 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & -\/\texorpdfstring{$>$}{>} Success \\
+\hline
+{\em $<$} & 0 -\/\texorpdfstring{$>$}{>} Fail \\
+\hline
+\end{DoxyRetVals}

@@ -1,0 +1,9 @@
+<map id="BME68X" name="BME68X">
+<area shape="rect" id="Node000001" title="Product Overview and Sensor API Source Code" alt="" coords="5,129,81,155"/>
+<area shape="rect" id="Node000007" href="$group__bme68xApiConfig.html" title="Configuration API of sensor." alt="" coords="138,5,247,31"/>
+<area shape="rect" id="Node000006" href="$group__bme68xApiData.html" title="Read our data from the sensor." alt="" coords="135,55,250,80"/>
+<area shape="rect" id="Node000002" href="$group__bme68xApiInit.html" title="Initialize the sensor and device structure." alt="" coords="141,104,244,129"/>
+<area shape="rect" id="Node000005" href="$group__bme68xApiOm.html" title="API to configure operation mode." alt="" coords="129,153,256,179"/>
+<area shape="rect" id="Node000003" href="$group__bme68xApiRegister.html" title="Generic API for accessing sensor registers." alt="" coords="151,203,234,228"/>
+<area shape="rect" id="Node000004" href="$group__bme68xApiSystem.html" title="API that performs system&#45;level operations." alt="" coords="157,252,228,277"/>
+</map>

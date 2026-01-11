@@ -1,0 +1,2 @@
+source /home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/gdbinit/symbols
+source /home/matt/Documents/Electronic_Projects/ESP32_DevBoard_Beginner/ESP32/.pio/build/upesy_wrover/gdbinit/connect

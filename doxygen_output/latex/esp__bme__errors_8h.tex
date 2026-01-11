@@ -1,0 +1,87 @@
+\doxysection{lib/\+Errors/esp\+\_\+bme\+\_\+errors.h File Reference}
+\hypertarget{esp__bme__errors_8h}{}\label{esp__bme__errors_8h}\index{lib/Errors/esp\_bme\_errors.h@{lib/Errors/esp\_bme\_errors.h}}
+{\ttfamily \#include "{}bme68x.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}stdio.\+h"{}}\newline
+Include dependency graph for esp\+\_\+bme\+\_\+errors.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{esp__bme__errors_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{esp__bme__errors_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{esp__bme__errors_8h_aa6672c8252c0e8be479ca811159507ec}{bme68x\+\_\+check\+\_\+rslt}} (const char api\+\_\+name\mbox{[}$\,$\mbox{]}, int8\+\_\+t rslt)
+\begin{DoxyCompactList}\small\item\em Prints the execution status of the APIs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{esp__bme__errors_8h_a2e2052c5c53140b57da96d465a7327fb}{spin}} (void)
+\begin{DoxyCompactList}\small\item\em Spin in an infinite loop when an error occurs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{esp__bme__errors_8h_a6c2820336727d93574a5e6cce8180fa2}{tag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{esp__bme__errors_8h_aa6672c8252c0e8be479ca811159507ec}\label{esp__bme__errors_8h_aa6672c8252c0e8be479ca811159507ec} 
+\index{esp\_bme\_errors.h@{esp\_bme\_errors.h}!bme68x\_check\_rslt@{bme68x\_check\_rslt}}
+\index{bme68x\_check\_rslt@{bme68x\_check\_rslt}!esp\_bme\_errors.h@{esp\_bme\_errors.h}}
+\doxysubsubsection{\texorpdfstring{bme68x\_check\_rslt()}{bme68x\_check\_rslt()}}
+{\footnotesize\ttfamily void bme68x\+\_\+check\+\_\+rslt (\begin{DoxyParamCaption}\item[{const char}]{api\+\_\+name\mbox{[}$\,$\mbox{]},  }\item[{int8\+\_\+t}]{rslt }\end{DoxyParamCaption})}
+
+
+
+Prints the execution status of the APIs. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em api\+\_\+name} & \+: Name of the API whose execution status has to be printed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em rslt} & \+: Error code returned by the API whose execution status has to be printed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void.
+\end{DoxyReturn}
+Prints the execution status of the APIs.
+
+Checks the return code from BME68X API calls and logs appropriate messages. If a critical error is detected, it calls \doxylink{esp__bme__errors_8c_a2e2052c5c53140b57da96d465a7327fb}{spin()} to halt execution.
+
+
+\begin{DoxyParams}{Parameters}
+{\em api\+\_\+name} & \\
+\hline
+{\em rslt} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{esp__bme__errors_8h_a2e2052c5c53140b57da96d465a7327fb}\label{esp__bme__errors_8h_a2e2052c5c53140b57da96d465a7327fb} 
+\index{esp\_bme\_errors.h@{esp\_bme\_errors.h}!spin@{spin}}
+\index{spin@{spin}!esp\_bme\_errors.h@{esp\_bme\_errors.h}}
+\doxysubsubsection{\texorpdfstring{spin()}{spin()}}
+{\footnotesize\ttfamily void spin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Spin in an infinite loop when an error occurs. 
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{esp__bme__errors_8h_a6c2820336727d93574a5e6cce8180fa2}\label{esp__bme__errors_8h_a6c2820336727d93574a5e6cce8180fa2} 
+\index{esp\_bme\_errors.h@{esp\_bme\_errors.h}!tag@{tag}}
+\index{tag@{tag}!esp\_bme\_errors.h@{esp\_bme\_errors.h}}
+\doxysubsubsection{\texorpdfstring{tag}{tag}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} tag\hspace{0.3cm}{\ttfamily [extern]}}
+

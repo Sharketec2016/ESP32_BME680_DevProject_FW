@@ -1,0 +1,36 @@
+\doxysection{project.\+h}
+\hypertarget{project_8h_source}{}\label{project_8h_source}\index{include/project.h@{include/project.h}}
+\mbox{\hyperlink{project_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROJECT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROJECT\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}sdkconfig.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}driver/gpio.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bme68x_8h}{bme68x.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{esp__bme__i2c_8h}{esp\_bme\_i2c.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{esp__bme__errors_8h}{esp\_bme\_errors.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{esp32__home__ap_8h}{esp32\_home\_ap.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}freertos/semphr.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ LED\ GPIO\_NUM\_2}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ BLINK\_DELAY\ 100}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ SAMPLE\_DATA\_DELAY\ 1000}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ DELAY\_FACTOR\ 0.1\ \ \ \ \ }\textcolor{comment}{//units\ of\ sec}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ BME\_SAMPLE\_MODE\ BME68X\_SEQUENTIAL\_MODE}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{project_8h_a78ca70774cdf6d256fa2c5d81be1751c}{sensor\_data\_queue}};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }bme68x\_data\ \mbox{\hyperlink{project_8h_a6346a9811292c724a1b7abfc43b591ea}{global\_sensor\_data}};\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ SemaphoreHandle\_t\ \mbox{\hyperlink{project_8h_a866a0d9d37fd0c9f40c72dd938aea77c}{sensor\_data\_mutex}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

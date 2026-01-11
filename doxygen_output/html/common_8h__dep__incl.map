@@ -1,0 +1,13 @@
+<map id="lib/BME68x_SensorAPI/examples/common/common.h" name="lib/BME68x_SensorAPI/examples/common/common.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="437,5,661,45"/>
+<area shape="rect" id="Node000002" href="$common_8c.html" title=" " alt="" coords="5,101,228,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="448,51,205,103,203,98,447,46"/>
+<area shape="rect" id="Node000003" href="$forced__mode_8c.html" title=" " alt="" coords="253,93,431,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="496,53,401,96,399,91,493,49"/>
+<area shape="rect" id="Node000004" href="$parallel__mode_8c.html" title=" " alt="" coords="455,93,642,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="551,59,551,93,546,93,546,59"/>
+<area shape="rect" id="Node000005" href="$self__test_8c.html" title=" " alt="" coords="666,93,845,148"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="604,49,698,91,696,96,602,53"/>
+<area shape="rect" id="Node000006" href="$sequential__mode_8c.html" title=" " alt="" coords="869,93,1063,148"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="652,46,857,91,869,94,868,99,856,96,650,51"/>
+</map>

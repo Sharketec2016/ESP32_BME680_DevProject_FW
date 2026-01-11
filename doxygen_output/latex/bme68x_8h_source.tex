@@ -1,0 +1,47 @@
+\doxysection{bme68x.\+h}
+\hypertarget{bme68x_8h_source}{}\label{bme68x_8h_source}\index{lib/BME68x\_SensorAPI/bme68x.h@{lib/BME68x\_SensorAPI/bme68x.h}}
+\mbox{\hyperlink{bme68x_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifndef\ BME68X\_H\_}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ BME68X\_H\_}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bme68x__defs_8h}{bme68x\_defs.h}}"{}}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{/*\ CPP\ guard\ */}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00077\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a8d8bfaa0f231a64fdf2d978bed12d7b6}{bme68x\_init}}(\textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00103\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a029cc309a07221dd959ca4ee106a48b5}{bme68x\_set\_regs}}(\textcolor{keyword}{const}\ uint8\_t\ *reg\_addr,\ \textcolor{keyword}{const}\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00122\ int8\_t\ \mbox{\hyperlink{bme68x_8h_afa3317914980a173d9505ccc248f716d}{bme68x\_get\_regs}}(uint8\_t\ reg\_addr,\ uint8\_t\ *reg\_data,\ uint32\_t\ len,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00144\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a9efeb0edeb1fff4965c0a862b4c8a579}{bme68x\_soft\_reset}}(\textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00166\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a0e946b6284938343a7aa791b70f35aea}{bme68x\_set\_op\_mode}}(\textcolor{keyword}{const}\ uint8\_t\ op\_mode,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00183\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a299b5fea099799e62b0ea92eebb024bc}{bme68x\_get\_op\_mode}}(uint8\_t\ *op\_mode,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00199\ uint32\_t\ \mbox{\hyperlink{bme68x_8h_a0e1591841fb6977710770b0a5a0b736d}{bme68x\_get\_meas\_dur}}(\textcolor{keyword}{const}\ uint8\_t\ op\_mode,\ \textcolor{keyword}{struct}\ bme68x\_conf\ *conf,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00226\ int8\_t\ \mbox{\hyperlink{bme68x_8h_aa4aeca6af4ebd23cd70b8cd854a0fcfb}{bme68x\_get\_data}}(uint8\_t\ op\_mode,\ \textcolor{keyword}{struct}\ bme68x\_data\ *data,\ uint8\_t\ *n\_data,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00249\ int8\_t\ \mbox{\hyperlink{bme68x_8h_aed88f78306f93bf378a9b123ba6ee488}{bme68x\_set\_conf}}(\textcolor{keyword}{struct}\ bme68x\_conf\ *conf,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00267\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a9df88e462967dfc21f0e17d31b619da1}{bme68x\_get\_conf}}(\textcolor{keyword}{struct}\ bme68x\_conf\ *conf,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00285\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a07642b1768fd384fa42c1e12bdcd5cc7}{bme68x\_set\_heatr\_conf}}(uint8\_t\ op\_mode,\ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ bme68x\_heatr\_conf\ *conf,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00302\ int8\_t\ \mbox{\hyperlink{bme68x_8h_a6718fdad5f1d50c555c46ed6b714c4af}{bme68x\_get\_heatr\_conf}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ bme68x\_heatr\_conf\ *conf,\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00318\ int8\_t\ \mbox{\hyperlink{bme68x_8h_ab3a413e5b241d9943586790ad11b3ba8}{bme68x\_selftest\_check}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ bme68x\_dev\ *dev);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ End\ of\ CPP\ guard\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ BME68X\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

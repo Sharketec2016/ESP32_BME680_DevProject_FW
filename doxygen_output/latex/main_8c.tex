@@ -1,0 +1,249 @@
+\doxysection{src/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{src/main.c@{src/main.c}}
+{\ttfamily \#include "{}project.\+h"{}}\newline
+Include dependency graph for main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_aefcbd752bc287345b2c63a809fe3d3e9}{alive\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task to toggle an LED to indicate system activity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_ad9bd2c178fceb2a88d4118e94edfe7f9}{user\+\_\+delay\+\_\+us}} (uint32\+\_\+t period, void \texorpdfstring{$\ast$}{*}intf\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em user defined function for a us delay. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a48e5a0c18d73b27992c27076804e004a}{setup\+Bme\+I2C}} (struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{main_8c_af0536e8bac760f12e6d61a9bb2d38878}{bme}}, uint8\+\_\+t intf)
+\begin{DoxyCompactList}\small\item\em Setup I2C communication with the BME680 sensor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a9455d43589e24d8bf7c38c5667e08220}{print\+Default\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em Print the default configuration of the BME680 sensor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a7dfd9b79bc5a37d7df40207afbc5431f}{setup}} (void)
+\begin{DoxyCompactList}\small\item\em Setup the project components, including mutex, GPIO, I2C bud and master device, and BME680 sensor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_adc13f678b729f1a2c21b956530e9d586}{config\+Heater}} (void)
+\begin{DoxyCompactList}\small\item\em Configure the heater settings for the BME680 sensor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a45254cf725d707f43e8fd9379aea2800}{config\+BME}} (void)
+\begin{DoxyCompactList}\small\item\em Configure the BME680 Sensor with desired settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a8c15aa0b18218bd34b088cbefef2f584}{sample\+Data\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task to sample sensor data and update the global sensor data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_abce06be17fc37d675118a678a8100a36}{app\+\_\+main}} ()
+\begin{DoxyCompactList}\small\item\em Main application entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct bme68x\+\_\+dev \mbox{\hyperlink{main_8c_af0536e8bac760f12e6d61a9bb2d38878}{bme}}
+\item 
+struct bme68x\+\_\+conf \mbox{\hyperlink{main_8c_a832af677347072e0a893a0d9d4e29f39}{bme\+\_\+conf}}
+\item 
+struct bme68x\+\_\+data \mbox{\hyperlink{main_8c_afd7597c0565689793840da626a1a8245}{bme\+\_\+data}}
+\item 
+struct bme68x\+\_\+heatr\+\_\+conf \mbox{\hyperlink{main_8c_a4b7322fd352223f37e53029df80bc0a3}{heatr\+\_\+conf}}
+\item 
+struct bme68x\+\_\+data \mbox{\hyperlink{main_8c_a6346a9811292c724a1b7abfc43b591ea}{global\+\_\+sensor\+\_\+data}}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{main_8c_a78ca70774cdf6d256fa2c5d81be1751c}{sensor\+\_\+data\+\_\+queue}}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{main_8c_a866a0d9d37fd0c9f40c72dd938aea77c}{sensor\+\_\+data\+\_\+mutex}}
+\item 
+gpio\+\_\+config\+\_\+t \mbox{\hyperlink{main_8c_a36cef88843645cf5f085653dc718f473}{led\+\_\+config}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8c_a1d9354f7a2eecbc606ed4b56b6ab84bb}{temp\+\_\+prof}} \mbox{[}10\mbox{]} = \{ 200, 240, 280, 320, 360, 360, 320, 280, 240, 200 \}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8c_a19b4b3beb657fbca919ca00cbd728b97}{dur\+\_\+prof}} \mbox{[}10\mbox{]} = \{ 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_aefcbd752bc287345b2c63a809fe3d3e9}\label{main_8c_aefcbd752bc287345b2c63a809fe3d3e9} 
+\index{main.c@{main.c}!aliveTask@{aliveTask}}
+\index{aliveTask@{aliveTask}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{aliveTask()}{aliveTask()}}
+{\footnotesize\ttfamily void alive\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Task to toggle an LED to indicate system activity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8c_abce06be17fc37d675118a678a8100a36}\label{main_8c_abce06be17fc37d675118a678a8100a36} 
+\index{main.c@{main.c}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily void app\+\_\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main application entry point. 
+
+\Hypertarget{main_8c_a45254cf725d707f43e8fd9379aea2800}\label{main_8c_a45254cf725d707f43e8fd9379aea2800} 
+\index{main.c@{main.c}!configBME@{configBME}}
+\index{configBME@{configBME}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{configBME()}{configBME()}}
+{\footnotesize\ttfamily void config\+BME (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Configure the BME680 Sensor with desired settings. 
+
+\Hypertarget{main_8c_adc13f678b729f1a2c21b956530e9d586}\label{main_8c_adc13f678b729f1a2c21b956530e9d586} 
+\index{main.c@{main.c}!configHeater@{configHeater}}
+\index{configHeater@{configHeater}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{configHeater()}{configHeater()}}
+{\footnotesize\ttfamily void config\+Heater (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Configure the heater settings for the BME680 sensor. 
+
+\Hypertarget{main_8c_a9455d43589e24d8bf7c38c5667e08220}\label{main_8c_a9455d43589e24d8bf7c38c5667e08220} 
+\index{main.c@{main.c}!printDefaultConfig@{printDefaultConfig}}
+\index{printDefaultConfig@{printDefaultConfig}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{printDefaultConfig()}{printDefaultConfig()}}
+{\footnotesize\ttfamily void print\+Default\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Print the default configuration of the BME680 sensor. 
+
+\Hypertarget{main_8c_a8c15aa0b18218bd34b088cbefef2f584}\label{main_8c_a8c15aa0b18218bd34b088cbefef2f584} 
+\index{main.c@{main.c}!sampleDataTask@{sampleDataTask}}
+\index{sampleDataTask@{sampleDataTask}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sampleDataTask()}{sampleDataTask()}}
+{\footnotesize\ttfamily void sample\+Data\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Task to sample sensor data and update the global sensor data. 
+
+This task will continously sample data from the BME sensor, and if available, update the global sensor data struct with the lastest. It uses a mutex to ensure safe access to the global data. 
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8c_a7dfd9b79bc5a37d7df40207afbc5431f}\label{main_8c_a7dfd9b79bc5a37d7df40207afbc5431f} 
+\index{main.c@{main.c}!setup@{setup}}
+\index{setup@{setup}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setup the project components, including mutex, GPIO, I2C bud and master device, and BME680 sensor. 
+
+\Hypertarget{main_8c_a48e5a0c18d73b27992c27076804e004a}\label{main_8c_a48e5a0c18d73b27992c27076804e004a} 
+\index{main.c@{main.c}!setupBmeI2C@{setupBmeI2C}}
+\index{setupBmeI2C@{setupBmeI2C}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{setupBmeI2C()}{setupBmeI2C()}}
+{\footnotesize\ttfamily void setup\+Bme\+I2C (\begin{DoxyParamCaption}\item[{struct bme68x\+\_\+dev \texorpdfstring{$\ast$}{*}}]{bme,  }\item[{uint8\+\_\+t}]{intf }\end{DoxyParamCaption})}
+
+
+
+Setup I2C communication with the BME680 sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bme} & \\
+\hline
+{\em intf} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8c_ad9bd2c178fceb2a88d4118e94edfe7f9}\label{main_8c_ad9bd2c178fceb2a88d4118e94edfe7f9} 
+\index{main.c@{main.c}!user\_delay\_us@{user\_delay\_us}}
+\index{user\_delay\_us@{user\_delay\_us}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{user\_delay\_us()}{user\_delay\_us()}}
+{\footnotesize\ttfamily void user\+\_\+delay\+\_\+us (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{period,  }\item[{void \texorpdfstring{$\ast$}{*}}]{intf\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+user defined function for a us delay. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em period} & period of time to delay in us \\
+\hline
+{\em int\+\_\+ptr} & void pointer to extra information\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8c_af0536e8bac760f12e6d61a9bb2d38878}\label{main_8c_af0536e8bac760f12e6d61a9bb2d38878} 
+\index{main.c@{main.c}!bme@{bme}}
+\index{bme@{bme}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{bme}{bme}}
+{\footnotesize\ttfamily struct bme68x\+\_\+dev bme}
+
+\Hypertarget{main_8c_a832af677347072e0a893a0d9d4e29f39}\label{main_8c_a832af677347072e0a893a0d9d4e29f39} 
+\index{main.c@{main.c}!bme\_conf@{bme\_conf}}
+\index{bme\_conf@{bme\_conf}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{bme\_conf}{bme\_conf}}
+{\footnotesize\ttfamily struct bme68x\+\_\+conf bme\+\_\+conf}
+
+\Hypertarget{main_8c_afd7597c0565689793840da626a1a8245}\label{main_8c_afd7597c0565689793840da626a1a8245} 
+\index{main.c@{main.c}!bme\_data@{bme\_data}}
+\index{bme\_data@{bme\_data}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{bme\_data}{bme\_data}}
+{\footnotesize\ttfamily struct bme68x\+\_\+data bme\+\_\+data}
+
+\Hypertarget{main_8c_a19b4b3beb657fbca919ca00cbd728b97}\label{main_8c_a19b4b3beb657fbca919ca00cbd728b97} 
+\index{main.c@{main.c}!dur\_prof@{dur\_prof}}
+\index{dur\_prof@{dur\_prof}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{dur\_prof}{dur\_prof}}
+{\footnotesize\ttfamily uint16\+\_\+t dur\+\_\+prof\mbox{[}10\mbox{]} = \{ 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 \}}
+
+\Hypertarget{main_8c_a6346a9811292c724a1b7abfc43b591ea}\label{main_8c_a6346a9811292c724a1b7abfc43b591ea} 
+\index{main.c@{main.c}!global\_sensor\_data@{global\_sensor\_data}}
+\index{global\_sensor\_data@{global\_sensor\_data}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{global\_sensor\_data}{global\_sensor\_data}}
+{\footnotesize\ttfamily struct bme68x\+\_\+data global\+\_\+sensor\+\_\+data}
+
+\Hypertarget{main_8c_a4b7322fd352223f37e53029df80bc0a3}\label{main_8c_a4b7322fd352223f37e53029df80bc0a3} 
+\index{main.c@{main.c}!heatr\_conf@{heatr\_conf}}
+\index{heatr\_conf@{heatr\_conf}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{heatr\_conf}{heatr\_conf}}
+{\footnotesize\ttfamily struct bme68x\+\_\+heatr\+\_\+conf heatr\+\_\+conf}
+
+\Hypertarget{main_8c_a36cef88843645cf5f085653dc718f473}\label{main_8c_a36cef88843645cf5f085653dc718f473} 
+\index{main.c@{main.c}!led\_config@{led\_config}}
+\index{led\_config@{led\_config}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{led\_config}{led\_config}}
+{\footnotesize\ttfamily gpio\+\_\+config\+\_\+t led\+\_\+config}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .intr\_type\ =\ GPIO\_INTR\_DISABLE,}
+\DoxyCodeLine{\ \ \ \ .mode\ =\ GPIO\_MODE\_OUTPUT,}
+\DoxyCodeLine{\ \ \ \ .pin\_bit\_mask\ =\ (1U\ <<\ \mbox{\hyperlink{project_8h_aeb7a7ba1ab7e0406f1b5ab36d579f585}{LED}}),}
+\DoxyCodeLine{\ \ \ \ .pull\_down\_en\ =\ GPIO\_PULLDOWN\_DISABLE,}
+\DoxyCodeLine{\ \ \ \ .pull\_up\_en\ =\ GPIO\_PULLUP\_DISABLE}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{main_8c_a866a0d9d37fd0c9f40c72dd938aea77c}\label{main_8c_a866a0d9d37fd0c9f40c72dd938aea77c} 
+\index{main.c@{main.c}!sensor\_data\_mutex@{sensor\_data\_mutex}}
+\index{sensor\_data\_mutex@{sensor\_data\_mutex}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_mutex}{sensor\_data\_mutex}}
+{\footnotesize\ttfamily Semaphore\+Handle\+\_\+t sensor\+\_\+data\+\_\+mutex}
+
+\Hypertarget{main_8c_a78ca70774cdf6d256fa2c5d81be1751c}\label{main_8c_a78ca70774cdf6d256fa2c5d81be1751c} 
+\index{main.c@{main.c}!sensor\_data\_queue@{sensor\_data\_queue}}
+\index{sensor\_data\_queue@{sensor\_data\_queue}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_queue}{sensor\_data\_queue}}
+{\footnotesize\ttfamily Queue\+Handle\+\_\+t sensor\+\_\+data\+\_\+queue}
+
+\Hypertarget{main_8c_a1d9354f7a2eecbc606ed4b56b6ab84bb}\label{main_8c_a1d9354f7a2eecbc606ed4b56b6ab84bb} 
+\index{main.c@{main.c}!temp\_prof@{temp\_prof}}
+\index{temp\_prof@{temp\_prof}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{temp\_prof}{temp\_prof}}
+{\footnotesize\ttfamily uint16\+\_\+t temp\+\_\+prof\mbox{[}10\mbox{]} = \{ 200, 240, 280, 320, 360, 360, 320, 280, 240, 200 \}}
+
