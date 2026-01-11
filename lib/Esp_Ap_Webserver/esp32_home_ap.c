@@ -3,6 +3,8 @@
 const char* server_tag = "ESP32 Home Server";
 
 
+
+
 static esp_err_t hello_get_handler(httpd_req_t *req);
 static esp_err_t http_404_error_handler(httpd_req_t *req, httpd_err_code_t err);
 static esp_err_t index_handler(httpd_req_t *req);
@@ -54,6 +56,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
 {
     printf("Event %ld\n", event_id);
 }
+
 
 /**
  * @brief Wifi initialization for esp32 home AP

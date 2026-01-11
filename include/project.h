@@ -10,8 +10,5 @@
 
 
 
-extern QueueHandle_t sensor_data_queue;
-extern struct bme68x_data global_sensor_data; 
-extern SemaphoreHandle_t sensor_data_mutex;
 
 #endif

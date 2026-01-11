@@ -5,6 +5,7 @@ struct bme68x_conf bme_conf;
 struct bme68x_heatr_conf heatr_conf;
 struct bme68x_data global_sensor_data; 
 
+SemaphoreHandle_t sensor_data_mutex;
 /* Heater temperature in degree Celsius */
 uint16_t temp_prof[10] = { 200, 240, 280, 320, 360, 360, 320, 280, 240, 200 };
 
@@ -12,6 +13,27 @@ uint16_t temp_prof[10] = { 200, 240, 280, 320, 360, 360, 320, 280, 240, 200 };
 uint16_t dur_prof[10] = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
 
 
+/**
+ * @brief Initialize the BME680 Sensor, including creating the sensor data mutex
+ * 
+ */
+void initializeBME680(void)
+{
+    ESP_LOGI(tag, "Creating sensor data mutex");
+    sensor_data_mutex = xSemaphoreCreateMutex();
+    if(sensor_data_mutex == NULL)
+    {
+        ESP_LOGE(tag, "Failed to create sensor data mutex");
+        return;
+    }
+
+    configureBme680Sensor();
+}
+
+/**
+ * @brief Configure the BME680 Sensor. Includes bme structure and setting up heater parameters
+ * 
+ */
 void configureBme680Sensor(void)
 {
     setupBmeI2C(&bme, BME68X_I2C_INTF); //We are using I2C for comms
@@ -103,10 +125,13 @@ void measureBME680Data(struct bme68x_data* bme_data)
     
     rslt = bme68x_get_data(BME_SAMPLE_MODE, bme_data, &n_fields, &bme);
     bme68x_check_rslt("bme68x_get_data", rslt);
+    
+    #ifdef PRINT_SENSOR_DATA
     if(rslt == BME68X_OK)
     {
 
-        
+
+
     #ifdef BME68X_USE_FPU
     printf("%lu, %.2f, %.2f, %.2f, %.2f, 0x%x, %d, %d\n",
         sample_count,
@@ -123,6 +148,7 @@ void measureBME680Data(struct bme68x_data* bme_data)
         (long unsigned int)(bme_data->pressure),
         (long unsigned int)(bme_data->humidity / 1000)
     );
+    #endif
     #endif
     }
 }

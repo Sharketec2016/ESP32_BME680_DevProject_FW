@@ -1,7 +1,5 @@
 #include "project.h"
 
-QueueHandle_t sensor_data_queue;
-SemaphoreHandle_t sensor_data_mutex;
 
 
 /**
@@ -19,9 +17,6 @@ void aliveTask(void *pvParameters)
     }
 }
 
-
-
-
 /**
  * @brief Setup the project components, including mutex, GPIO, I2C bud and master device, and BME680 sensor
  * 
@@ -33,24 +28,16 @@ void setup(void)
     ESP_LOGI(tag, "Setting up NVS");
     nvs_setup();
 
-    ESP_LOGI(tag, "Creating sensor data mutex");
-    sensor_data_mutex = xSemaphoreCreateMutex();
-    if(sensor_data_mutex == NULL)
-    {
-        ESP_LOGE(tag, "Failed to create sensor data mutex");
-        return;
-    }
-
     ESP_LOGI(tag, "Initializing GPIO");
     setup_gpio();
 
     ESP_LOGI(tag, "Initializing I2C");
     initialize_i2c();
 
-    ESP_LOGI(tag, "Configuring BME680 Sensor");
-    configureBme680Sensor();
+    ESP_LOGI(tag, "Initializing BME680 Sensor");
+    initializeBME680();
 
-    ESP_LOGI(tag, "Setting up WiFi Access Point");
+    ESP_LOGI(tag, "Initializing WiFi");
     wifi_init_softap();
 
     ESP_LOGI(tag, "Setup complete");
