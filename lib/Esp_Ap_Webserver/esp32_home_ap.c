@@ -240,6 +240,10 @@ static esp_err_t index_handler(httpd_req_t *req)
                         "<div class='sensor-title'>💨 Gas Resistance</div>"
                         "<div class='sensor-value loading' id='gas'>--</div>"
                     "</div>"
+                    "<div class='sensor-box'>"
+                        "<div class='sensor-title'>% Index Air Quality</div>"
+                        "<div class='sensor-value loading' id='iaq'>--</div>"
+                    "</div>"
                 "</div>"
                 "<div class='footer'>"
                     "<span class='status'></span>Live updating every second | ESP32 BME680"
@@ -254,6 +258,12 @@ static esp_err_t index_handler(httpd_req_t *req)
                         "document.getElementById('pressure').innerHTML = data.pressure.toFixed(2) + ' <small>hPa</small>';"
                         "document.getElementById('humidity').innerHTML = data.humidity.toFixed(2) + ' <small>%</small>';"
                         "document.getElementById('gas').innerHTML = data.gas.toFixed(0) + ' <small>Ω</small>';"
+                        "const iaqEl = document.getElementById('iaq');"
+                        "iaqEl.innerHTML = data.iaq.toFixed(0) + ' <small>%</small>';"
+
+                        "let color = data.iaq > 75 ? '#4caf50' : (data.iaq > 50 ? '#ff9800' : '#f44336');"
+                        "iaqEl.style.backgroundImage = 'none';" // Remove the CSS gradient
+                        "iaqEl.style.webkitTextFillColor = color;" // Set the new color
                         "document.querySelectorAll('.sensor-value').forEach(el => el.classList.remove('loading'));"
                     "})"
                     ".catch(err => {"
@@ -279,11 +289,17 @@ static esp_err_t index_handler(httpd_req_t *req)
  */
 static esp_err_t sensor_data_handler(httpd_req_t *req)
 {
-    struct bme68x_data local_bme_data;
+    struct bme_sensor_data local_bme_data;
     // Try to receive data from the queue
     if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
     {
-        memcpy(&local_bme_data, &global_sensor_data, sizeof(struct bme68x_data));
+        if (valid_data) {
+            memcpy(&local_bme_data, &global_sensor_data, sizeof(struct bme_sensor_data));
+        }
+        else {
+            memset(&local_bme_data, 0, sizeof(struct bme_sensor_data));
+        }
+
         xSemaphoreGive(sensor_data_mutex);
         char json_response[256];
         snprintf(json_response, sizeof(json_response), 
@@ -291,12 +307,14 @@ static esp_err_t sensor_data_handler(httpd_req_t *req)
             "\"temperature\": %.2f,"
             "\"pressure\": %.2f,"
             "\"humidity\": %.2f,"
-            "\"gas\": %.2f"
+            "\"gas\": %.2f,"
+            "\"iaq\": %.2f"
         "}",
-            (float)local_bme_data.temperature / 100.0, // Convert to °C
-            (float)local_bme_data.pressure,
-            (float)local_bme_data.humidity / 1000.0, // Convert to %
-            (float)local_bme_data.gas_resistance
+            (float)local_bme_data.bme_results.temperature / 100.0, // Convert to °C
+            (float)local_bme_data.bme_results.pressure,
+            (float)local_bme_data.bme_results.humidity / 1000.0, // Convert to %
+            (float)local_bme_data.bme_results.gas_resistance,
+            (float)local_bme_data.iaq
         );
 
         httpd_resp_set_type(req, "application/json");

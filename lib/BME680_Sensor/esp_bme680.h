@@ -7,23 +7,35 @@
 
 
 // #define PRINT_SENSOR_DATA 
+// #define BME68X_USE_FPU
 
-#define BME_SAMPLE_MODE BME68X_SEQUENTIAL_MODE
-#define DELAY_FACTOR 0.1     //units of sec
+#define BME_SAMPLE_MODE BME68X_FORCED_MODE      //Sample mode for BME sensor
+#define BME_TEMP_SR     BME68X_OS_2X            //Oversample rate for Temperature
+#define BME_PRES_SR     BME68X_OS_16X           //Oversample rate for Pressure
+#define BME_HUM_SR      BME68X_OS_1X            //Oversample rate for Humidity
+#define BME_FILTER      BME68X_FILTER_SIZE_15   //IIR filter profile
+#define BME_ODR         BME68X_ODR_NONE         //Standby time
+#define BME_HEATER_EN   BME68X_ENABLE_HEATER   //Enable/Disable Heater
+
+#define DELAY_FACTOR 1        //units of sec
 
 
 
-extern struct bme68x_data global_sensor_data; 
+typedef struct bme_sensor_data {
+    struct bme68x_data bme_results;
+    float iaq;
+}bme_sensor_data_t;
 
 
 
-void measureBME680Data(struct bme68x_data* bme_data);
-void setupBmeI2C(struct bme68x_dev* bme, uint8_t intf);
-void configureBme680Sensor(void);
-static void user_delay_us(uint32_t period, void *intf_ptr);
-static void configHeater(void);
-static void configBME(void);
+
+extern struct bme_sensor_data global_sensor_data;
+extern bool valid_data;
+
+
+void measureBME680Data(struct bme_sensor_data* bme_data);
 void initializeBME680(void);
+float calculate_iaq(float gas_resistance, float humidity);
 
 
 
