@@ -1,3 +1,27 @@
+/**
+ * @file esp_bme_i2c.c
+ * @brief I2C communication implementation for BME680 sensor
+ * 
+ * @details This file implements the I2C master communication driver for the BME680 sensor
+ * on the ESP32 platform. It provides read and write functions that interface with the
+ * BME68X sensor API, handling low-level I2C transactions with proper error checking and
+ * timeout management. The module also includes I2C bus and device configuration initialization.
+ * 
+ * Functions:
+ * - bme68x_i2c_read(): Performs I2C register read via transmit-receive
+ * - bme68x_i2c_write(): Performs I2C register write with address prepend
+ * - initialize_i2c(): Sets up I2C bus and device handles
+ * 
+ * Error Handling:
+ * - I2C errors mapped to BME68X_E_COM_FAIL
+ * - Success returns BME68X_OK
+ * - Timeout handling via ESP_ERROR_CHECK
+ * 
+ * @author Matthew Buchkowski
+ * @date January 2026
+ * @version 1.0
+ */
+
 #include "esp_bme_i2c.h"
 
 
