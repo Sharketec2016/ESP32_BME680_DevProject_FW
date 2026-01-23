@@ -1,3 +1,25 @@
+/**
+ * @file esp_bme680.h
+ * @brief BME680 environmental sensor interface and configuration
+ * 
+ * @details This header defines the interface for the Bosch BME680 sensor, which measures
+ * temperature, pressure, humidity, and gas resistance. It includes sensor configuration
+ * macros for sampling modes, oversample rates, filtering, and heater settings. The module
+ * provides functions for sensor initialization, data acquisition, and air quality index (IAQ)
+ * calculation. All sensor data access is protected by a mutex for thread-safe FreeRTOS
+ * integration.
+ * 
+ * Sensor configurations:
+ * - Sample mode: Forced mode for periodic measurements
+ * - Temperature/Pressure/Humidity oversampling: Configurable rates
+ * - IIR filtering: 15-coefficient filter for noise reduction
+ * - Heater: Gas sensor heating for improved accuracy
+ * 
+ * @author Matthew Buchkowski
+ * @date January 2026
+ * @version 1.0
+ */
+
 #ifndef __ESP_BME680_H__
 #define __ESP_BME680_H__
 #include <stdint.h>

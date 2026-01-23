@@ -1,3 +1,29 @@
+/**
+ * @file esp32_home_ap.c
+ * @brief WiFi access point and web server implementation
+ * 
+ * @details This file implements the WiFi soft AP and HTTP web server for the ESP32 BME680
+ * project. It provides complete WiFi initialization with WPA2-PSK security, HTTP server
+ * setup with multiple URI handlers, and JSON sensor data endpoints. The module includes
+ * an HTML dashboard with real-time JavaScript updates, responsive design, and gradient
+ * styling. All sensor data access is protected by mutex for thread-safe FreeRTOS operation.
+ * 
+ * HTTP endpoints:
+ * - GET / : Interactive HTML dashboard with live sensor display
+ * - GET /sensor_data : JSON API with current sensor readings
+ * - GET /hello : Simple test endpoint
+ * - * : 404 error handler
+ * 
+ * Thread safety:
+ * - All global sensor data access protected by sensor_data_mutex
+ * - Local data copy used to minimize mutex hold time
+ * - NVS initialization handles version conflicts and page erasure
+ * 
+ * @author Matthew Buchkowski
+ * @date January 2026
+ * @version 1.0
+ */
+
 #include "esp32_home_ap.h"
 
 const char* server_tag = "ESP32 Home Server";

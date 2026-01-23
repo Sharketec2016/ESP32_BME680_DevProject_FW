@@ -5,3 +5,4 @@
 .vscode/ipch
 doxygen_output/
 build/
+.vscode

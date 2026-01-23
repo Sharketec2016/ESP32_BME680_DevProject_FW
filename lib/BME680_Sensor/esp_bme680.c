@@ -1,3 +1,26 @@
+/**
+ * @file esp_bme680.c
+ * @brief BME680 environmental sensor implementation and data acquisition
+ * 
+ * @details This file implements the complete BME680 sensor driver for the ESP32 platform.
+ * It handles sensor initialization, configuration of measurement modes, heater settings,
+ * oversample rates, and filtering. The module provides data acquisition with thread-safe
+ * access via FreeRTOS semaphore. It also implements the air quality index (IAQ) calculation
+ * algorithm that combines humidity and gas resistance readings into a composite score.
+ * 
+ * Key features:
+ * - Sensor initialization and configuration management
+ * - Forced mode operation for periodic data sampling
+ * - Temperature, pressure, humidity, and gas resistance measurement
+ * - Gas sensor heater control and timing management
+ * - IAQ calculation based on gas resistance and humidity reference levels
+ * - Mutex-protected global sensor data for FreeRTOS task safety
+ * 
+ * @author Matthew Buchkowski
+ * @date January 2026
+ * @version 1.0
+ */
+
 #include "esp_bme680.h"
 
 struct bme68x_dev bme;

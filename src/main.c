@@ -1,7 +1,29 @@
+/**
+ * @file main.c
+ * @brief Main application entry point and core task management for ESP32 BME680 sensor project
+ * 
+ * @details This file implements the primary application logic for an ESP32-based environmental
+ * monitoring system using the BME680 sensor. It manages system initialization, task creation,
+ * and coordination between multiple subsystems including GPIO control, I2C communication,
+ * sensor data acquisition, WiFi connectivity, and a web server interface.
+ * 
+ * The application runs three main tasks:
+ * - app_main(): Initializes all hardware and software components, then creates worker tasks
+ * - aliveTask: Periodically toggles an LED to indicate system activity and proper scheduling
+ * - sampleDataTask: Continuously acquires environmental data from the BME680 sensor
+ * 
+ * Key responsibilities:
+ * - System setup and initialization (NVS, GPIO, I2C, BME680, WiFi)
+ * - Sensor data acquisition with thread-safe access via mutex
+ * - Web server hosting for remote data access
+ * - Task scheduling and FreeRTOS integration
+ * 
+ * @author Matthew Buchkowski
+ * @date January 2026
+ * @version 1.0
+ */
+
 #include "project.h"
-
-
-
 /**
  * @brief Task to toggle an LED to indicate system activity
  * 

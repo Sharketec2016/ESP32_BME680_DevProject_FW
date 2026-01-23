@@ -1,3 +1,18 @@
+/**
+ * @file esp_bme_errors.c
+ * @brief Error handling and diagnostic implementation for BME680 sensor
+ * 
+ * @details This file implements error checking and diagnostic functionality for the BME680
+ * sensor driver. It provides detailed logging of BME68X API errors and warnings, translating
+ * error codes into human-readable messages. Critical errors trigger a controlled halt via
+ * spin() function to safely stop execution. All errors are logged via ESP-IDF logging system
+ * with appropriate severity levels.
+ * 
+ * @author Matthew Buchkowski
+ * @date January 2026
+ * @version 1.0
+ */
+
 #include "esp_bme_errors.h"
 const char* tag = "BME680 Project";
 
