@@ -38,8 +38,15 @@
 #include "bme68x.h"
 #include "esp_bme680.h"
 
-#define ESP_WIFI_SSID       "ESP32_BME680_SERVER"
-#define ESP_WIFI_PASS       "bme680sensor"
+#ifndef ESP_WIFI_SSID
+#define ESP_WIFI_SSID "DEFAULT_SSID"
+#endif
+
+#ifndef ESP_WIFI_PASS
+#define ESP_WIFI_PASS "DEFAULT_PASS"
+#endif
+
+
 #define ESP_WIFI_CHANNEL    1
 #define MAX_STA_CONN        2
 

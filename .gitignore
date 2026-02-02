@@ -6,3 +6,5 @@
 doxygen_output/
 build/
 .vscode
+.env
+include/secrets.h
