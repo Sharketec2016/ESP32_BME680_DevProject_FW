@@ -52,7 +52,7 @@ static void configHeater(void);
 static void configBME(void);
 static void configureBme680Sensor(void);
 static void user_delay_us(uint32_t period, void *intf_ptr);
-static void setupBmeI2C(struct bme68x_dev* setupBme, uint8_t intf);
+static void setupBmeI2C(struct bme68x_dev* setupBme);
 
 float calculate_iaq(float gas_resistance, float humidity) {
     // Replace the 50000.0 with your actual baseline
@@ -138,7 +138,7 @@ static void configBME(void)
  */
 static void configureBme680Sensor(void)
 {
-    setupBmeI2C(&bme, BME68X_I2C_INTF); //We are using I2C for comms
+    setupBmeI2C(&bme); //We are using I2C for comms
 
 
     int8_t rslt = bme68x_init(&bme);
@@ -173,9 +173,9 @@ static void user_delay_us(uint32_t period, void *intf_ptr)
  * @param setupBme
  * @param intf
  */
-static void setupBmeI2C(struct bme68x_dev* setupBme, uint8_t intf)
+static void setupBmeI2C(struct bme68x_dev* setupBme)
 {
-    setupBme->intf = intf;
+    setupBme->intf = BME68X_I2C_INTF;
     setupBme->read = bme68x_i2c_read;
     setupBme->write = bme68x_i2c_write;
     setupBme->delay_us = user_delay_us;
@@ -183,6 +183,16 @@ static void setupBmeI2C(struct bme68x_dev* setupBme, uint8_t intf)
 }
 
 
+/**
+ * @brief Query data from the BME sensor. 
+ * @details Function handles the data acquisiton differently depending on whether or not we are in forced mode.
+ * Data acquistion is started by setting the op mode, if in forced. This is not necessary in rolling sampling mode
+ * as we data is continously polled. We then acquire the appropriate delay until we can query the next data point. 
+ * After the delay we confidently gather data from the sensor and pass into a helper function for calculating 
+ * the values in a easy to interpret format. 
+ * 
+ * @param bme_data 
+ */
 void measureBME680Data(struct bme_sensor_data* bme_data)
 {
     int8_t rslt;
@@ -207,16 +217,6 @@ void measureBME680Data(struct bme_sensor_data* bme_data)
         bme_data->iaq = calculate_iaq(bme_data->bme_results.gas_resistance, bme_data->bme_results.humidity / 1000.0);
 
     }
-
-#if BME_SAMPLE_MODE == BME68X_FORCED_MODE
-    if (n_fields > 0) {
-
-    }
-#elif BME_SAMPLE_MODE == BME68X_SEQUENTIAL_MODE
-    valid_data = true;
-#endif
-
-
 
 #ifdef PRINT_SENSOR_DATA
     if(rslt == BME68X_OK) {

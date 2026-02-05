@@ -31,6 +31,8 @@
 // #define PRINT_SENSOR_DATA 
 // #define BME68X_USE_FPU
 
+
+//Note: BME_SAMPLE_MODE can only be FORCED or SEQUENTIAL. All other modes are not supported at the moment. 
 #define BME_SAMPLE_MODE BME68X_FORCED_MODE      //Sample mode for BME sensor
 #define BME_TEMP_SR     BME68X_OS_2X            //Oversample rate for Temperature
 #define BME_PRES_SR     BME68X_OS_16X           //Oversample rate for Pressure
