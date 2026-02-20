@@ -31,6 +31,7 @@
  */
 void aliveTask(void *pvParameters)
 {
+    (void)pvParameters;
     static uint8_t toggle = 0;
     while(1)
     {
