@@ -23,11 +23,6 @@
 
 #include "esp_bme680.h"
 
-struct bme68x_dev bme;
-struct bme68x_conf bme_conf;
-struct bme68x_heatr_conf heatr_conf;
-struct bme_sensor_data global_sensor_data;
-
 struct bme_sensor sensor;
 
 bool valid_data = false;
@@ -48,14 +43,16 @@ uint16_t temp_prof = 300;
 uint16_t dur_prof = 100;
 #endif
 
+/*============================PRIVATE API's==============================*/
 
-// static void configHeater(void);
-// static void configBME(void);
 static void configHeater(struct bme68x_heatr_conf *heatr_conf, struct bme68x_dev *dev);
 static void configBME(struct bme68x_conf* conf, struct bme68x_dev *dev);
 static void configureBme680Sensor(void);
 static void user_delay_us(uint32_t period, void *intf_ptr);
 static void setupBmeI2C(struct bme68x_dev* setupBme);
+float calculate_iaq(float gas_resistance, float humidity);
+
+
 
 float calculate_iaq(float gas_resistance, float humidity) {
     // Replace the 50000.0 with your actual baseline
@@ -128,16 +125,10 @@ static void configBME(struct bme68x_conf* conf, struct bme68x_dev *dev)
     rslt = bme68x_set_conf(conf, dev);
     bme68x_check_rslt("bme68x_set_conf", rslt);
 
-
-
     configHeater(&sensor.heatr, &sensor.dev);
 
     rslt = bme68x_set_op_mode(BME_SAMPLE_MODE, dev);
     bme68x_check_rslt("bme68x_set_op_mode", rslt);
-
-    memcpy(&bme, &sensor.dev, sizeof(sensor.dev));
-    memcpy(&bme_conf, &sensor.conf, sizeof(sensor.conf));
-    memcpy(&heatr_conf, &sensor.heatr, sizeof(sensor.heatr));
 }
 
 
@@ -192,6 +183,10 @@ static void setupBmeI2C(struct bme68x_dev* setupBme)
     setupBme->amb_temp = 25;
 }
 
+/*======================================================================*/
+
+
+/*============================PUBLIC API's==============================*/
 
 /**
  * @brief Query data from the BME sensor. 
@@ -203,48 +198,47 @@ static void setupBmeI2C(struct bme68x_dev* setupBme)
  * 
  * @param bme_data 
  */
-void measureBME680Data(struct bme_sensor_data* bme_data)
+void measureBME680Data(struct bme_sensor* sensor)
 {
     int8_t rslt;
     uint8_t n_fields = 1;
     valid_data = false;
 #if BME_SAMPLE_MODE == BME68X_FORCED_MODE
     n_fields = 0;
-    rslt = bme68x_set_op_mode(BME_SAMPLE_MODE, &bme);
+    rslt = bme68x_set_op_mode(BME_SAMPLE_MODE, &sensor->dev);
     bme68x_check_rslt("bme68x_set_op_mode", rslt);
 #endif
 
 
-    uint32_t del_period = bme68x_get_meas_dur(BME_SAMPLE_MODE, &bme_conf, &bme);
+    uint32_t del_period = bme68x_get_meas_dur(BME_SAMPLE_MODE, &sensor->conf, &sensor->dev);
 
-    bme.delay_us( (del_period * DELAY_FACTOR) , bme.intf_ptr);
+    sensor->dev.delay_us( (del_period * DELAY_FACTOR) , sensor->dev.intf_ptr);
     
-    rslt = bme68x_get_data(BME_SAMPLE_MODE, &bme_data->bme_results, &n_fields, &bme);
+    rslt = bme68x_get_data(BME_SAMPLE_MODE, &sensor->sensor_data.bme_results, &n_fields, &sensor->dev);
     bme68x_check_rslt("bme68x_get_data", rslt);
 
     if (rslt == BME68X_OK && n_fields > 0) {
         valid_data = true;
-        bme_data->iaq = calculate_iaq(bme_data->bme_results.gas_resistance, bme_data->bme_results.humidity / 1000.0);
+        sensor->sensor_data.iaq = calculate_iaq(sensor->sensor_data.bme_results.gas_resistance, sensor->sensor_data.bme_results.humidity / 1000.0);
 
     }
 
 #ifdef PRINT_SENSOR_DATA
     if(rslt == BME68X_OK) {
 #ifdef BME68X_USE_FPU
-        printf("%lu, %.2f, %.2f, %.2f, %.2f, 0x%x, %d, %d\n",
+        printf("%lu, %.2f, %.2f, %.2f, %.2f, 0x%x\n",
             sample_count,
-            bme_data->bme_results.temperature,
-            bme_data->bme_results.pressure,
-            bme_data->bme_results.humidity,
-            bme_data->bme_results.gas_resistance,
-            bme_data->bme_results.status,
-            bme_data->bme_results.gas_index,
-            bme_data->bme_resultsmeas_index);
+            sensor->sensor_data.bme_results.temperature,
+            sensor->sensor_data.bme_results.pressure,
+            sensor->sensor_data.bme_results.humidity,
+            sensor->sensor_data.bme_results.gas_resistance,
+            sensor->sensor_data.bme_results.status,
+            sensor->sensor_data.bme_results.gas_index;
 #else
         printf("Temperature (C): %d | Pressure (Pa): %lu | Humidity (%%): %lu\n",
-            (bme_data->temperature / 100),
-            (long unsigned int)(bme_data->bme_results.pressure),
-            (long unsigned int)(bme_data->bme_results.humidity / 1000)
+            (sensor->sensor_data.bme_results.temperature / 100),
+            (long unsigned int)(sensor->sensor_data.bme_results.pressure),
+            (long unsigned int)(sensor->sensor_data.bme_results.humidity / 1000)
         );
 #endif
     }
