@@ -3,10 +3,15 @@
 
 #include "esp_bme_errors.h"
 #include "esp_timer.h"
+#include "esp_bme680.h"
+
+
+#define TIMER_PERIOD 1000 //1 ms as us
+
+#define I2C_RETRY_MOD (TIMER_PERIOD * 1000) //1 second
 
 
 
-#define TIMER_PERIOD 1000000 //1 second as us
 
 
 void timer_callback(void* arg);

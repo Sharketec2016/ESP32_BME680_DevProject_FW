@@ -13,7 +13,7 @@ const esp_timer_create_args_t timer_args = {
 void timer_callback(void* arg)
 {
     static uint32_t callback_count = 0x00;
-    ESP_LOGI("Timer", "\rTimer callback was called %d times\n", callback_count++);
+    // ESP_LOGI("Timer", "\rTimer callback was called %d times\n", callback_count++);
 }
 
 

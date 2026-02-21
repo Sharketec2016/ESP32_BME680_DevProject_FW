@@ -34,13 +34,19 @@
 #include "driver/i2c_master.h"
 #include "driver/i2c.h"
 #include "bme68x.h"
+#include "esp_bme_errors.h"
+
+
+
 
 
 #define I2C_FREQ_HZ         400000     // 400kHz
 #define I2C_PORT            I2C_NUM_0
 
 #define DEVICE_ADDR         0x76       // example device address
-#define I2C_MASTER_TIMEOUT_MS 1000
+#define I2C_MASTER_TIMEOUT_MS 100
+#define I2C_COMMS_RETRIES 5
+
 
 extern i2c_master_bus_config_t i2c_bus_config;
 extern i2c_device_config_t i2c_dev_config;

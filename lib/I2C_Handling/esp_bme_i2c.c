@@ -24,7 +24,7 @@
 
 #include "esp_bme_i2c.h"
 
-
+const char* i2c_tag = "BME680 I2C";
 
 
 i2c_master_bus_config_t i2c_bus_config = {
@@ -60,15 +60,38 @@ i2c_master_dev_handle_t i2c_dev_handle;
  */
 int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
-    esp_err_t err = i2c_master_transmit_receive(
-        i2c_dev_handle,
-        &reg_addr,
-        1,
-        reg_data,
-        len,
-        pdMS_TO_TICKS(I2C_MASTER_TIMEOUT_MS)
-    );
-    return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;  
+
+    // if(!reg_data || !intf_ptr)
+    // {
+    //     ESP_LOGE(i2c_tag, "Error: null pointers were passed for either reg_data or intf_ptr for i2c_read");
+    //     return BME68X_E_NULL_PTR;
+    // }
+
+    esp_err_t err = ESP_OK;
+
+    for(uint8_t retries = 0x00; retries<I2C_COMMS_RETRIES; retries++)
+    {
+        err = i2c_master_transmit_receive(
+            i2c_dev_handle,
+            &reg_addr,
+            1,
+            reg_data,
+            len,
+            pdMS_TO_TICKS(I2C_MASTER_TIMEOUT_MS)
+        );
+        if(err == ESP_OK)
+        {
+            if(retries > 0)
+            {
+                ESP_LOGW(i2c_tag, "Warning: I2C read took %d retries", retries);
+            }
+            return BME68X_OK;
+        }
+        vTaskDelay(pdMS_TO_TICKS(10)); // small backoff
+    }
+
+    ESP_LOGE("BME680", "I2C read failed after %d retries", I2C_COMMS_RETRIES);
+    return BME68X_E_COM_FAIL; 
 }
 
 /**
@@ -82,16 +105,41 @@ int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *
  */
 int8_t bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
+
+    // if(!reg_data || !intf_ptr)
+    // {
+    //     ESP_LOGE(i2c_tag, "Error: null pointers were passed for either reg_data or intf_ptr for i2c_write");
+    //     return BME68X_E_NULL_PTR;
+    // }
+
     uint8_t tx_buf[len+1];
     tx_buf[0] = reg_addr;
     memcpy(&tx_buf[1], reg_data, len);
-    esp_err_t err = i2c_master_transmit(
-        i2c_dev_handle,
-        tx_buf, 
-        len+1,
-        pdMS_TO_TICKS(I2C_MASTER_TIMEOUT_MS)
-    );
-    return (err == ESP_OK) ? BME68X_OK : BME68X_E_COM_FAIL;
+
+    esp_err_t err = ESP_OK;
+
+    for(uint8_t retries = 0x00; retries < I2C_COMMS_RETRIES; retries++)
+    {
+        err = i2c_master_transmit(
+            i2c_dev_handle,
+            tx_buf, 
+            len+1,
+            pdMS_TO_TICKS(I2C_MASTER_TIMEOUT_MS)
+        );
+
+        if(err == ESP_OK)
+        {
+            if(retries > 0)
+            {
+                ESP_LOGW(i2c_tag, "Warning: I2C write took %d retries", retries);
+            }
+            return BME68X_OK;
+        }
+        vTaskDelay(pdMS_TO_TICKS(10)); // small backoff
+    }
+
+    ESP_LOGE("BME680", "I2C write failed after %d retries", I2C_COMMS_RETRIES);
+    return BME68X_E_COM_FAIL; 
 }
 
 void initialize_i2c(void)
