@@ -1,0 +1,1 @@
+cppcheck -j$(nproc) --enable=all --inconclusive --std=c++17   -I include -I src -I lib   --suppress=missingInclude   --suppress=missingIncludeSystem   --suppress=*:lib/BME68x_SensorAPI/*   src include lib
