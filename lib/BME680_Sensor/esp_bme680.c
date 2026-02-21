@@ -26,8 +26,9 @@
 struct bme68x_dev bme;
 struct bme68x_conf bme_conf;
 struct bme68x_heatr_conf heatr_conf;
-// struct bme68x_data global_sensor_data;
 struct bme_sensor_data global_sensor_data;
+
+struct bme_sensor sensor;
 
 bool valid_data = false;
 
@@ -48,8 +49,10 @@ uint16_t dur_prof = 100;
 #endif
 
 
-static void configHeater(void);
-static void configBME(void);
+// static void configHeater(void);
+// static void configBME(void);
+static void configHeater(struct bme68x_heatr_conf *heatr_conf, struct bme68x_dev *dev);
+static void configBME(struct bme68x_conf* conf, struct bme68x_dev *dev);
 static void configureBme680Sensor(void);
 static void user_delay_us(uint32_t period, void *intf_ptr);
 static void setupBmeI2C(struct bme68x_dev* setupBme);
@@ -87,25 +90,25 @@ float calculate_iaq(float gas_resistance, float humidity) {
  * @brief Configure the heater settings for the BME680 sensor
  *
  */
-static void configHeater(void)
+static void configHeater(struct bme68x_heatr_conf *heatr_conf, struct bme68x_dev *dev)
 {
     int8_t rslt;
-    heatr_conf.enable = BME_HEATER_EN;
+    heatr_conf->enable = BME_HEATER_EN;
 
 #if BME_SAMPLE_MODE == BME68X_SEQUENTIAL_MODE
-    heatr_conf.heatr_temp_prof = temp_prof;
-    heatr_conf.heatr_dur_prof = dur_prof;
-    heatr_conf.profile_len = 10;
+    heatr_conf->heatr_temp_prof = temp_prof;
+    heatr_conf->heatr_dur_prof = dur_prof;
+    heatr_conf->profile_len = 10;
 #elif BME_SAMPLE_MODE == BME68X_FORCED_MODE
-    heatr_conf.heatr_temp = temp_prof;
-    heatr_conf.heatr_dur = dur_prof;
-    heatr_conf.profile_len = 0x00;
+    heatr_conf->heatr_temp = temp_prof;
+    heatr_conf->heatr_dur = dur_prof;
+    heatr_conf->profile_len = 0x00;
 #endif
 
 
 
 
-    rslt = bme68x_set_heatr_conf(BME_SAMPLE_MODE, &heatr_conf, &bme);
+    rslt = bme68x_set_heatr_conf(BME_SAMPLE_MODE, heatr_conf, dev);
     bme68x_check_rslt("bme68x_set_heatr_conf", rslt);
 }
 
@@ -113,22 +116,28 @@ static void configHeater(void)
  * @brief Configure the BME680 Sensor with desired settings
  *
  */
-static void configBME(void)
+static void configBME(struct bme68x_conf* conf, struct bme68x_dev *dev)
 {
     int8_t rslt;
-    bme_conf.os_temp    = BME_TEMP_SR;
-    bme_conf.os_pres    = BME_PRES_SR;
-    bme_conf.os_hum     = BME_HUM_SR;
-    bme_conf.filter     = BME_FILTER;
-    bme_conf.odr        = BME_ODR;
+    conf->os_temp    = BME_TEMP_SR;
+    conf->os_pres    = BME_PRES_SR;
+    conf->os_hum     = BME_HUM_SR;
+    conf->filter     = BME_FILTER;
+    conf->odr        = BME_ODR;
 
-    rslt = bme68x_set_conf(&bme_conf, &bme);
+    rslt = bme68x_set_conf(conf, dev);
     bme68x_check_rslt("bme68x_set_conf", rslt);
 
-    configHeater();
 
-    rslt = bme68x_set_op_mode(BME_SAMPLE_MODE, &bme);
+
+    configHeater(&sensor.heatr, &sensor.dev);
+
+    rslt = bme68x_set_op_mode(BME_SAMPLE_MODE, dev);
     bme68x_check_rslt("bme68x_set_op_mode", rslt);
+
+    memcpy(&bme, &sensor.dev, sizeof(sensor.dev));
+    memcpy(&bme_conf, &sensor.conf, sizeof(sensor.conf));
+    memcpy(&heatr_conf, &sensor.heatr, sizeof(sensor.heatr));
 }
 
 
@@ -138,17 +147,18 @@ static void configBME(void)
  */
 static void configureBme680Sensor(void)
 {
-    setupBmeI2C(&bme); //We are using I2C for comms
+    
+    setupBmeI2C(&sensor.dev); //We are using I2C for comms
 
 
-    int8_t rslt = bme68x_init(&bme);
+    int8_t rslt = bme68x_init(&sensor.dev);
     bme68x_check_rslt("bme68x_init", rslt);
     
     
-    rslt = bme68x_get_conf(&bme_conf, &bme);
+    rslt = bme68x_get_conf(&sensor.conf, &sensor.dev);
     bme68x_check_rslt("bme68x_get_conf", rslt);
 
-    configBME();
+    configBME(&sensor.conf, &sensor.dev);
 }
 
 

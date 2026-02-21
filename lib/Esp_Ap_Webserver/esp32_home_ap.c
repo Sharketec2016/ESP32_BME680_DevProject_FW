@@ -320,7 +320,7 @@ static esp_err_t sensor_data_handler(httpd_req_t *req)
     if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
     {
         if (valid_data) {
-            memcpy(&local_bme_data, &global_sensor_data, sizeof(struct bme_sensor_data));
+            memcpy(&local_bme_data, &sensor.sensor_data, sizeof(struct bme_sensor_data));
         }
         else {
             memset(&local_bme_data, 0, sizeof(struct bme_sensor_data));

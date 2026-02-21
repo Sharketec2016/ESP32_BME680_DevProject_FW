@@ -96,7 +96,7 @@ void setup(void)
 
     ESP_LOGI(tag, "Initalizing WatchDog");
     initWDOG();
-    
+
     ESP_LOGI(tag, "Setting up PIT");
     timer_setup();
 
