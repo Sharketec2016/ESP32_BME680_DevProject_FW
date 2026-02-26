@@ -51,15 +51,25 @@ typedef struct bme_sensor_data {
 }bme_sensor_data_t;
 
 
+typedef struct bme_sensor
+{
+    struct bme68x_dev dev;
+    struct bme68x_conf conf;
+    struct bme68x_heatr_conf heatr;
+    struct bme_sensor_data sensor_data;
+}bme_sensor_t;
+
 
 
 extern struct bme_sensor_data global_sensor_data;
+extern struct bme_sensor sensor;
 extern bool valid_data;
 
 
-void measureBME680Data(struct bme_sensor_data* bme_data);
+// void measureBME680Data(struct bme_sensor_data* bme_data);
+void measureBME680Data(struct bme_sensor* sensor);
 void initializeBME680(void);
-float calculate_iaq(float gas_resistance, float humidity);
+
 
 
 

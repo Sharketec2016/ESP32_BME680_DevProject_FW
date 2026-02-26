@@ -62,7 +62,7 @@ void sampleDataTask(void *pvParameters)
     {
         if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
         {
-            measureBME680Data(&global_sensor_data);
+            measureBME680Data(&sensor);
             xSemaphoreGive(sensor_data_mutex);
             esp_task_wdt_reset();
         }
@@ -96,6 +96,9 @@ void setup(void)
 
     ESP_LOGI(tag, "Initalizing WatchDog");
     initWDOG();
+
+    ESP_LOGI(tag, "Setting up PIT");
+    timer_setup();
 
     ESP_LOGI(tag, "Setup complete");
 }
