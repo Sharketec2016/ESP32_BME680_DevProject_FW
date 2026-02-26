@@ -62,7 +62,7 @@ void sampleDataTask(void *pvParameters)
     {
         if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
         {
-            measureBME680Data(&global_sensor_data);
+            measureBME680Data(&sensor);
             xSemaphoreGive(sensor_data_mutex);
             esp_task_wdt_reset();
         }
