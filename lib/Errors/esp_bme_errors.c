@@ -45,23 +45,18 @@ void bme68x_check_rslt(const char api_name[], int8_t rslt)
             break;
         case BME68X_E_NULL_PTR:
             ESP_LOGE(tag, "API name [%s]  Error [%d] : Null pointer\r\n", api_name, rslt);
-            spin();
             break;
         case BME68X_E_COM_FAIL:
             ESP_LOGE(tag, "API name [%s]  Error [%d] : Communication failure\r\n", api_name, rslt);
-            spin();
             break;
         case BME68X_E_INVALID_LENGTH:
             ESP_LOGE(tag, "API name [%s]  Error [%d] : Incorrect length parameter\r\n", api_name, rslt);
-            spin();
             break;
         case BME68X_E_DEV_NOT_FOUND:
             ESP_LOGE(tag, "API name [%s]  Error [%d] : Device not found\r\n", api_name, rslt);
-            spin();
             break;
         case BME68X_E_SELF_TEST:
             ESP_LOGE(tag, "API name [%s]  Error [%d] : Self test error\r\n", api_name, rslt);
-            spin();
             break;
         case BME68X_W_NO_NEW_DATA:
             ESP_LOGI(tag, "API name [%s]  Warning [%d] : No new data found\r\n", api_name, rslt);

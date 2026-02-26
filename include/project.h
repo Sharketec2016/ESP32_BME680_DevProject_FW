@@ -22,6 +22,11 @@
 #include "freertos/semphr.h"
 #include "esp_gpio_handling.h"
 #include "esp_bme680.h"
+#include "esp_wdog.h"
+
+
+
+
 
 
 

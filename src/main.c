@@ -24,6 +24,12 @@
  */
 
 #include "project.h"
+
+TaskHandle_t aliveTaskHandle;
+TaskHandle_t sampleDataTaskHandle;
+
+
+
 /**
  * @brief Task to toggle an LED to indicate system activity
  * 
@@ -32,13 +38,41 @@
 void aliveTask(void *pvParameters)
 {
     (void)pvParameters;
+    esp_task_wdt_add(NULL);
     static uint8_t toggle = 0;
     while(1)
     {
+        // esp_task_wdt_reset_user(aliveTaskWdogHandle);
+        esp_task_wdt_reset();
         toggle_led(&toggle);
         vTaskDelay(BLINK_DELAY / portTICK_PERIOD_MS);
     }
 }
+
+
+/**
+ * @brief Task to sample sensor data and update the global sensor data
+ * 
+ * @details This task will continously sample data from the BME sensor, and if available, update the global sensor data struct with the lastest. It uses a mutex to ensure safe access to the global data.
+ * @param pvParameters 
+ */
+void sampleDataTask(void *pvParameters)
+{
+    (void)pvParameters;
+    esp_task_wdt_add(NULL);
+    while(1)
+    {
+        if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
+        {
+            measureBME680Data(&global_sensor_data);
+            xSemaphoreGive(sensor_data_mutex);
+            esp_task_wdt_reset();
+        }
+        vTaskDelay(pdMS_TO_TICKS(100));
+    }
+}
+
+
 
 /**
  * @brief Setup the project components, including mutex, GPIO, I2C bud and master device, and BME680 sensor
@@ -63,28 +97,12 @@ void setup(void)
     ESP_LOGI(tag, "Initializing WiFi");
     wifi_init_softap();
 
+    ESP_LOGI(tag, "Initalizing WatchDog");
+    initWDOG();
+
     ESP_LOGI(tag, "Setup complete");
 }
 
-/**
- * @brief Task to sample sensor data and update the global sensor data
- * 
- * @details This task will continously sample data from the BME sensor, and if available, update the global sensor data struct with the lastest. It uses a mutex to ensure safe access to the global data.
- * @param pvParameters 
- */
-void sampleDataTask(void *pvParameters)
-{
-    (void)pvParameters;
-    while(1)
-    {
-        if(xSemaphoreTake(sensor_data_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
-        {
-            measureBME680Data(&global_sensor_data);
-            xSemaphoreGive(sensor_data_mutex);
-        }
-        vTaskDelay(pdMS_TO_TICKS(100));
-    }
-}
 
 /**
  * @brief Main application entry point
@@ -95,7 +113,16 @@ void app_main()
     setup();
 
     start_webserver();
-    xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY, NULL);
-    xTaskCreate(sampleDataTask, "Data Acquisition Task", 2048, NULL, tskIDLE_PRIORITY, NULL);
+    xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY+1, &aliveTaskHandle);
+    xTaskCreate(sampleDataTask, "Data Acquisition Task", 4096, NULL, tskIDLE_PRIORITY+1, &sampleDataTaskHandle);
+    
+
+    // ESP_ERROR_CHECK(esp_task_wdt_add_user("Alive LED Blink", &aliveTaskWdogHandle));
+    // ESP_ERROR_CHECK(esp_task_wdt_add_user("Data Acquistion Task", &sampleDataTaskWdogHandle));
+
+
+    
+    // esp_task_wdt_delete(NULL);
+
     ESP_LOGI(tag, "Application complete");
 }
