@@ -227,13 +227,12 @@ void measureBME680Data(struct bme_sensor* sensor)
     if(rslt == BME68X_OK) {
 #ifdef BME68X_USE_FPU
         printf("%lu, %.2f, %.2f, %.2f, %.2f, 0x%x\n",
-            sample_count,
             sensor->sensor_data.bme_results.temperature,
             sensor->sensor_data.bme_results.pressure,
             sensor->sensor_data.bme_results.humidity,
             sensor->sensor_data.bme_results.gas_resistance,
             sensor->sensor_data.bme_results.status,
-            sensor->sensor_data.bme_results.gas_index;
+            sensor->sensor_data.bme_results.gas_index);
 #else
         printf("Temperature (C): %d | Pressure (Pa): %lu | Humidity (%%): %lu\n",
             (sensor->sensor_data.bme_results.temperature / 100),

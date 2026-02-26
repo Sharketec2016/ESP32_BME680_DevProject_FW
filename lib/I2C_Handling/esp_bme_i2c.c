@@ -60,13 +60,6 @@ i2c_master_dev_handle_t i2c_dev_handle;
  */
 int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
-
-    // if(!reg_data || !intf_ptr)
-    // {
-    //     ESP_LOGE(i2c_tag, "Error: null pointers were passed for either reg_data or intf_ptr for i2c_read");
-    //     return BME68X_E_NULL_PTR;
-    // }
-
     esp_err_t err = ESP_OK;
 
     for(uint8_t retries = 0x00; retries<I2C_COMMS_RETRIES; retries++)
@@ -105,13 +98,6 @@ int8_t bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *
  */
 int8_t bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
-
-    // if(!reg_data || !intf_ptr)
-    // {
-    //     ESP_LOGE(i2c_tag, "Error: null pointers were passed for either reg_data or intf_ptr for i2c_write");
-    //     return BME68X_E_NULL_PTR;
-    // }
-
     uint8_t tx_buf[len+1];
     tx_buf[0] = reg_addr;
     memcpy(&tx_buf[1], reg_data, len);
