@@ -29,7 +29,6 @@ TaskHandle_t aliveTaskHandle;
 TaskHandle_t sampleDataTaskHandle;
 
 
-
 /**
  * @brief Task to toggle an LED to indicate system activity
  * 
@@ -42,7 +41,6 @@ void aliveTask(void *pvParameters)
     static uint8_t toggle = 0;
     while(1)
     {
-        // esp_task_wdt_reset_user(aliveTaskWdogHandle);
         esp_task_wdt_reset();
         toggle_led(&toggle);
         vTaskDelay(BLINK_DELAY / portTICK_PERIOD_MS);
@@ -71,7 +69,6 @@ void sampleDataTask(void *pvParameters)
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
-
 
 
 /**
@@ -115,14 +112,5 @@ void app_main()
     start_webserver();
     xTaskCreate(aliveTask, "Alive LED Blink", 2048, NULL, tskIDLE_PRIORITY+1, &aliveTaskHandle);
     xTaskCreate(sampleDataTask, "Data Acquisition Task", 4096, NULL, tskIDLE_PRIORITY+1, &sampleDataTaskHandle);
-    
-
-    // ESP_ERROR_CHECK(esp_task_wdt_add_user("Alive LED Blink", &aliveTaskWdogHandle));
-    // ESP_ERROR_CHECK(esp_task_wdt_add_user("Data Acquistion Task", &sampleDataTaskWdogHandle));
-
-
-    
-    // esp_task_wdt_delete(NULL);
-
     ESP_LOGI(tag, "Application complete");
 }
